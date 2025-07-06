@@ -4,6 +4,7 @@ import 'dart:ui' as ui;
 import 'dart:math';
 import 'language_cards/CSharpCard.dart';
 import 'nameLogo.dart';
+import 'FrontPage/Background.dart';
 
 
 void main() {
@@ -46,45 +47,53 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-
-
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
 
-  final screenWidth = MediaQuery.of(context).size.width;
-  final screenHeight = MediaQuery.of(context).size.height;
+    final logoWidth = screenWidth * 0.8;
+    final logoHeight = logoWidth * (153.57507 / 613.81519); // Aspect Ratio 
 
-  final logoWidth = screenWidth * 0.8;
-  final logoHeight = logoWidth * (153.57507 / 613.81519); //Aspect Ratio 
+   return Scaffold(
+    body: LayoutBuilder(
+    builder: (context, constraints) {
+      final screenHeight = constraints.maxHeight;
 
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: ConstrainedBox(
-          constraints: BoxConstraints(
-            minHeight: MediaQuery.of(context).size.height, 
-          ),
-          child: Container(
-            width: double.infinity,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center, 
-              crossAxisAlignment: CrossAxisAlignment.center, 
-              children: <Widget>[
-                Center(
-                child: Container(
-                  width: logoWidth,
-                  height: logoHeight,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.black, width: 2),
+      return Stack(
+        children: [
+          // Custom painted background
+        Image.asset(
+          'assets/background.png',
+          fit: BoxFit.cover, // Optional: cover, contain, etc.
+          width: double.infinity,
+          height: double.infinity,
+        ),
+
+          // Foreground content with scroll
+          SingleChildScrollView(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(minHeight: screenHeight),
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 100.0),
+                  child: SizedBox(
+                    width: logoWidth,
+                    height: logoHeight,
+                    child: AnimatedName(
+                      width: logoWidth,
+                      height: logoHeight,
+                    ),
                   ),
-                  child: AnimatedName(width: logoWidth, height: logoHeight),
                 ),
               ),
-              ],
             ),
           ),
-        ),
-      ),
-    );
+        ],
+      );
+    },
+  ),
+);
   }
 }
 

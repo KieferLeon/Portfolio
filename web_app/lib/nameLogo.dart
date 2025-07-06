@@ -72,12 +72,14 @@ class Namelogo extends CustomPainter {
     Paint name_stroke = Paint()
       ..style = PaintingStyle.stroke
       ..strokeWidth = 1
-      ..color = Colors.black
+      ..color = const ui.Color.fromARGB(255, 255, 255, 255)
       ..strokeCap = StrokeCap.round;
 
-    // Calculate scale and translation to fit
+    //Canvas Scaling
     final bounds = name.getBounds();
-    final scale = 10.0; // your fixed scale
+    final scaleX = size.width / bounds.width;
+    final scaleY = size.height / bounds.height;
+    final scale = scaleX < scaleY ? scaleX : scaleY;
     final dx = (size.width - bounds.width * scale) / 2;
     final dy = (size.height - bounds.height * scale) / 2;
 
@@ -87,7 +89,7 @@ class Namelogo extends CustomPainter {
     Path dotPath = Path()
       ..addOval(Rect.fromCircle(center: Offset(62, 8) + secondPathOffset, radius: 1));
 
-    // Animate the path drawing using PathMetrics
+    //Path Animation
     final pathMetrics = name.computeMetrics().toList();
     final animatedPath = Path();
 
@@ -96,8 +98,23 @@ class Namelogo extends CustomPainter {
       animatedPath.addPath(metric.extractPath(0, length), Offset.zero);
     }
 
+    Paint a = Paint()
+          ..color = const ui.Color.fromARGB(255, 255, 255, 255);
+
+    final shadowPaint = Paint()
+      ..color = const ui.Color.fromARGB(255, 0, 0, 0)
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = .8 // Same or slightly wider than the main stroke
+      ..strokeCap = StrokeCap.round
+      ..strokeJoin = StrokeJoin.round
+      ..maskFilter = MaskFilter.blur(BlurStyle.normal, 1);
+
+    final shadowPath = animatedPath.shift(const Offset(0.1, 0.1));
+
+    //canvas.drawPath(shadowPath, shadowPaint);
+
     canvas.drawPath(animatedPath, name_stroke);
-    canvas.drawPath(dotPath,Paint());
+    canvas.drawPath(dotPath,a);
   }
 
   @override
