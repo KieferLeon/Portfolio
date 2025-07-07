@@ -1,30 +1,12 @@
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 
-class NamePoint extends CustomPainter {
-@override
-void paint(Canvas canvas, Size size) {
-  final paint = Paint()
-    ..color = Colors.black
-    ..style = PaintingStyle.fill;
-
-  Path dotPath = Path()
-    ..addOval(Rect.fromCircle(center: Offset(50, 50), radius: 10));
-
-  canvas.drawPath(dotPath, paint);
-}
-
-@override
-bool shouldRepaint(covariant Namelogo oldDelegate) {
-  return false;
-}
-}
 
 class Namelogo extends CustomPainter {
   final double progress; 
-  final Offset secondPathOffset;
+  final Size pointSize;
 
-  Namelogo(this.progress, this.secondPathOffset);
+  Namelogo(this.progress, this.pointSize);
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -87,7 +69,7 @@ class Namelogo extends CustomPainter {
     canvas.scale(scale);
 
     Path dotPath = Path()
-      ..addOval(Rect.fromCircle(center: Offset(62, 8) + secondPathOffset, radius: 1));
+      ..addOval(Rect.fromCircle(center: Offset(62, 8), radius: pointSize.height));
 
     //Path Animation
     final pathMetrics = name.computeMetrics().toList();
@@ -120,6 +102,6 @@ class Namelogo extends CustomPainter {
   @override
   bool shouldRepaint(covariant Namelogo oldDelegate) {
     return oldDelegate.progress != progress ||
-           oldDelegate.secondPathOffset != secondPathOffset;
+           oldDelegate.pointSize != pointSize;
   }
 }
