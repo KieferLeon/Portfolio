@@ -6,45 +6,49 @@ import './../Icons/nameLogo.dart';
 import './../Icons/arrow_down.dart';
 
 class Frontpage extends StatefulWidget {
+  final VoidCallback focusout;
+  final VoidCallback focusin;
+
+  const Frontpage({Key? key, required this.focusout, required this.focusin})
+    : super(key: key);
+
   @override
   State<Frontpage> createState() => _FrontpageState();
 }
 
-class _FrontpageState extends State<Frontpage>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  late Animation<Offset> _move;
+class _FrontpageState extends State<Frontpage> with TickerProviderStateMixin {
+  late AnimationController _controllerUp;
+  late Animation<Offset> _moveUP;
   double screenHeight = 0;
+  bool focus = true;
 
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(
+    _controllerUp = AnimationController(
       duration: Duration(milliseconds: 800),
       vsync: this,
     );
-    //_controller.forward();
   }
+
+  @override
   void didChangeDependencies() {
     super.didChangeDependencies();
 
-    // Get screen height AFTER widget is laid out
     screenHeight = MediaQuery.of(context).size.height;
 
-    _move = Tween<Offset>(
-      begin: Offset(0,0),
-      end: Offset(0,-screenHeight),
-    ).animate(CurvedAnimation(
-      parent: _controller,
-      curve: Curves.easeOutCubic,
-    ));
-
-   //_controller.forward();
+    _moveUP =
+        Tween<Offset>(
+          begin: Offset(0, 0),
+          end: Offset(0, -screenHeight * 0.9),
+        ).animate(
+          CurvedAnimation(parent: _controllerUp, curve: Curves.easeOutCubic),
+        );
   }
 
   @override
   void dispose() {
-    _controller.dispose();
+    _controllerUp.dispose();
     super.dispose();
   }
 
@@ -59,68 +63,74 @@ class _FrontpageState extends State<Frontpage>
     final double arrowHeight = arrowWidth * (24 / 40);
 
     return AnimatedBuilder(
-      animation: _controller,
+      animation: _controllerUp,
       builder: (context, child) {
-        return Transform.translate(
-          offset: _move.value,
-      child: child,
-    );
-  },
-  child: Scaffold(
-    body: LayoutBuilder(
-      builder: (context, constraints) {
-        return Stack(
-          children: [
-            Image.asset(
-              'assets/background.png',
-              fit: BoxFit.cover,
-              width: double.infinity,
-              height: double.infinity,
-            ),
-            Center(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    width: logoWidth,
-                    height: logoHeight,
-                    child: AnimatedName(
-                      width: logoWidth,
-                      height: logoHeight,
-                    ),
+        return Transform.translate(offset: _moveUP.value, child: child);
+      },
+      child: Scaffold(
+        body: LayoutBuilder(
+          builder: (context, constraints) {
+            return Stack(
+              children: [
+                Image.asset(
+                  'assets/background.png',
+                  fit: BoxFit.cover,
+                  width: double.infinity,
+                  height: double.infinity,
+                ),
+                Center(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        width: logoWidth,
+                        height: logoHeight,
+                        child: AnimatedName(
+                          width: logoWidth,
+                          height: logoHeight,
+                        ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-            ),
-            Positioned(
-              bottom: 40,
-              left: 0,
-              right: 0,
-              child: Center(
-                child: MouseRegion(
-                  cursor: SystemMouseCursors.click,
-                  child: GestureDetector(
-                    onTap: () {
-                      _controller.forward(from: 0);
-                    },
-                    child: CustomPaint(
-                      size: Size(arrowWidth, arrowHeight),
-                      painter: ArrowDown(),
+                ),
+                Positioned(
+                  bottom: 40,
+                  left: 0,
+                  right: 0,
+                  child: Center(
+                    child: MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: GestureDetector(
+                        onTap: () {
+                          if (focus) {
+                            _controllerUp.forward(from: 0);
+                            widget.focusout();
+                            focus = false;
+                          } else {
+                            _controllerUp.reverse(from: 1);
+                            widget.focusin();
+                            focus = true;
+                          }
+                        },
+                        child: CustomPaint(
+                          size: Size(arrowWidth, arrowHeight),
+                          painter: ArrowDown(),
+                        ),
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ),
-          ],
-        );
-      },
-    ),
-  ),
-);
+              ],
+            );
+          },
+        ),
+      ),
+    );
   }
 }
 
+//Name Animaiton
 class AnimatedName extends StatefulWidget {
   final double width;
   final double height;

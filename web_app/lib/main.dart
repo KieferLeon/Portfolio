@@ -5,7 +5,8 @@ import 'dart:math';
 import 'language_cards/CSharpCard.dart';
 import 'Icons/nameLogo.dart';
 import 'Content/Frontpage.dart';
-
+import 'Content/Welcomepage.dart';
+import 'Content/Languages.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,11 +15,9 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
@@ -29,15 +28,56 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MainPage extends StatelessWidget {
+class MainPage extends StatefulWidget {
   const MainPage({super.key, required this.title});
 
   final String title;
 
-  Widget build(BuildContext context){
+  _MainPage createState() => _MainPage();
+}
+
+class _MainPage extends State<MainPage> {
+  bool namefocus = true;
+
+  Widget build(BuildContext context) {
+    final screenheight = MediaQuery.of(context).size.height;
+
     return Scaffold(
-      body: Frontpage(),
+      backgroundColor: Color.fromARGB(255, 234, 233, 233),
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          return SingleChildScrollView(
+            physics: namefocus
+                ? NeverScrollableScrollPhysics()
+                : AlwaysScrollableScrollPhysics(),
+            child: Column(
+              children: [
+                SizedBox(
+                  height: screenheight,
+                  child: Stack(
+                    children: [
+                      Welcomepage(),
+                      Frontpage(
+                        focusout: () {
+                          setState(() {
+                            namefocus = false;
+                          });
+                        },
+                        focusin: () {
+                          setState(() {
+                            namefocus = true;
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: screenheight, child: Languages()),
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
 }
-
