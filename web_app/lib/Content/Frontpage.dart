@@ -56,7 +56,7 @@ class _FrontpageState extends State<Frontpage> with TickerProviderStateMixin {
     _moveUP =
         Tween<Offset>(
           begin: Offset(0, 0),
-          end: Offset(0, -screenHeight * 0.8),
+          end: Offset(0, -screenHeight * 0.9),
         ).animate(
           CurvedAnimation(parent: _controllerUp, curve: Curves.easeOutCubic),
         );
@@ -201,7 +201,7 @@ class _NamelogoAnimationWidgetState extends State<AnimatedName>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> drawanimation;
-  late Animation<Size> dotanimation;
+  late Animation<double> dotanimation;
 
   @override
   void initState() {
@@ -217,12 +217,22 @@ class _NamelogoAnimationWidgetState extends State<AnimatedName>
       end: 1,
     ).animate(CurvedAnimation(parent: _controller, curve: Interval(0.0, 0.9)));
 
-    dotanimation = Tween<Size>(begin: Size.zero, end: const Size(1, 1)).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: const Interval(0.9, 1, curve: Curves.easeOut),
+    dotanimation = TweenSequence([
+      TweenSequenceItem(
+        tween: Tween(
+          begin: 0.0,
+          end: 1.2,
+        ).chain(CurveTween(curve: Curves.easeOut)),
+        weight: 60,
       ),
-    );
+      TweenSequenceItem(
+        tween: Tween(
+          begin: 1.2,
+          end: 1.0,
+        ).chain(CurveTween(curve: Curves.easeIn)),
+        weight: 40,
+      ),
+    ]).animate(CurvedAnimation(parent: _controller, curve: Interval(0.9, 1)));
 
     _controller.forward();
   }

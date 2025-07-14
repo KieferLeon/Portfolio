@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class Namelogo extends CustomPainter {
   final double progress;
-  final Size pointSize;
+  final double pointSize;
 
   Namelogo(this.progress, this.pointSize);
 
@@ -12,7 +12,6 @@ class Namelogo extends CustomPainter {
     Path name = Path();
     Path point = Path();
 
-    // Define your path exactly as before:
     name.moveTo(0, 18.607079);
     name.cubicTo(0, 18.607079, 1.39182, 23, 4.39182, 23);
     name.cubicTo(10, 23, 16.66193, 0, 12, 0);
@@ -68,9 +67,7 @@ class Namelogo extends CustomPainter {
     canvas.scale(scale);
 
     Path dotPath = Path()
-      ..addOval(
-        Rect.fromCircle(center: Offset(62, 8), radius: pointSize.height),
-      );
+      ..addOval(Rect.fromCircle(center: Offset(62, 8), radius: pointSize));
 
     //Path Animation
     final pathMetrics = name.computeMetrics().toList();

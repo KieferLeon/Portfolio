@@ -8,10 +8,7 @@ class Welcomepage extends StatelessWidget {
     final screenwidth = MediaQuery.of(context).size.width;
     final screenheight = MediaQuery.of(context).size.height;
 
-    final textOffset = Offset(
-      -screenwidth * 0.1,
-      -screenheight * 0.1,
-    ); //Percentage
+    final textOffset = Offset(-screenwidth * 0.1, -screenheight * 0.1);
 
     return Scaffold(
       backgroundColor: Colors.transparent,
