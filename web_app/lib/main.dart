@@ -8,6 +8,7 @@ import 'Icons/nameLogo.dart';
 import 'Content/Frontpage.dart';
 import 'Content/Welcomepage.dart';
 import 'Content/Languages.dart';
+import 'Content/Contact.dart';
 import 'Content/Language_Info/CSharpInfo.dart';
 
 void main() {
@@ -79,6 +80,7 @@ class _MainPage extends State<MainPage> {
                   ),
                 ),
                 SizedBox(height: screenheight, child: Languages()),
+                SizedBox(height: screenheight, child: Contact()),
               ],
             ),
           );

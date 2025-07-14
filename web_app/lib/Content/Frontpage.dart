@@ -19,6 +19,18 @@ class Frontpage extends StatefulWidget {
 class _FrontpageState extends State<Frontpage> with TickerProviderStateMixin {
   late AnimationController _controllerUp;
   late Animation<Offset> _moveUP;
+  late AnimationController _arrowChangeDirection;
+  late Animation<Offset> _changeDirection;
+  late Offset point1 = Offset(0, 0);
+  late Offset point2 = Offset(50, 60);
+  late Offset point3 = Offset(100, 0);
+  late Animation<Offset> point1Anim;
+  late Animation<Offset> point2Anim;
+  late Animation<Offset> point3Anim;
+
+  // Create tweens for the points morphing when arrow animates
+  // For example, flipping arrow direction (adjust as you want)
+
   double screenHeight = 0;
   bool focus = true;
 
@@ -28,6 +40,10 @@ class _FrontpageState extends State<Frontpage> with TickerProviderStateMixin {
     _controllerUp = AnimationController(
       duration: Duration(milliseconds: 800),
       vsync: this,
+    );
+    _arrowChangeDirection = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: 1),
     );
   }
 
@@ -44,6 +60,38 @@ class _FrontpageState extends State<Frontpage> with TickerProviderStateMixin {
         ).animate(
           CurvedAnimation(parent: _controllerUp, curve: Curves.easeOutCubic),
         );
+    point1Anim = Tween<Offset>(begin: Offset(0, 0), end: Offset(100, 100))
+        .animate(
+          CurvedAnimation(
+            parent: _arrowChangeDirection,
+            curve: Curves.easeOutCubic,
+          ),
+        );
+
+    point2Anim = Tween<Offset>(begin: Offset(50, 60), end: Offset(50, 40))
+        .animate(
+          CurvedAnimation(
+            parent: _arrowChangeDirection,
+            curve: Curves.easeOutCubic,
+          ),
+        );
+
+    point3Anim = Tween<Offset>(begin: Offset(100, 0), end: Offset(0, 100))
+        .animate(
+          CurvedAnimation(
+            parent: _arrowChangeDirection,
+            curve: Curves.easeOutCubic,
+          ),
+        );
+
+    _arrowChangeDirection.addListener(() {
+      setState(() {
+        // Update points from animation values
+        point1 = point1Anim.value;
+        point2 = point2Anim.value;
+        point3 = point3Anim.value;
+      });
+    });
   }
 
   @override
@@ -56,10 +104,10 @@ class _FrontpageState extends State<Frontpage> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenheight = MediaQuery.of(context).size.height;
-    final logoWidth = screenWidth * 0.8;
+    final logoWidth = screenWidth * 0.9;
     final logoHeight = logoWidth * (153.57507 / 613.81519);
 
-    final double arrowWidth = 40;
+    final double arrowWidth = screenWidth * 0.04;
     final double arrowHeight = arrowWidth * (24 / 40);
 
     return AnimatedBuilder(
@@ -99,23 +147,29 @@ class _FrontpageState extends State<Frontpage> with TickerProviderStateMixin {
                   left: 0,
                   right: 0,
                   child: Center(
-                    child: MouseRegion(
-                      cursor: SystemMouseCursors.click,
-                      child: GestureDetector(
-                        onTap: () {
-                          if (focus) {
-                            _controllerUp.forward(from: 0);
-                            widget.focusout();
-                            focus = false;
-                          } else {
-                            _controllerUp.reverse(from: 1);
-                            widget.focusin();
-                            focus = true;
-                          }
-                        },
-                        child: CustomPaint(
-                          size: Size(arrowWidth, arrowHeight),
-                          painter: ArrowDown(),
+                    child: SizedBox(
+                      width: arrowWidth,
+                      height: arrowHeight,
+                      child: MouseRegion(
+                        cursor: SystemMouseCursors.click,
+                        child: GestureDetector(
+                          onTap: () {
+                            if (focus) {
+                              _controllerUp.forward(from: 0);
+                              widget.focusout();
+                              _arrowChangeDirection.forward();
+                              focus = false;
+                            } else {
+                              _controllerUp.reverse(from: 1);
+                              widget.focusin();
+                              _arrowChangeDirection.reverse();
+                              focus = true;
+                            }
+                          },
+                          child: CustomPaint(
+                            size: Size(arrowWidth, arrowHeight),
+                            painter: ArrowDown(point1, point2, point3),
+                          ),
                         ),
                       ),
                     ),
@@ -147,7 +201,7 @@ class _NamelogoAnimationWidgetState extends State<AnimatedName>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> drawanimation;
-  late Animation<Size> dotanimation;
+  late Animation<double> dotanimation;
 
   @override
   void initState() {
@@ -163,12 +217,22 @@ class _NamelogoAnimationWidgetState extends State<AnimatedName>
       end: 1,
     ).animate(CurvedAnimation(parent: _controller, curve: Interval(0.0, 0.9)));
 
-    dotanimation = Tween<Size>(begin: Size.zero, end: const Size(1, 1)).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: const Interval(0.9, 1, curve: Curves.easeOut),
+    dotanimation = TweenSequence([
+      TweenSequenceItem(
+        tween: Tween(
+          begin: 0.0,
+          end: 1.2,
+        ).chain(CurveTween(curve: Curves.easeOut)),
+        weight: 60,
       ),
-    );
+      TweenSequenceItem(
+        tween: Tween(
+          begin: 1.2,
+          end: 1.0,
+        ).chain(CurveTween(curve: Curves.easeIn)),
+        weight: 40,
+      ),
+    ]).animate(CurvedAnimation(parent: _controller, curve: Interval(0.9, 1)));
 
     _controller.forward();
   }
