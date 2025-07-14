@@ -1,7 +1,13 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'Language_icon.dart';
 import 'dart:ui' as ui;
 
-class CSharpIcon_Unselected extends CustomPainter {
+class CSharpIcon extends LanguageIcon {
+  bool selected;
+
+  CSharpIcon({this.selected = false});
+
   @override
   void paint(Canvas canvas, Size size) {
     Path path_0 = Path();
@@ -70,7 +76,9 @@ class CSharpIcon_Unselected extends CustomPainter {
     paint_0_fill.shader = ui.Gradient.linear(
       Offset(0, 0),
       Offset(size.width, size.height),
-      [Color(0xFFA4A4A4), Color(0xFF5C5C5C)],
+      selected
+          ? [Color(0xff927BE5), Color(0xff512BD4)]
+          : [Color(0xFFBBBBBB), Color(0xFF444444)],
       [0.0, 1.0],
     );
     canvas.drawPath(path_0, paint_0_fill);
@@ -332,11 +340,13 @@ class CSharpIcon_Unselected extends CustomPainter {
 
     Paint paint_1_fill = Paint()..style = PaintingStyle.fill;
     paint_1_fill.color = Color(0xffffffff).withOpacity(1);
+
     canvas.drawPath(path_1, paint_1_fill);
   }
 
   @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    return true;
+  bool shouldRepaint(covariant CSharpIcon oldDelegate) {
+    // Repaint only if 'selected' changed
+    return oldDelegate.selected != selected;
   }
 }
