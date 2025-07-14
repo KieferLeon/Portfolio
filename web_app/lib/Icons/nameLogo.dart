@@ -1,9 +1,8 @@
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 
-
 class Namelogo extends CustomPainter {
-  final double progress; 
+  final double progress;
   final Size pointSize;
 
   Namelogo(this.progress, this.pointSize);
@@ -69,7 +68,9 @@ class Namelogo extends CustomPainter {
     canvas.scale(scale);
 
     Path dotPath = Path()
-      ..addOval(Rect.fromCircle(center: Offset(62, 8), radius: pointSize.height));
+      ..addOval(
+        Rect.fromCircle(center: Offset(62, 8), radius: pointSize.height),
+      );
 
     //Path Animation
     final pathMetrics = name.computeMetrics().toList();
@@ -80,28 +81,14 @@ class Namelogo extends CustomPainter {
       animatedPath.addPath(metric.extractPath(0, length), Offset.zero);
     }
 
-    Paint a = Paint()
-          ..color = const ui.Color.fromARGB(255, 255, 255, 255);
-
-    final shadowPaint = Paint()
-      ..color = const ui.Color.fromARGB(255, 0, 0, 0)
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = .8 // Same or slightly wider than the main stroke
-      ..strokeCap = StrokeCap.round
-      ..strokeJoin = StrokeJoin.round
-      ..maskFilter = MaskFilter.blur(BlurStyle.normal, 1);
-
-    final shadowPath = animatedPath.shift(const Offset(0.1, 0.1));
-
-    //canvas.drawPath(shadowPath, shadowPaint);
-
+    Paint a = Paint()..color = const ui.Color.fromARGB(255, 255, 255, 255);
     canvas.drawPath(animatedPath, name_stroke);
-    canvas.drawPath(dotPath,a);
+    canvas.drawPath(dotPath, a);
   }
 
   @override
   bool shouldRepaint(covariant Namelogo oldDelegate) {
     return oldDelegate.progress != progress ||
-           oldDelegate.pointSize != pointSize;
+        oldDelegate.pointSize != pointSize;
   }
 }
