@@ -4,9 +4,11 @@ import 'dart:ui' as ui;
 import 'dart:math';
 import 'language_cards/CSharpCard.dart';
 import 'Icons/nameLogo.dart';
+
 import 'Content/Frontpage.dart';
 import 'Content/Welcomepage.dart';
 import 'Content/Languages.dart';
+import 'Content/Language_Info/CSharpInfo.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,9 +23,13 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        scaffoldBackgroundColor: const Color.fromARGB(255, 255, 255, 255),
+        scaffoldBackgroundColor: const Color.fromARGB(255, 233, 233, 233),
       ),
-      home: const MainPage(title: 'Flutter Demo Home Page'),
+      //home: const MainPage(title: 'Flutter Demo Home Page'),
+      routes: {
+        "/": (context) => const MainPage(title: "Flutter Demo Home Page"),
+        "/CSharp": (context) => CSharpinfo(),
+      },
     );
   }
 }
