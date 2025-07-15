@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'dart:ui' as ui;
 import 'dart:math';
-import 'language_cards/CSharpCard.dart';
 import 'Icons/nameLogo.dart';
 
 import 'Content/Frontpage.dart';
@@ -11,6 +10,12 @@ import 'Content/Languages.dart';
 import 'Content/Contact.dart';
 import 'Content/Language_Info/CSharpInfo.dart';
 import 'Content/Project_info/Project1.dart';
+import 'Content/Colors.dart';
+import 'Content/Project_info/ProjectPrerview.dart';
+
+import 'Icons/Language_Icons/CSharp.dart';
+import 'Icons/Language_Icons/Swift.dart';
+import 'Icons/Language_Icons/Dart.dart';
 
 void main() {
   runApp(const MyApp());
@@ -30,7 +35,21 @@ class MyApp extends StatelessWidget {
       //home: const MainPage(title: 'Flutter Demo Home Page'),
       routes: {
         "/": (context) => const MainPage(title: "Flutter Demo Home Page"),
-        "/CSharp": (context) => CSharpinfo(),
+        "/CSharp": (context) => CSharpinfo(
+          languageColor: ThemeColors.cSharp,
+          projects: [Projectprerviews.Project1],
+          languageIcon: CSharpIcon(selected: true),
+        ),
+        "/Swift": (context) => CSharpinfo(
+          languageColor: ThemeColors.swift,
+          projects: [Projectprerviews.Project1],
+          languageIcon: SwiftIcon(selected: true),
+        ),
+        "/Swift": (context) => CSharpinfo(
+          languageColor: ThemeColors.dart,
+          projects: [Projectprerviews.Project1],
+          languageIcon: DartIcon(selected: true),
+        ),
         "/Project1": (context) => Project1(),
       },
     );

@@ -2,6 +2,7 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart'
     as InnerShadow;
+import 'package:web_app/Icons/Language_Icons/Dart.dart';
 
 import '../Icons/Language_Icons/CSharp.dart';
 import '../Icons/Language_Icons/Swift.dart';
@@ -25,8 +26,9 @@ class Languages extends StatelessWidget {
             spacing: 10,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Lang(icon: CSharpIcon()),
-              Lang(icon: SwiftIcon()),
+              Lang(icon: CSharpIcon(), route: "/CSharp"),
+              Lang(icon: SwiftIcon(), route: "/Swift"),
+              Lang(icon: DartIcon(), route: "/Swift"),
             ],
           ),
         ),
@@ -37,8 +39,10 @@ class Languages extends StatelessWidget {
 
 class Lang extends StatefulWidget {
   final LanguageIcon icon;
+  final String route;
 
-  const Lang({Key? key, required this.icon}) : super(key: key);
+  const Lang({Key? key, required this.icon, required this.route})
+    : super(key: key);
 
   _Lang createState() => _Lang();
 }
@@ -50,7 +54,7 @@ class _Lang extends State<Lang> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, '/CSharp');
+        Navigator.pushNamed(context, widget.route);
       },
       child: MouseRegion(
         onEnter: (event) => setState(() {
