@@ -46,6 +46,7 @@ class _CSharpinfo extends State<CSharpinfo> {
                 icon: Icon(
                   Icons.arrow_back,
                   size: 40,
+
                   color: widget.languageColor,
                 ),
                 onPressed: () {
@@ -73,6 +74,9 @@ class _CSharpinfo extends State<CSharpinfo> {
                           child: Container(
                             decoration: BoxDecoration(
                               color: widget.languageColor,
+
+                              color: ThemeColors.cSharp,
+
                               borderRadius: BorderRadius.all(
                                 Radius.circular(10),
                               ),
@@ -162,12 +166,24 @@ class _CSharpinfo extends State<CSharpinfo> {
                                 borderRadius: BorderRadiusGeometry.circular(10),
                               ),
                               foregroundColor: ThemeColors.white,
+
                               backgroundColor: widget.languageColor,
+
+
                               minimumSize: Size(double.infinity, 40),
                             ),
                             onPressed: () {
                               setState(() {
                                 textVisible = !textVisible;
+                              });
+
+                              WidgetsBinding.instance.addPostFrameCallback((_) {
+                                final RenderBox renderBox =
+                                    _key.currentContext!.findRenderObject()
+                                        as RenderBox;
+                                setState(() {
+                                  textHeight = renderBox.size.height;
+                                });
                               });
                             },
                             child: Text("Persöhnliche Meinung"),
@@ -180,13 +196,17 @@ class _CSharpinfo extends State<CSharpinfo> {
                 SizedBox(height: 40),
                 Text(
                   "Projekte",
+
                   style: TextStyle(color: widget.languageColor, fontSize: 60),
+
                 ),
                 SizedBox(height: 20),
                 Center(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
+
                     children: widget.projects,
+
                   ),
                 ),
               ],
