@@ -28,7 +28,7 @@ class Languages extends StatelessWidget {
             children: [
               Lang(icon: CSharpIcon(), route: "/CSharp"),
               Lang(icon: SwiftIcon(), route: "/Swift"),
-              Lang(icon: DartIcon(), route: "/Swift"),
+              Lang(icon: DartIcon(), route: "/Dart"),
             ],
           ),
         ),

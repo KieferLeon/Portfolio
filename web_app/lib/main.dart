@@ -10,6 +10,7 @@ import 'Content/Languages.dart';
 import 'Content/Contact.dart';
 import 'Content/Language_Info/CSharpInfo.dart';
 import 'Content/Project_info/Project1.dart';
+import 'Content/Projects.dart';
 
 import 'Content/Colors.dart';
 import 'Content/Project_info/ProjectPrerview.dart';
@@ -17,7 +18,6 @@ import 'Content/Project_info/ProjectPrerview.dart';
 import 'Icons/Language_Icons/CSharp.dart';
 import 'Icons/Language_Icons/Swift.dart';
 import 'Icons/Language_Icons/Dart.dart';
-
 
 void main() {
   runApp(const MyApp());
@@ -48,13 +48,11 @@ class MyApp extends StatelessWidget {
           projects: [Projectprerviews.Project1],
           languageIcon: SwiftIcon(selected: true),
         ),
-        "/Swift": (context) => CSharpinfo(
+        "/Dart": (context) => CSharpinfo(
           languageColor: ThemeColors.dart,
           projects: [Projectprerviews.Project1],
           languageIcon: DartIcon(selected: true),
         ),
-
-        "/CSharp": (context) => CSharpinfo(),
 
         "/Project1": (context) => Project1(),
       },
@@ -106,8 +104,9 @@ class _MainPage extends State<MainPage> {
                     ],
                   ),
                 ),
-                SizedBox(height: screenheight, child: Languages()),
-                SizedBox(height: screenheight, child: Contact()),
+                //SizedBox(height: screenheight, child: Languages()),
+                SizedBox(height: screenheight * 3, child: Projects()),
+                //SizedBox(height: screenheight, child: Contact()),
               ],
             ),
           );

@@ -75,8 +75,6 @@ class _CSharpinfo extends State<CSharpinfo> {
                             decoration: BoxDecoration(
                               color: widget.languageColor,
 
-                              color: ThemeColors.cSharp,
-
                               borderRadius: BorderRadius.all(
                                 Radius.circular(10),
                               ),
@@ -169,7 +167,6 @@ class _CSharpinfo extends State<CSharpinfo> {
 
                               backgroundColor: widget.languageColor,
 
-
                               minimumSize: Size(double.infinity, 40),
                             ),
                             onPressed: () {
@@ -198,7 +195,6 @@ class _CSharpinfo extends State<CSharpinfo> {
                   "Projekte",
 
                   style: TextStyle(color: widget.languageColor, fontSize: 60),
-
                 ),
                 SizedBox(height: 20),
                 Center(
@@ -206,7 +202,6 @@ class _CSharpinfo extends State<CSharpinfo> {
                     mainAxisAlignment: MainAxisAlignment.center,
 
                     children: widget.projects,
-
                   ),
                 ),
               ],
