@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart'
     as InnerShadow;
+import 'package:web_app/Icons/nameLogo.dart';
+import 'Colors.dart';
 
 class Contact extends StatefulWidget {
   _Contact createState() => _Contact();
@@ -110,7 +112,7 @@ class _Contact extends State<Contact> {
             ),
             SizedBox(height: 50),
             Container(
-              height: 300,
+              height: 200,
               width: 500,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
@@ -123,6 +125,23 @@ class _Contact extends State<Contact> {
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                 ),
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Made By",
+                    style: TextStyle(fontSize: 42, color: ThemeColors.white),
+                  ),
+                  SizedBox(
+                    width: 400, // or any size you want
+                    child: AspectRatio(
+                      aspectRatio: 613.81519 / 153.57507,
+                      child: CustomPaint(painter: Namelogo.complete()),
+                    ),
+                  ),
+                ],
               ),
             ),
           ],
