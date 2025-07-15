@@ -15,7 +15,6 @@ class SwiftIcon extends LanguageIcon {
 
     // Path number 1
 
-    paint.color = Color.fromARGB(255, 87, 32, 39);
     path = Path();
     path.moveTo(size.width * 0.6917375, size.height * 0.7897344);
     path.cubicTo(

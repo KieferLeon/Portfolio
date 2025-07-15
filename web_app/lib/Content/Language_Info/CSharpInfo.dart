@@ -1,5 +1,7 @@
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
+import 'package:web_app/Content/Languages.dart';
+import 'package:web_app/Icons/Language_Icons/Language_icon.dart';
 
 import '../../Icons/Language_Icons/CSharp.dart';
 import '../Project_info/ProjectPrerview.dart';
@@ -8,6 +10,18 @@ import '../Project_info/Project1.dart';
 import '../Colors.dart';
 
 class CSharpinfo extends StatefulWidget {
+  final Color languageColor;
+  final List<StatelessWidget> projects;
+  final LanguageIcon languageIcon;
+
+  const CSharpinfo({
+    super.key,
+    required this.languageColor,
+    required this.projects,
+    required this.languageIcon,
+  });
+
+  @override
   _CSharpinfo createState() => _CSharpinfo();
 }
 
@@ -32,7 +46,8 @@ class _CSharpinfo extends State<CSharpinfo> {
                 icon: Icon(
                   Icons.arrow_back,
                   size: 40,
-                  color: ThemeColors.cSharp,
+
+                  color: widget.languageColor,
                 ),
                 onPressed: () {
                   Navigator.pop(context);
@@ -45,7 +60,7 @@ class _CSharpinfo extends State<CSharpinfo> {
                 Center(
                   child: CustomPaint(
                     size: Size(200, 200),
-                    painter: CSharpIcon(selected: true),
+                    painter: widget.languageIcon,
                   ),
                 ),
                 SizedBox(height: 40),
@@ -58,7 +73,10 @@ class _CSharpinfo extends State<CSharpinfo> {
                           offset: Offset(0, 15),
                           child: Container(
                             decoration: BoxDecoration(
+                              color: widget.languageColor,
+
                               color: ThemeColors.cSharp,
+
                               borderRadius: BorderRadius.all(
                                 Radius.circular(10),
                               ),
@@ -148,7 +166,10 @@ class _CSharpinfo extends State<CSharpinfo> {
                                 borderRadius: BorderRadiusGeometry.circular(10),
                               ),
                               foregroundColor: ThemeColors.white,
-                              backgroundColor: ThemeColors.cSharp,
+
+                              backgroundColor: widget.languageColor,
+
+
                               minimumSize: Size(double.infinity, 40),
                             ),
                             onPressed: () {
@@ -175,13 +196,17 @@ class _CSharpinfo extends State<CSharpinfo> {
                 SizedBox(height: 40),
                 Text(
                   "Projekte",
-                  style: TextStyle(color: ThemeColors.cSharp, fontSize: 60),
+
+                  style: TextStyle(color: widget.languageColor, fontSize: 60),
+
                 ),
                 SizedBox(height: 20),
                 Center(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: [Projectprerviews.Project1],
+
+                    children: widget.projects,
+
                   ),
                 ),
               ],
