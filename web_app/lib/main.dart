@@ -10,6 +10,7 @@ import 'Content/Welcomepage.dart';
 import 'Content/Languages.dart';
 import 'Content/Contact.dart';
 import 'Content/Language_Info/CSharpInfo.dart';
+import 'Content/Project_info/Project1.dart';
 
 void main() {
   runApp(const MyApp());
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
       routes: {
         "/": (context) => const MainPage(title: "Flutter Demo Home Page"),
         "/CSharp": (context) => CSharpinfo(),
+        "/Project1": (context) => Project1(),
       },
     );
   }

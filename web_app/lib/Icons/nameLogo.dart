@@ -7,6 +7,8 @@ class Namelogo extends CustomPainter {
 
   Namelogo(this.progress, this.pointSize);
 
+  Namelogo.complete() : progress = 1, pointSize = 1;
+
   @override
   void paint(Canvas canvas, Size size) {
     Path name = Path();
