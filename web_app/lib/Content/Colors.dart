@@ -19,6 +19,8 @@ class ThemeColors {
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
   );
+  static const Color unity = Color(0xFF000000);
+  static const Color dotNet = Color(0xff6a1b9a);
 
   static const primary1 = Color.fromARGB(255, 192, 74, 169);
   static const primary2 = Color.fromARGB(255, 152, 74, 194);

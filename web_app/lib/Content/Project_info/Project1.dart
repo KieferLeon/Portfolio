@@ -17,48 +17,93 @@ class Project1 extends StatelessWidget {
       body: Center(
         child: SingleChildScrollView(
           child: SizedBox(
-            width: screenWidth * 0.9,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
+            width: screenWidth,
+            child: Stack(
               children: [
-                Container(
-                  width: screenWidth * 0.8,
-                  child: Row(
-                    children: [
-                      SizedBox(
-                        width: screenWidth * 0.4,
-                        child: Column(
-                          children: [
-                            Text("Sprachen", style: TextStyle(fontSize: 50)),
-                            SizedBox(
-                              width: screenWidth * 0.15,
-                              height: screenWidth * 0.15,
-                              child: LanguageElement(
-                                icon: CSharpIcon(),
-                                route: "/CSharp",
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                Positioned(
+                  top: 5,
+                  left: 15,
+                  child: IconButton(
+                    icon: Icon(
+                      Icons.arrow_back,
+                      size: 40,
 
-                      SizedBox(
-                        width: screenWidth * 0.4,
-                        child: Column(
-                          children: [
-                            Text("Frameworks", style: TextStyle(fontSize: 50)),
-                            SizedBox(
-                              width: screenWidth * 0.15,
-                              height: screenWidth * 0.15,
-                              child: LanguageElement(
-                                icon: FlutterIcon(),
-                                route: "/CSharp",
-                              ),
+                      color: Colors.amberAccent,
+                    ),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                ),
+
+                Center(
+                  child: SizedBox(
+                    width: screenWidth * 0.9,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Container(
+                          color: Colors.amber,
+                          width: screenWidth * 0.6,
+                          child: AspectRatio(
+                            aspectRatio: 16 / 9,
+                            child: Image.asset(
+                              'assets/images.png',
+                              fit: BoxFit
+                                  .cover, // This makes the image fill the whole space
                             ),
-                          ],
+                          ),
                         ),
-                      ),
-                    ],
+                        Container(
+                          width: screenWidth * 0.8,
+                          child: Row(
+                            children: [
+                              SizedBox(
+                                width: screenWidth * 0.4,
+                                child: Column(
+                                  spacing: 10,
+                                  children: [
+                                    Text(
+                                      "Sprachen",
+                                      style: TextStyle(fontSize: 50),
+                                    ),
+                                    SizedBox(
+                                      width: screenWidth * 0.15,
+                                      height: screenWidth * 0.15,
+                                      child: LanguageElement(
+                                        icon: CSharpIcon(),
+                                        route: "/CSharp",
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+
+                              SizedBox(
+                                width: screenWidth * 0.4,
+                                child: Column(
+                                  spacing: 10,
+                                  children: [
+                                    Text(
+                                      "Frameworks",
+                                      style: TextStyle(fontSize: 50),
+                                    ),
+                                    SizedBox(
+                                      width: screenWidth * 0.15,
+                                      height: screenWidth * 0.15,
+                                      child: LanguageElement(
+                                        icon: FlutterIcon(),
+                                        route: "/CSharp",
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],

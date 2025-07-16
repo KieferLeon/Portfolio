@@ -128,7 +128,7 @@ class _Contact extends State<Contact> {
               ),
             ),
             SizedBox(height: 50),
-            Sticker(key: _stickerKey, scrollOffset: _scrollOffset),
+            Sticker(scrollOffset: _scrollOffset),
           ],
         ),
       ),
@@ -151,6 +151,7 @@ class _Sticker extends State<Sticker> {
     return Stack(
       alignment: Alignment.center,
       children: [
+        // Layered holographic gradients with parallax
         for (int i = 0; i < _parallaxFactors.length; i++)
           Positioned.fill(
             child: Transform.translate(
