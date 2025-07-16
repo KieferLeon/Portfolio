@@ -2,23 +2,37 @@ import 'package:flutter/material.dart';
 import 'Project1.dart';
 
 class Projectprerviews {
-  static StatelessWidget Project1 = _Project1();
+  static StatelessWidget project1({
+    double? width = 300,
+    double? height = 200,
+  }) => _Project1(width: width, height: height);
 }
 
 class _Project1 extends StatelessWidget {
+  final double? height;
+  final double? width;
+
+  _Project1({this.height = 200, this.width = 300});
+
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 500,
-      child: AspectRatio(
-        aspectRatio: 16 / 9,
-        child: GestureDetector(
-          onTap: () {
-            Navigator.pushNamed(context, '/Project1');
-          },
-          child: MouseRegion(
-            cursor: SystemMouseCursors.click,
-            child: Container(color: Colors.black),
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: GestureDetector(
+        onTap: () {
+          Navigator.pushNamed(context, "/Project1");
+        },
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 200),
+          width: width,
+          height: height,
+
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            image: const DecorationImage(
+              image: AssetImage('assets/images.png'),
+              fit: BoxFit.cover,
+            ),
           ),
         ),
       ),

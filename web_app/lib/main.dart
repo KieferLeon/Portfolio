@@ -8,7 +8,7 @@ import 'Content/Frontpage.dart';
 import 'Content/Welcomepage.dart';
 import 'Content/Languages.dart';
 import 'Content/Contact.dart';
-import 'Content/Language_Info/CSharpInfo.dart';
+import 'Content/Language_Info/LanguageInfo.dart';
 import 'Content/Project_info/Project1.dart';
 import 'Content/Projects.dart';
 
@@ -40,17 +40,17 @@ class MyApp extends StatelessWidget {
 
         "/CSharp": (context) => CSharpinfo(
           languageColor: ThemeColors.cSharp,
-          projects: [Projectprerviews.Project1],
+          projects: [Projectprerviews.project1()],
           languageIcon: CSharpIcon(selected: true),
         ),
         "/Swift": (context) => CSharpinfo(
           languageColor: ThemeColors.swift,
-          projects: [Projectprerviews.Project1],
+          projects: [Projectprerviews.project1()],
           languageIcon: SwiftIcon(selected: true),
         ),
         "/Dart": (context) => CSharpinfo(
           languageColor: ThemeColors.dart,
-          projects: [Projectprerviews.Project1],
+          projects: [Projectprerviews.project1()],
           languageIcon: DartIcon(selected: true),
         ),
 
@@ -104,9 +104,9 @@ class _MainPage extends State<MainPage> {
                     ],
                   ),
                 ),
-                //SizedBox(height: screenheight, child: Languages()),
+                SizedBox(height: screenheight, child: Languages()),
                 SizedBox(height: screenheight * 3, child: Projects()),
-                //SizedBox(height: screenheight, child: Contact()),
+                SizedBox(height: screenheight, child: Contact()),
               ],
             ),
           );

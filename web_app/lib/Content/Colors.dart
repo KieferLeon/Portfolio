@@ -4,8 +4,20 @@ class ThemeColors {
   static const white = Color.fromARGB(255, 234, 233, 233);
 
   static const cSharp = Color.fromARGB(255, 81, 43, 212);
+  static const cSharpGradient = LinearGradient(
+    colors: [Color(0xff927BE5), Color(0xff512BD4)],
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+  );
+
   static const swift = Color.fromARGB(255, 228, 77, 38);
+
   static const dart = Color.fromARGB(255, 1, 117, 194);
+  static const dartGradient = LinearGradient(
+    colors: [Color(0xff55c1f3), Color(0xff0175c2)],
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+  );
 
   static const primary1 = Color.fromARGB(255, 192, 74, 169);
   static const primary2 = Color.fromARGB(255, 152, 74, 194);

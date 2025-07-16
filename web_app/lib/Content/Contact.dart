@@ -39,14 +39,7 @@ class _Contact extends State<Contact> {
                   ? BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
 
-                      gradient: LinearGradient(
-                        colors: [
-                          const ui.Color(0xFFC04AA9),
-                          const ui.Color(0xFF984AC2),
-                        ],
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                      ),
+                      color: ThemeColors.white,
                       boxShadow: [
                         BoxShadow(
                           color: ui.Color.fromARGB(100, 0, 0, 0),
@@ -100,10 +93,7 @@ class _Contact extends State<Contact> {
                     child: Center(
                       child: Text(
                         "Email@gmc.cpm",
-                        style: TextStyle(
-                          fontSize: 42,
-                          color: emailHoverd ? Colors.white : Colors.black,
-                        ),
+                        style: TextStyle(fontSize: 42, color: Colors.black),
                       ),
                     ),
                   ),
