@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class ThemeColors {
   static const white = Color.fromARGB(255, 234, 233, 233);
+  static const black = Color.fromARGB(255, 18, 18, 18);
 
   static const cSharp = Color.fromARGB(255, 81, 43, 212);
   static const cSharpGradient = LinearGradient(

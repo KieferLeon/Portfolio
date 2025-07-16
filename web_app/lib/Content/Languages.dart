@@ -26,9 +26,9 @@ class Languages extends StatelessWidget {
             spacing: 10,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Lang(icon: CSharpIcon(), route: "/CSharp"),
-              Lang(icon: SwiftIcon(), route: "/Swift"),
-              Lang(icon: DartIcon(), route: "/Dart"),
+              LanguageElement(icon: CSharpIcon(), route: "/CSharp"),
+              LanguageElement(icon: SwiftIcon(), route: "/Swift"),
+              LanguageElement(icon: DartIcon(), route: "/Dart"),
             ],
           ),
         ),
@@ -37,17 +37,17 @@ class Languages extends StatelessWidget {
   }
 }
 
-class Lang extends StatefulWidget {
+class LanguageElement extends StatefulWidget {
   final LanguageIcon icon;
   final String route;
 
-  const Lang({Key? key, required this.icon, required this.route})
+  const LanguageElement({Key? key, required this.icon, required this.route})
     : super(key: key);
 
   _Lang createState() => _Lang();
 }
 
-class _Lang extends State<Lang> {
+class _Lang extends State<LanguageElement> {
   bool isHoverd = false;
 
   @override

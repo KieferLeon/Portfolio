@@ -1,8 +1,71 @@
 import 'package:flutter/material.dart';
+import 'package:web_app/Content/Colors.dart';
+import 'package:web_app/Icons/Language_Icons/CSharp.dart';
+import 'package:web_app/Icons/Language_Icons/DotNet.dart';
+import 'package:web_app/Icons/Language_Icons/Flutter.dart';
+import 'package:web_app/Icons/Language_Icons/Swift.dart';
+import 'package:web_app/Icons/Language_Icons/Unity.dart';
+import '../Languages.dart';
 
 class Project1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Text("data"));
+    final double screenWidth = MediaQuery.of(context).size.width;
+    final double screenHeight = MediaQuery.of(context).size.height;
+
+    return Scaffold(
+      body: Center(
+        child: SingleChildScrollView(
+          child: SizedBox(
+            width: screenWidth * 0.9,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  width: screenWidth * 0.8,
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        width: screenWidth * 0.4,
+                        child: Column(
+                          children: [
+                            Text("Sprachen", style: TextStyle(fontSize: 50)),
+                            SizedBox(
+                              width: screenWidth * 0.15,
+                              height: screenWidth * 0.15,
+                              child: LanguageElement(
+                                icon: CSharpIcon(),
+                                route: "/CSharp",
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+
+                      SizedBox(
+                        width: screenWidth * 0.4,
+                        child: Column(
+                          children: [
+                            Text("Frameworks", style: TextStyle(fontSize: 50)),
+                            SizedBox(
+                              width: screenWidth * 0.15,
+                              height: screenWidth * 0.15,
+                              child: LanguageElement(
+                                icon: FlutterIcon(),
+                                route: "/CSharp",
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
