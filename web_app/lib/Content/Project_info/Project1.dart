@@ -18,11 +18,10 @@ class Project1 extends StatelessWidget {
         child: SingleChildScrollView(
           child: SizedBox(
             width: screenWidth,
-            child: Stack(
+            child: Column(
               children: [
-                Positioned(
-                  top: 5,
-                  left: 15,
+                Align(
+                  alignment: Alignment.centerLeft,
                   child: IconButton(
                     icon: Icon(
                       Icons.arrow_back,
@@ -44,7 +43,7 @@ class Project1 extends StatelessWidget {
                       children: [
                         Container(
                           color: Colors.amber,
-                          width: screenWidth * 0.6,
+                          width: screenWidth * 0.4,
                           child: AspectRatio(
                             aspectRatio: 16 / 9,
                             child: Image.asset(
@@ -54,6 +53,7 @@ class Project1 extends StatelessWidget {
                             ),
                           ),
                         ),
+                        SizedBox(height: 30),
                         Container(
                           width: screenWidth * 0.8,
                           child: Row(
@@ -102,6 +102,8 @@ class Project1 extends StatelessWidget {
                             ],
                           ),
                         ),
+                        SizedBox(),
+                        Container(),
                       ],
                     ),
                   ),

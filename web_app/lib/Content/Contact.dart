@@ -6,6 +6,8 @@ import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart'
 import 'package:web_app/Icons/nameLogo.dart';
 import 'Colors.dart';
 
+import 'Sticker.dart';
+
 class Contact extends StatefulWidget {
   _Contact createState() => _Contact();
 }
@@ -132,85 +134,6 @@ class _Contact extends State<Contact> {
           ],
         ),
       ),
-    );
-  }
-}
-
-class Sticker extends StatefulWidget {
-  final double scrollOffset;
-
-  const Sticker({super.key, required this.scrollOffset});
-  _Sticker createState() => _Sticker();
-}
-
-class _Sticker extends State<Sticker> {
-  final List<double> _parallaxFactors = [0.02, 0.04, 0.06];
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.center,
-      children: [
-        // Layered holographic gradients with parallax
-        for (int i = 0; i < _parallaxFactors.length; i++)
-          Positioned.fill(
-            child: Transform.translate(
-              offset: Offset(
-                widget.scrollOffset * _parallaxFactors[i],
-                -widget.scrollOffset * _parallaxFactors[i],
-              ),
-              child: IgnorePointer(
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    gradient: LinearGradient(
-                      colors: [
-                        Colors.pink.withOpacity(0.2),
-                        Colors.cyan.withOpacity(0.2),
-                        Colors.lime.withOpacity(0.2),
-                        Colors.purple.withOpacity(0.2),
-                      ],
-                      stops: [0.0, 0.3, 0.7, 1.0],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
-
-        Container(
-          height: 200,
-          width: 500,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(color: Colors.white, width: 10),
-            gradient: LinearGradient(
-              colors: [const ui.Color(0xFFC04AA9), const ui.Color(0xFF984AC2)],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                "Made By",
-                style: TextStyle(fontSize: 42, color: Colors.white),
-              ),
-              const SizedBox(height: 10),
-              SizedBox(
-                width: 400,
-                child: AspectRatio(
-                  aspectRatio: 613.81519 / 153.57507,
-                  child: CustomPaint(painter: Namelogo.complete()),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
     );
   }
 }

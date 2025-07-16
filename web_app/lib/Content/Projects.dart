@@ -29,14 +29,102 @@ class _ProjectsState extends State<Projects> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(
+              /*SizedBox(
                 height: screenHeight * 0.8,
                 child: ProjectRow(
                   name: "Unity",
                   languageGradient: ThemeColors.cSharpGradient,
                 ),
-              ),
+              ),*/
+              Container(
+                decoration: InnerShadow.BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    InnerShadow.BoxShadow(
+                      color: ui.Color.fromARGB(100, 0, 0, 0),
+                      blurRadius: 3,
+                      spreadRadius: 1,
+                      offset: Offset(4, 4),
+                      inset: true,
+                    ),
+                    InnerShadow.BoxShadow(
+                      color: ui.Color.fromARGB(140, 255, 255, 255),
+                      blurRadius: 3,
+                      spreadRadius: 1,
+                      offset: Offset(-4, -4),
+                      inset: true,
+                    ),
+                  ],
+                ),
+                height: screenHeight * 0.8,
+                child: Center(
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Container(
+                        width: screenWidth * 0.3 + 30,
+                        height: screenWidth * 0.2 + 90 + 30,
+                        padding: EdgeInsets.all(8.0),
+                        decoration: BoxDecoration(
+                          color: ThemeColors.white,
+                          borderRadius: BorderRadius.all(Radius.circular(20)),
+                          boxShadow: [
+                            BoxShadow(
+                              color: ui.Color.fromARGB(60, 0, 0, 0),
+                              blurRadius: 3,
+                              spreadRadius: 1,
+                              offset: Offset(4, 4),
+                            ),
+                            BoxShadow(
+                              color: ui.Color.fromARGB(140, 255, 255, 255),
+                              blurRadius: 3,
+                              spreadRadius: 1,
+                              offset: Offset(-4, -4),
+                            ),
+                          ],
+                        ),
+                      ),
 
+                      Container(
+                        width: screenWidth * 0.3,
+                        height: screenWidth * 0.2 + 90,
+                        decoration: BoxDecoration(
+                          color: ThemeColors.cSharp,
+                          borderRadius: BorderRadius.all(Radius.circular(20)),
+                          /*boxShadow: [
+                            BoxShadow(
+                              color: ui.Color.fromARGB(100, 0, 0, 0),
+                              blurRadius: 3,
+                              spreadRadius: 1,
+                              offset: Offset(4, 4),
+                            ),
+                          ],*/
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Unity",
+                              style: TextStyle(
+                                color: ThemeColors.white,
+                                fontSize: 60,
+                              ),
+                            ),
+                            SizedBox(
+                              width: screenWidth * 0.3,
+                              height: screenWidth * 0.2,
+                              child: Projectprerviews.project1(
+                                width: screenWidth * 0.3,
+                                height: screenWidth * 0.2,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
               SizedBox(
                 height: screenHeight * 0.8,
                 child: ProjectRow(
