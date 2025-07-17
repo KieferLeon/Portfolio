@@ -112,9 +112,9 @@ class Project1 extends StatelessWidget {
                             ],
                           ),
                         ),
-                        SizedBox(),
+                        SizedBox(height: 200),
                         Container(
-                          child: ProjectRow(
+                          child: FeatureRow(
                             name: "name",
                             languageGradient: ThemeColors.dartGradient,
                           ),
@@ -132,11 +132,11 @@ class Project1 extends StatelessWidget {
   }
 }
 
-class ProjectRow extends StatelessWidget {
+class FeatureRow extends StatelessWidget {
   final String name;
   final Gradient languageGradient;
   final bool inverted;
-  const ProjectRow({
+  const FeatureRow({
     super.key,
     required this.name,
     required this.languageGradient,
@@ -151,54 +151,26 @@ class ProjectRow extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       textDirection: inverted ? TextDirection.rtl : null,
       children: [
-        SizedBox(width: screenWidth * 0.5, height: screenWidth * 0.3),
+        Container(
+          width: screenWidth * 0.3,
+          height: screenWidth * 0.3,
+          color: Colors.amber,
+          child: Align(
+            alignment: Alignment.center,
+            child: SizedBox(
+              width: screenWidth * 0.28,
+              height: screenWidth * 0.28,
+              child: Image.asset("assets/images3.png", fit: BoxFit.fill),
+            ),
+          ),
+        ),
 
         SizedBox(width: screenWidth * 0.1),
 
-        MouseRegion(
-          cursor: SystemMouseCursors.click,
-          child: GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, "/Project1");
-            },
-            child: Container(
-              width: screenWidth * 0.3,
-              height: screenWidth * 0.3,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(20)),
-                gradient: languageGradient,
-                boxShadow: [
-                  BoxShadow(
-                    color: ui.Color.fromARGB(100, 0, 0, 0),
-                    blurRadius: 3,
-                    spreadRadius: 1,
-                    offset: Offset(3, 3),
-                  ),
-                ],
-              ),
-              child: Container(
-                decoration: InnerShadow.BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  boxShadow: [
-                    InnerShadow.BoxShadow(
-                      color: ui.Color.fromARGB(140, 255, 255, 255),
-                      blurRadius: 3,
-                      spreadRadius: 1,
-                      offset: Offset(1, 1),
-                      inset: true,
-                    ),
-                  ],
-                ),
-                child: Center(
-                  child: Text(
-                    name,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 80, color: ThemeColors.white),
-                  ),
-                ),
-              ),
-            ),
-          ),
+        Container(
+          width: screenWidth * 0.3,
+          height: screenWidth * 0.3,
+          color: Colors.amber,
         ),
       ],
     );
@@ -212,67 +184,86 @@ class _ImageStack extends StatefulWidget {
 class _ImageStackState extends State<_ImageStack> {
   List<String> images = ['assets/images.png', 'assets/images2.png'];
   int imageIndex = 1;
+  bool controlVisible = false;
 
   @override
   Widget build(BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;
     final double screenHeight = MediaQuery.of(context).size.height;
+
     return Container(
       width: screenWidth * 0.4,
       child: AspectRatio(
         aspectRatio: 16 / 9,
-        child: Stack(
-          children: [
-            Positioned.fill(
-              child: ClipRRect(
-                borderRadius: BorderRadius.all(Radius.circular(20)),
-                child: Image.asset(images[imageIndex], fit: BoxFit.cover),
+        child: MouseRegion(
+          onEnter: (event) {
+            setState(() {
+              controlVisible = true;
+            });
+          },
+          onExit: (event) {
+            setState(() {
+              controlVisible = false;
+            });
+          },
+          child: Stack(
+            children: [
+              Positioned.fill(
+                child: ClipRRect(
+                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                  child: Image.asset(images[imageIndex], fit: BoxFit.cover),
+                ),
               ),
-            ),
 
-            Positioned.fill(
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: IconButton(
-                  icon: Icon(
-                    Icons.arrow_back,
-                    size: 40,
-                    color: ThemeColors.black,
-                  ),
-                  onPressed: () {
-                    setState(() {
-                      if (imageIndex > 0) {
-                        imageIndex--;
-                      } else {
-                        imageIndex = images.length - 1;
-                      }
-                    });
-                  },
-                ),
-              ),
-            ),
-            Positioned.fill(
-              child: Align(
-                alignment: Alignment.centerRight,
-                child: IconButton(
-                  icon: Icon(
-                    Icons.arrow_forward,
-                    size: 40,
-                    color: ThemeColors.black,
-                  ),
-                  onPressed: () {
-                    setState(() {
-                      if (imageIndex == images.length - 1) {
-                        imageIndex = 0;
-                      } else {
-                        imageIndex++;
-                      }
-                    });
-                  },
-                ),
-              ),
-            ),
-          ],
+              controlVisible
+                  ? Positioned.fill(
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: IconButton(
+                          icon: Icon(
+                            Icons.arrow_back,
+                            size: 40,
+                            color: ThemeColors.black,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              if (imageIndex > 0) {
+                                imageIndex--;
+                              } else {
+                                imageIndex = images.length - 1;
+                              }
+                            });
+                          },
+                        ),
+                      ),
+                    )
+                  : SizedBox.shrink(),
+
+              controlVisible
+                  ? Positioned.fill(
+                      child: Align(
+                        alignment: Alignment.centerRight,
+                        child: IconButton(
+                          icon: Icon(
+                            Icons.arrow_forward,
+                            size: 40,
+                            color: ThemeColors.black,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              if (imageIndex == images.length - 1) {
+                                imageIndex = 0;
+                              } else {
+                                imageIndex++;
+                              }
+                            });
+                          },
+                        ),
+                      ),
+                    )
+                  : SizedBox.shrink(),
+            ],
+          ),
         ),
       ),
     );
