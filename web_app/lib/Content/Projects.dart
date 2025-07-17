@@ -24,7 +24,7 @@ class _ProjectsState extends State<Projects> {
       body: Center(
         child: SizedBox(
           width: screenWidth * 0.9,
-          height: screenHeight * 3,
+          height: screenHeight,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -57,88 +57,13 @@ class _ProjectsState extends State<Projects> {
                   ],
                 ),
                 height: screenHeight * 0.8,
-                child: Center(
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      Container(
-                        width: screenWidth * 0.3 + 30,
-                        height: screenWidth * 0.2 + 90 + 30,
-                        padding: EdgeInsets.all(8.0),
-                        decoration: BoxDecoration(
-                          color: ThemeColors.white,
-                          borderRadius: BorderRadius.all(Radius.circular(20)),
-                          boxShadow: [
-                            BoxShadow(
-                              color: ui.Color.fromARGB(60, 0, 0, 0),
-                              blurRadius: 3,
-                              spreadRadius: 1,
-                              offset: Offset(4, 4),
-                            ),
-                            BoxShadow(
-                              color: ui.Color.fromARGB(140, 255, 255, 255),
-                              blurRadius: 3,
-                              spreadRadius: 1,
-                              offset: Offset(-4, -4),
-                            ),
-                          ],
-                        ),
-                      ),
-
-                      Container(
-                        width: screenWidth * 0.3,
-                        height: screenWidth * 0.2 + 90,
-                        decoration: BoxDecoration(
-                          color: ThemeColors.cSharp,
-                          borderRadius: BorderRadius.all(Radius.circular(20)),
-                          /*boxShadow: [
-                            BoxShadow(
-                              color: ui.Color.fromARGB(100, 0, 0, 0),
-                              blurRadius: 3,
-                              spreadRadius: 1,
-                              offset: Offset(4, 4),
-                            ),
-                          ],*/
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "Unity",
-                              style: TextStyle(
-                                color: ThemeColors.white,
-                                fontSize: 60,
-                              ),
-                            ),
-                            SizedBox(
-                              width: screenWidth * 0.3,
-                              height: screenWidth * 0.2,
-                              child: Projectprerviews.project1(
-                                width: screenWidth * 0.3,
-                                height: screenWidth * 0.2,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: screenHeight * 0.8,
-                child: ProjectRow(
-                  name: "UNO",
-                  languageGradient: ThemeColors.cSharpGradient,
-                  inverted: true,
-                ),
-              ),
-
-              SizedBox(
-                height: screenHeight * 0.8,
-                child: ProjectRow(
-                  name: "Diese Website",
-                  languageGradient: ThemeColors.dartGradient,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    ProjectElement(),
+                    ProjectElement(),
+                    ProjectElement(),
+                  ],
                 ),
               ),
             ],
@@ -149,79 +74,61 @@ class _ProjectsState extends State<Projects> {
   }
 }
 
-class ProjectRow extends StatelessWidget {
-  final String name;
-  final Gradient languageGradient;
-  final bool inverted;
-  const ProjectRow({
-    super.key,
-    required this.name,
-    required this.languageGradient,
-    this.inverted = false,
-  });
-
+class ProjectElement extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
     final screenWidth = MediaQuery.of(context).size.width;
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      textDirection: inverted ? TextDirection.rtl : null,
+    return Stack(
+      alignment: Alignment.center,
       children: [
-        SizedBox(
-          width: screenWidth * 0.5,
-          height: screenWidth * 0.3,
-          child: Projectprerviews.project1(
-            width: screenWidth * 0.5,
-            height: screenWidth * 0.3,
+        Container(
+          width: screenWidth * 0.25 + 30,
+          height: screenWidth * 0.15 + 90 + 30,
+          padding: EdgeInsets.all(8.0),
+          decoration: BoxDecoration(
+            color: ThemeColors.white,
+            borderRadius: BorderRadius.all(Radius.circular(20)),
+            boxShadow: [
+              BoxShadow(
+                color: ui.Color.fromARGB(60, 0, 0, 0),
+                blurRadius: 3,
+                spreadRadius: 1,
+                offset: Offset(4, 4),
+              ),
+              BoxShadow(
+                color: ui.Color.fromARGB(100, 255, 255, 255),
+                blurRadius: 3,
+                spreadRadius: 1,
+                offset: Offset(-4, -4),
+              ),
+            ],
           ),
         ),
 
-        SizedBox(width: screenWidth * 0.1),
-
-        MouseRegion(
-          cursor: SystemMouseCursors.click,
-          child: GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, "/Project1");
-            },
-            child: Container(
-              width: screenWidth * 0.3,
-              height: screenWidth * 0.3,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(20)),
-                gradient: languageGradient,
-                boxShadow: [
-                  BoxShadow(
-                    color: ui.Color.fromARGB(100, 0, 0, 0),
-                    blurRadius: 3,
-                    spreadRadius: 1,
-                    offset: Offset(3, 3),
-                  ),
-                ],
+        Container(
+          width: screenWidth * 0.25,
+          height: screenWidth * 0.15 + 90,
+          decoration: BoxDecoration(
+            color: ThemeColors.white,
+            borderRadius: BorderRadius.all(Radius.circular(20)),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "Unity",
+                style: TextStyle(color: ThemeColors.black, fontSize: 60),
               ),
-              child: Container(
-                decoration: InnerShadow.BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  boxShadow: [
-                    InnerShadow.BoxShadow(
-                      color: ui.Color.fromARGB(140, 255, 255, 255),
-                      blurRadius: 3,
-                      spreadRadius: 1,
-                      offset: Offset(1, 1),
-                      inset: true,
-                    ),
-                  ],
-                ),
-                child: Center(
-                  child: Text(
-                    name,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 80, color: ThemeColors.white),
-                  ),
+              SizedBox(
+                width: screenWidth * 0.25,
+                height: screenWidth * 0.15,
+                child: Projectprerviews.project1(
+                  width: screenWidth * 0.25,
+                  height: screenWidth * 0.15,
                 ),
               ),
-            ),
+            ],
           ),
         ),
       ],

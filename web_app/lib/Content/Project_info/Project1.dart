@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:web_app/Content/Colors.dart';
 import 'package:web_app/Icons/Language_Icons/CSharp.dart';
 import 'package:web_app/Icons/Language_Icons/DotNet.dart';
 import 'package:web_app/Icons/Language_Icons/Flutter.dart';
 import 'package:web_app/Icons/Language_Icons/Swift.dart';
 import 'package:web_app/Icons/Language_Icons/Unity.dart';
-import '../Languages.dart';
+import '../LangsAndFrameworks/LangsAndFrameworks .dart';
+import 'dart:ui' as ui;
+
+import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart'
+    as InnerShadow;
+import '../Colors.dart';
 
 class Project1 extends StatelessWidget {
   @override
@@ -22,16 +26,33 @@ class Project1 extends StatelessWidget {
               children: [
                 Align(
                   alignment: Alignment.centerLeft,
-                  child: IconButton(
-                    icon: Icon(
-                      Icons.arrow_back,
-                      size: 40,
+                  child: Row(
+                    children: [
+                      IconButton(
+                        icon: Icon(
+                          Icons.arrow_back,
+                          size: 40,
 
-                      color: Colors.amberAccent,
-                    ),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
+                          color: ThemeColors.black,
+                        ),
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                      ),
+                      IconButton(
+                        icon: Icon(
+                          Icons.home_rounded,
+                          size: 40,
+
+                          color: ThemeColors.black,
+                        ),
+                        onPressed: () {
+                          Navigator.of(
+                            context,
+                          ).pushNamedAndRemoveUntil('/', (route) => false);
+                        },
+                      ),
+                    ],
                   ),
                 ),
 
@@ -41,18 +62,7 @@ class Project1 extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Container(
-                          color: Colors.amber,
-                          width: screenWidth * 0.4,
-                          child: AspectRatio(
-                            aspectRatio: 16 / 9,
-                            child: Image.asset(
-                              'assets/images.png',
-                              fit: BoxFit
-                                  .cover, // This makes the image fill the whole space
-                            ),
-                          ),
-                        ),
+                        _ImageStack(),
                         SizedBox(height: 30),
                         Container(
                           width: screenWidth * 0.8,
@@ -70,7 +80,7 @@ class Project1 extends StatelessWidget {
                                     SizedBox(
                                       width: screenWidth * 0.15,
                                       height: screenWidth * 0.15,
-                                      child: LanguageElement(
+                                      child: Tech(
                                         icon: CSharpIcon(),
                                         route: "/CSharp",
                                       ),
@@ -91,7 +101,7 @@ class Project1 extends StatelessWidget {
                                     SizedBox(
                                       width: screenWidth * 0.15,
                                       height: screenWidth * 0.15,
-                                      child: LanguageElement(
+                                      child: Tech(
                                         icon: FlutterIcon(),
                                         route: "/CSharp",
                                       ),
@@ -103,7 +113,12 @@ class Project1 extends StatelessWidget {
                           ),
                         ),
                         SizedBox(),
-                        Container(),
+                        Container(
+                          child: ProjectRow(
+                            name: "name",
+                            languageGradient: ThemeColors.dartGradient,
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -111,6 +126,153 @@ class Project1 extends StatelessWidget {
               ],
             ),
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class ProjectRow extends StatelessWidget {
+  final String name;
+  final Gradient languageGradient;
+  final bool inverted;
+  const ProjectRow({
+    super.key,
+    required this.name,
+    required this.languageGradient,
+    this.inverted = false,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      textDirection: inverted ? TextDirection.rtl : null,
+      children: [
+        SizedBox(width: screenWidth * 0.5, height: screenWidth * 0.3),
+
+        SizedBox(width: screenWidth * 0.1),
+
+        MouseRegion(
+          cursor: SystemMouseCursors.click,
+          child: GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, "/Project1");
+            },
+            child: Container(
+              width: screenWidth * 0.3,
+              height: screenWidth * 0.3,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(20)),
+                gradient: languageGradient,
+                boxShadow: [
+                  BoxShadow(
+                    color: ui.Color.fromARGB(100, 0, 0, 0),
+                    blurRadius: 3,
+                    spreadRadius: 1,
+                    offset: Offset(3, 3),
+                  ),
+                ],
+              ),
+              child: Container(
+                decoration: InnerShadow.BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    InnerShadow.BoxShadow(
+                      color: ui.Color.fromARGB(140, 255, 255, 255),
+                      blurRadius: 3,
+                      spreadRadius: 1,
+                      offset: Offset(1, 1),
+                      inset: true,
+                    ),
+                  ],
+                ),
+                child: Center(
+                  child: Text(
+                    name,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 80, color: ThemeColors.white),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _ImageStack extends StatefulWidget {
+  _ImageStackState createState() => _ImageStackState();
+}
+
+class _ImageStackState extends State<_ImageStack> {
+  List<String> images = ['assets/images.png', 'assets/images2.png'];
+  int imageIndex = 1;
+
+  @override
+  Widget build(BuildContext context) {
+    final double screenWidth = MediaQuery.of(context).size.width;
+    final double screenHeight = MediaQuery.of(context).size.height;
+    return Container(
+      width: screenWidth * 0.4,
+      child: AspectRatio(
+        aspectRatio: 16 / 9,
+        child: Stack(
+          children: [
+            Positioned.fill(
+              child: ClipRRect(
+                borderRadius: BorderRadius.all(Radius.circular(20)),
+                child: Image.asset(images[imageIndex], fit: BoxFit.cover),
+              ),
+            ),
+
+            Positioned.fill(
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: IconButton(
+                  icon: Icon(
+                    Icons.arrow_back,
+                    size: 40,
+                    color: ThemeColors.black,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      if (imageIndex > 0) {
+                        imageIndex--;
+                      } else {
+                        imageIndex = images.length - 1;
+                      }
+                    });
+                  },
+                ),
+              ),
+            ),
+            Positioned.fill(
+              child: Align(
+                alignment: Alignment.centerRight,
+                child: IconButton(
+                  icon: Icon(
+                    Icons.arrow_forward,
+                    size: 40,
+                    color: ThemeColors.black,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      if (imageIndex == images.length - 1) {
+                        imageIndex = 0;
+                      } else {
+                        imageIndex++;
+                      }
+                    });
+                  },
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

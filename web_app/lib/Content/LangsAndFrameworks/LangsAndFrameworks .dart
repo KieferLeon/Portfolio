@@ -3,18 +3,40 @@ import 'package:flutter/material.dart';
 import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart'
     as InnerShadow;
 import 'package:web_app/Icons/Language_Icons/Dart.dart';
+import 'package:web_app/Icons/Language_Icons/DotNet.dart';
+import 'package:web_app/Icons/Language_Icons/Flutter.dart';
+import 'package:web_app/Icons/Language_Icons/Unity.dart';
 
-import '../Icons/Language_Icons/CSharp.dart';
-import '../Icons/Language_Icons/Swift.dart';
-import '../Icons/Language_Icons/Language_icon.dart';
+import '../Colors.dart';
 
-enum language_Icons { SwiftIcon }
+import '../../Icons/Language_Icons/CSharp.dart';
+import '../../Icons/Language_Icons/Swift.dart';
+import '../../Icons/Language_Icons/Language_icon.dart';
 
-class Languages extends StatelessWidget {
+class LangsAndFrameworks extends StatelessWidget {
+  bool isLang;
+
+  LangsAndFrameworks({this.isLang = false});
+
   @override
   Widget build(BuildContext context) {
     final screenwidth = MediaQuery.of(context).size.width;
     final screenheight = MediaQuery.of(context).size.height;
+    List<Tech> techelements;
+
+    if (isLang) {
+      techelements = [
+        Tech(icon: CSharpIcon(), route: "/CSharp"),
+        Tech(icon: SwiftIcon(), route: "/Swift"),
+        Tech(icon: DartIcon(), route: "/Dart"),
+      ];
+    } else {
+      techelements = [
+        Tech(icon: DotNetIcon(), route: "/DotNet"),
+        Tech(icon: UnityIcon(), route: "/Unity"),
+        Tech(icon: FlutterIcon(), route: "/Flutter"),
+      ];
+    }
 
     return Scaffold(
       backgroundColor: Colors.transparent,
@@ -22,13 +44,21 @@ class Languages extends StatelessWidget {
         width: screenwidth,
         height: screenheight,
         child: Center(
-          child: Row(
-            spacing: 10,
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              LanguageElement(icon: CSharpIcon(), route: "/CSharp"),
-              LanguageElement(icon: SwiftIcon(), route: "/Swift"),
-              LanguageElement(icon: DartIcon(), route: "/Dart"),
+              Text(
+                isLang ? "Sprachen" : "Frameworks",
+                style: TextStyle(fontSize: 80),
+              ),
+
+              SizedBox(height: 40),
+
+              Row(
+                spacing: 10,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: techelements,
+              ),
             ],
           ),
         ),
@@ -37,17 +67,17 @@ class Languages extends StatelessWidget {
   }
 }
 
-class LanguageElement extends StatefulWidget {
+class Tech extends StatefulWidget {
   final LanguageIcon icon;
   final String route;
 
-  const LanguageElement({Key? key, required this.icon, required this.route})
+  const Tech({Key? key, required this.icon, required this.route})
     : super(key: key);
 
   _Lang createState() => _Lang();
 }
 
-class _Lang extends State<LanguageElement> {
+class _Lang extends State<Tech> {
   bool isHoverd = false;
 
   @override

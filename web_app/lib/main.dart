@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:web_app/Content/Frameworks.dart';
 import 'package:web_app/Icons/Language_Icons/DotNet.dart';
 import 'package:web_app/Icons/Language_Icons/Flutter.dart';
 import 'package:web_app/Icons/Language_Icons/Unity.dart';
@@ -10,9 +9,9 @@ import 'Icons/nameLogo.dart';
 
 import 'Content/Frontpage.dart';
 import 'Content/Welcomepage.dart';
-import 'Content/Languages.dart';
+import 'Content/LangsAndFrameworks/LangsAndFrameworks .dart';
 import 'Content/Contact.dart';
-import 'Content/LanguageInfo.dart';
+import 'Content/LangsAndFrameworks/LangsAndFrameworksInfo.dart';
 import 'Content/Project_info/Project1.dart';
 import 'Content/Projects.dart';
 
@@ -81,7 +80,6 @@ class MyApp extends StatelessWidget {
           projects: [Projectprerviews.project1()],
           languageIcon: DotNetIcon(selected: true),
         ),
-
         "/Project1": (context) => Project1(),
       },
     );
@@ -132,9 +130,15 @@ class _MainPage extends State<MainPage> {
                     ],
                   ),
                 ),
-                SizedBox(height: screenheight, child: Languages()),
-                SizedBox(height: screenheight, child: Frameworks()),
-                SizedBox(height: screenheight * 3, child: Projects()),
+                SizedBox(
+                  height: screenheight * 1.3,
+                  child: LangsAndFrameworks(isLang: true),
+                ),
+                SizedBox(
+                  height: screenheight * 1.3,
+                  child: LangsAndFrameworks(),
+                ),
+                SizedBox(height: screenheight, child: Projects()),
                 SizedBox(height: screenheight, child: Contact()),
               ],
             ),

@@ -1,13 +1,13 @@
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
-import 'package:web_app/Content/Languages.dart';
+import 'package:web_app/Content/LangsAndFrameworks/LangsAndFrameworks%20.dart';
 import 'package:web_app/Icons/Language_Icons/Language_icon.dart';
 
-import '../Icons/Language_Icons/CSharp.dart';
-import 'Project_info/ProjectPrerview.dart';
-import 'Project_info/Project1.dart';
+import '../../Icons/Language_Icons/CSharp.dart';
+import '../Project_info/ProjectPrerview.dart';
+import '../Project_info/Project1.dart';
 
-import 'Colors.dart';
+import '../Colors.dart';
 
 class Languageinfo extends StatefulWidget {
   final Color languageColor;
