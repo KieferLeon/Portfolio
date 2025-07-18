@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:web_app/Content/LangsAndFrameworks/LangsAndFrameworks%20.dart';
 import 'package:web_app/Icons/Language_Icons/Language_icon.dart';
 
+import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart'
+    as InnerShadow;
+
 import '../../Icons/Language_Icons/CSharp.dart';
 import '../Project_info/ProjectPrerview.dart';
 import '../Project_info/Project1.dart';
@@ -35,6 +38,9 @@ class _Languageinfo extends State<Languageinfo> {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -193,20 +199,45 @@ class _Languageinfo extends State<Languageinfo> {
             ),
             SizedBox(height: 20),
             Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                spacing: 30,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: widget.projects.take(3).toList(),
-                  ),
-                  if (widget.projects.length > 3)
+              child: Container(
+                width: screenWidth * 0.8,
+                height: screenHeight * 0.7,
+                decoration: InnerShadow.BoxDecoration(
+                  color: ThemeColors.white,
+                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                  boxShadow: [
+                    InnerShadow.BoxShadow(
+                      color: ui.Color.fromARGB(100, 0, 0, 0),
+                      blurRadius: 3,
+                      spreadRadius: 1,
+                      offset: Offset(4, 4),
+                      inset: true,
+                    ),
+                    InnerShadow.BoxShadow(
+                      color: ui.Color.fromARGB(140, 255, 255, 255),
+                      blurRadius: 3,
+                      spreadRadius: 1,
+                      offset: Offset(-4, -4),
+                      inset: true,
+                    ),
+                  ],
+                ),
+
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  spacing: 30,
+                  children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: widget.projects.skip(3).toList(),
+                      children: widget.projects.take(3).toList(),
                     ),
-                ],
+                    if (widget.projects.length > 3)
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: widget.projects.skip(3).toList(),
+                      ),
+                  ],
+                ),
               ),
             ),
             SizedBox(height: 40),

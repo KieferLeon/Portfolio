@@ -1,9 +1,7 @@
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart'
     as InnerShadow;
-import 'package:web_app/Icons/nameLogo.dart';
 import 'Colors.dart';
 
 import 'Sticker.dart';

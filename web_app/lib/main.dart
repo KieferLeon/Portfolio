@@ -43,11 +43,7 @@ class MyApp extends StatelessWidget {
 
         "/CSharp": (context) => Languageinfo(
           languageColor: ThemeColors.cSharp,
-          projects: [
-            Projectprerviews.project1(),
-            Projectprerviews.project1(),
-            Projectprerviews.project1(),
-          ],
+          projects: [ProjectElement()],
           languageIcon: CSharpIcon(selected: true),
         ),
         "/Swift": (context) => Languageinfo(
