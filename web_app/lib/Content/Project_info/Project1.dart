@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:web_app/Icons/Language_Icons/CSharp.dart';
@@ -18,6 +17,8 @@ import '../Colors.dart';
 import 'package:video_player/video_player.dart';
 
 import '../ui_elements.dart';
+
+import '../code_snippets/code_snippets.dart';
 
 class Project1 extends StatelessWidget {
   @override
@@ -266,10 +267,71 @@ class CodeSnippets extends StatelessWidget {
 
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [codeSnippetElement()],
+        ),
+      ),
+    );
+  }
+}
+
+class codeSnippetElement extends StatefulWidget {
+  @override
+  _codeSnippetElement createState() => _codeSnippetElement();
+}
+
+class _codeSnippetElement extends State<codeSnippetElement> {
+  int focusedIndex = 0;
+
+  void tabSelection(int selectedTab) {
+    setState(() {
+      focusedIndex = selectedTab;
+
+      for (int i = 0; i < 3; i++) {
+        if (i != focusedIndex) snippetTabs[i].focused = false;
+      }
+    });
+  }
+
+  late final List<SnippetTab> snippetTabs = List.generate(
+    3,
+    (i) => SnippetTab(index: i, focused: false, focusChange: tabSelection),
+  );
+
+  @override
+  Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width;
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(20),
+      child: Container(
+        width: screenWidth * 0.85,
+        height: screenHeight * 0.85,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            codeSnippetElement(),
-            codeSnippetElement(),
-            codeSnippetElement(),
+            Container(
+              height: 40,
+              child: Row(
+                children: List.generate(3, (i) {
+                  return SnippetTab(
+                    index: i,
+                    focused: i == focusedIndex,
+                    focusChange: tabSelection,
+                  );
+                }),
+              ),
+            ),
+            SizedBox(height: 30),
+            Expanded(
+              child: Container(
+                width: double.infinity,
+                child: focusedIndex == 0
+                    ? Container(child: CodeSnippetLibary.sortHand)
+                    : focusedIndex == 1
+                    ? Container(child: CodeSnippetLibary.sortHand)
+                    : Container(child: CodeSnippetLibary.sortHand),
+              ),
+            ),
           ],
         ),
       ),
@@ -277,7 +339,56 @@ class CodeSnippets extends StatelessWidget {
   }
 }
 
-class codeSnippetElement extends StatelessWidget {
+class SnippetTab extends StatefulWidget {
+  final int index;
+  final void Function(int) focusChange;
+  bool focused = true;
+
+  SnippetTab({
+    super.key,
+    required this.focusChange,
+    required this.index,
+    required this.focused,
+  });
+
+  @override
+  _SnippetTab createState() => _SnippetTab();
+}
+
+class _SnippetTab extends State<SnippetTab> {
+  @override
+  Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width;
+
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          widget.focused = !widget.focused;
+          widget.focusChange(widget.index);
+        });
+      },
+      child: MouseRegion(
+        cursor: SystemMouseCursors.click,
+        child: Container(
+          width: screenWidth * 0.85 / 3,
+          height: 40,
+          color: widget.focused
+              ? ThemeColors.codeBackground
+              : ThemeColors.codeBackgroundDark,
+          child: Center(
+            child: Text(
+              "Pdassa",
+              style: TextStyle(fontSize: 30, color: ThemeColors.black),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/*class codeSnippetElement extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
@@ -310,12 +421,12 @@ class codeSnippetElement extends StatelessWidget {
         child: FractionallySizedBox(
           widthFactor: 0.95,
           heightFactor: 0.95,
-          child: Container(color: Colors.blue),
+          child: Container(child: CodeSnippetLibary.sortHand),
         ),
       ),
     );
   }
-}
+}*/
 
 class GitHubButton extends StatelessWidget {
   const GitHubButton({super.key});

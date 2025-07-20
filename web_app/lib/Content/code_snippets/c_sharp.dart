@@ -1,101 +1,104 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 
-class CSharpSnippet extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return RichText(
-      text: TextSpan(
-        style: TextStyle(
-          fontFamily: 'monospace',
-          fontSize: 14,
-          color: Color(0xFFD4D4D4), // Default light gray (like VS Code)
-        ),
-        children: [
-          // Method declaration
-          TextSpan(
-            text: 'public ',
-            style: TextStyle(color: Color(0xFF569CD6)),
-          ), // blue
-          TextSpan(
-            text: 'void ',
-            style: TextStyle(color: Color(0xFF569CD6)),
-          ), // blue
-          TextSpan(text: 'SortHand'),
-          TextSpan(text: '() {\n'),
-
-          // Color array
-          TextSpan(
-            text: '  Color[] ',
-            style: TextStyle(color: Color(0xFF4EC9B0)),
-          ), // teal
-          TextSpan(text: 'colorValues = '),
-          TextSpan(
-            text: '{ ',
-            style: TextStyle(color: Color(0xFFD4D4D4)),
-          ),
-          TextSpan(
-            text: 'Colors.Red',
-            style: TextStyle(color: Color(0xFFFF5370)),
-          ), // red
-          TextSpan(
-            text: ', Colors.Yellow',
-            style: TextStyle(color: Color(0xFFFFCB6B)),
-          ), // yellow
-          TextSpan(
-            text: ', Colors.Blue',
-            style: TextStyle(color: Color(0xFF82AAFF)),
-          ), // blue
-          TextSpan(
-            text: ', Colors.Green',
-            style: TextStyle(color: Color(0xFFC3E88D)),
-          ), // green
-          TextSpan(
-            text: ', Colors.Black',
-            style: TextStyle(color: Color(0xFFBBBBBB)),
-          ), // gray
-          TextSpan(text: ' };\n\n'),
-
-          // Number array
-          TextSpan(
-            text: '  string[] ',
-            style: TextStyle(color: Color(0xFF4EC9B0)),
-          ), // teal
-          TextSpan(text: 'numbers = '),
-          TextSpan(
-            text: '{ ',
-            style: TextStyle(color: Color(0xFFD4D4D4)),
-          ),
-          TextSpan(
-            text:
-                '"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "🚫", "🔄", "+2"',
-            style: TextStyle(color: Color(0xFFCE9178)), // string color (orange)
-          ),
-          TextSpan(text: ' };\n\n'),
-
-          // LINQ chain
-          TextSpan(text: '  playercards = playercards\n'),
-          TextSpan(
-            text: '    .OrderBy',
-            style: TextStyle(color: Color(0xFFDCDCAA)),
-          ), // yellow
-          TextSpan(text: '(c => Array.IndexOf(colorValues, c.color))\n'),
-          TextSpan(
-            text: '    .ThenBy',
-            style: TextStyle(color: Color(0xFFDCDCAA)),
-          ), // yellow
-          TextSpan(text: '(c => Array.IndexOf(numbers, c.number))\n'),
-          TextSpan(text: '    .ToList();\n'),
-
-          // Method end
-          TextSpan(text: '}\n'),
-        ],
-      ),
-    );
-  }
+class CSharpSnippets {
+  static RichText sortHand = SortHand();
+  static StatelessWidget cardHover = CardHover();
+  static StatelessWidget nextTurn = NextTurn();
 }
 
-class Snippet2 extends StatelessWidget {
+SortHand() {
+  return RichText(
+    text: TextSpan(
+      style: TextStyle(
+        fontFamily: 'monospace',
+        fontSize: 40,
+        color: Color(0xFFD4D4D4), // Default light gray (like VS Code)
+      ),
+      children: [
+        // Method declaration
+        TextSpan(
+          text: 'public ',
+          style: TextStyle(color: Color(0xFF569CD6)),
+        ), // blue
+        TextSpan(
+          text: 'void ',
+          style: TextStyle(color: Color(0xFF569CD6)),
+        ), // blue
+        TextSpan(text: 'SortHand'),
+        TextSpan(text: '() {\n'),
+
+        // Color array
+        TextSpan(
+          text: '  Color[] ',
+          style: TextStyle(color: Color(0xFF4EC9B0)),
+        ), // teal
+        TextSpan(text: 'colorValues = '),
+        TextSpan(
+          text: '{ ',
+          style: TextStyle(color: Color(0xFFD4D4D4)),
+        ),
+        TextSpan(
+          text: 'Colors.Red',
+          style: TextStyle(color: Color(0xFFFF5370)),
+        ), // red
+        TextSpan(
+          text: ', Colors.Yellow',
+          style: TextStyle(color: Color(0xFFFFCB6B)),
+        ), // yellow
+        TextSpan(
+          text: ', Colors.Blue',
+          style: TextStyle(color: Color(0xFF82AAFF)),
+        ), // blue
+        TextSpan(
+          text: ', Colors.Green',
+          style: TextStyle(color: Color(0xFFC3E88D)),
+        ), // green
+        TextSpan(
+          text: ', Colors.Black',
+          style: TextStyle(color: Color(0xFFBBBBBB)),
+        ), // gray
+        TextSpan(text: ' };\n\n'),
+
+        // Number array
+        TextSpan(
+          text: '  string[] ',
+          style: TextStyle(color: Color(0xFF4EC9B0)),
+        ), // teal
+        TextSpan(text: 'numbers = '),
+        TextSpan(
+          text: '{ ',
+          style: TextStyle(color: Color(0xFFD4D4D4)),
+        ),
+        TextSpan(
+          text:
+              '"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "🚫", "🔄", "+2"',
+          style: TextStyle(color: Color(0xFFCE9178)), // string color (orange)
+        ),
+        TextSpan(text: ' };\n\n'),
+
+        // LINQ chain
+        TextSpan(text: '  playercards = playercards\n'),
+        TextSpan(
+          text: '    .OrderBy',
+          style: TextStyle(color: Color(0xFFDCDCAA)),
+        ), // yellow
+        TextSpan(text: '(c => Array.IndexOf(colorValues, c.color))\n'),
+        TextSpan(
+          text: '    .ThenBy',
+          style: TextStyle(color: Color(0xFFDCDCAA)),
+        ), // yellow
+        TextSpan(text: '(c => Array.IndexOf(numbers, c.number))\n'),
+        TextSpan(text: '    .ToList();\n'),
+
+        // Method end
+        TextSpan(text: '}\n'),
+      ],
+    ),
+  );
+}
+
+class CardHover extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -165,7 +168,7 @@ class Snippet2 extends StatelessWidget {
   }
 }
 
-class Snippet3 extends StatelessWidget {
+class NextTurn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build

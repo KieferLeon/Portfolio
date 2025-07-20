@@ -25,6 +25,7 @@ class ThemeColors {
   static const primary1 = Color.fromARGB(255, 192, 74, 169);
   static const primary2 = Color.fromARGB(255, 152, 74, 194);
   static const codeBackground = Color.fromARGB(255, 71, 68, 68);
+  static const codeBackgroundDark = Color.fromARGB(255, 60, 58, 58);
 
   static const themeGradient = LinearGradient(
     colors: [primary1, primary2],
