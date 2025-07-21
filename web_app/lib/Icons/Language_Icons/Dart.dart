@@ -1,8 +1,7 @@
-import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'Language_icon.dart';
 
-class DartIcon extends LanguageIcon {
+class DartIcon extends TechIcon {
   bool selected;
 
   DartIcon({this.selected = false});

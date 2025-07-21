@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'Language_icon.dart';
 import 'dart:ui' as ui;
 
-class SwiftIcon extends LanguageIcon {
+class SwiftIcon extends TechIcon {
   bool selected;
 
   SwiftIcon({this.selected = false});

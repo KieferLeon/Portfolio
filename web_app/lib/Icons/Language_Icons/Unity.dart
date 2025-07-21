@@ -4,7 +4,7 @@ import 'Language_icon.dart';
 import 'dart:ui' as ui;
 
 //Copy this CustomPainter code to the Bottom of the File
-class UnityIcon extends LanguageIcon {
+class UnityIcon extends TechIcon {
   bool selected;
 
   UnityIcon({this.selected = false});

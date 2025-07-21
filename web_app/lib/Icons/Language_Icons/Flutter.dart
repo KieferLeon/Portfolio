@@ -4,7 +4,7 @@ import 'Language_icon.dart';
 //Add this CustomPaint widget to the Widget Tree
 
 //Copy this CustomPainter code to the Bottom of the File
-class FlutterIcon extends LanguageIcon {
+class FlutterIcon extends TechIcon {
   bool selected;
 
   FlutterIcon({this.selected = false});

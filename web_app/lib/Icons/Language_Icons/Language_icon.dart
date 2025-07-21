@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'dart:ui' as ui;
 
-class LanguageIcon extends CustomPainter {
+class TechIcon extends CustomPainter {
   bool selected;
 
-  LanguageIcon({this.selected = false});
+  TechIcon({this.selected = false});
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -13,7 +13,7 @@ class LanguageIcon extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant LanguageIcon oldDelegate) {
+  bool shouldRepaint(covariant TechIcon oldDelegate) {
     // repaint if selected changes
     return oldDelegate.selected != selected;
   }

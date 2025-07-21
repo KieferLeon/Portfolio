@@ -2,27 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:web/web.dart';
 import 'package:web_app/Content/code_snippets/code_snippets.dart';
+import 'package:web_app/Content/project/project_content/project.dart';
+import 'package:web_app/Content/tech_skills/main_page/tech_overview.dart';
+import 'package:web_app/Content/tech_skills/tech_content/tech.dart';
 import 'package:web_app/Icons/Language_Icons/DotNet.dart';
 import 'package:web_app/Icons/Language_Icons/Flutter.dart';
 import 'package:web_app/Icons/Language_Icons/Unity.dart';
 import 'dart:ui' as ui;
 import 'dart:math';
+import 'Content/project/main_page/project_overview.dart';
 import 'Icons/nameLogo.dart';
 
 import 'Content/Frontpage.dart';
 import 'Content/Welcomepage.dart';
-import 'Content/LangsAndFrameworks/LangsAndFrameworks .dart';
 import 'Content/Contact.dart';
-import 'Content/LangsAndFrameworks/LangsAndFrameworksInfo.dart';
-import 'Content/Project_info/ProjectInfo.dart';
-import 'Content/Projects.dart';
 
 import 'Content/Colors.dart';
-import 'Content/Project_info/ProjectPrerview.dart';
 
 import 'Icons/Language_Icons/CSharp.dart';
 import 'Icons/Language_Icons/Swift.dart';
 import 'Icons/Language_Icons/Dart.dart';
+import 'initial_data.dart';
 
 void main() {
   runApp(const MyApp());
@@ -33,11 +33,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AppDataInitializer data = AppDataInitializer();
+
     final screenHeight = MediaQuery.of(context).size.height;
     final screenWidth = MediaQuery.of(context).size.width;
 
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Leon Kiefer',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         scaffoldBackgroundColor: const Color.fromARGB(255, 233, 233, 233),
@@ -45,136 +47,25 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       //home: const MainPage(title: 'Flutter Demo Home Page'),
       routes: {
-        "/": (context) => const MainPage(title: "Flutter Demo Home Page"),
+        "/": (context) => MainPage(title: "Flutter Demo Home Page", data: data),
 
-        "/CSharp": (context) => Languageinfo(
-          languageColor: ThemeColors.cSharp,
-          projects: [
-            ProjectElement(
-              name: "Uno",
-              projectpreview: Projectprerviews.Uno(
-                width: screenWidth * 0.25,
-                height: screenWidth * 0.15,
-              ),
-            ),
-            ProjectElement(
-              name: "Unity Spiel",
-              projectpreview: Projectprerviews.Unity(
-                width: screenWidth * 0.25,
-                height: screenWidth * 0.15,
-              ),
-            ),
-          ],
-          languageIcon: CSharpIcon(selected: true),
-        ),
-        "/Swift": (context) => Languageinfo(
-          languageColor: ThemeColors.swift,
-          projects: [],
-          languageIcon: SwiftIcon(selected: true),
-        ),
-        "/Dart": (context) => Languageinfo(
-          languageColor: ThemeColors.dart,
-          projects: [
-            ProjectElement(
-              projectpreview: Projectprerviews.Portfolio(
-                width: screenWidth * 0.25,
-                height: screenWidth * 0.15,
-              ),
-              name: "Portfolio",
-            ),
-          ],
-          languageIcon: DartIcon(selected: true),
-        ),
-        "/Unity": (context) => Languageinfo(
-          languageColor: ThemeColors.unity,
-          projects: [
-            ProjectElement(
-              name: "Unity Spiel",
-              projectpreview: Projectprerviews.Unity(
-                width: screenWidth * 0.25,
-                height: screenWidth * 0.15,
-              ),
-            ),
-          ],
-          languageIcon: UnityIcon(selected: true),
-        ),
-        "/Flutter": (context) => Languageinfo(
-          languageColor: ThemeColors.dart,
-          projects: [
-            ProjectElement(
-              projectpreview: Projectprerviews.Portfolio(
-                width: screenWidth * 0.25,
-                height: screenWidth * 0.15,
-              ),
-              name: "Portfolio",
-            ),
-          ],
-          languageIcon: FlutterIcon(selected: true),
-        ),
-        "/DotNet": (context) => Languageinfo(
-          languageColor: ThemeColors.dotNet,
-          projects: [
-            ProjectElement(
-              name: "Uno",
-              projectpreview: Projectprerviews.Uno(
-                width: screenWidth * 0.25,
-                height: screenWidth * 0.15,
-              ),
-            ),
-          ],
-          languageIcon: DotNetIcon(selected: true),
-        ),
-        "/Uno": (context) => ProjectInfo(
-          name: "Uno",
-          framework: Tech(icon: DotNetIcon(selected: false), route: "/DotNet"),
-          language: Tech(icon: CSharpIcon(selected: false), route: "/CSharp"),
-          videoPath: "assets/project_images/uno/uno_gameplay.mp4",
-          filenames: CodeSnippetLibary.cSharp.filenames,
-          codeSnippetsContent: [
-            CodeSnippetLibary.cSharp.sortHand(screenHeight * 0.04),
-            CodeSnippetLibary.cSharp.cardHover(screenHeight * 0.035),
-            CodeSnippetLibary.cSharp.nextTurn(screenHeight * 0.04),
-          ],
-          github: false,
-        ),
-        "/UnityProject": (context) => ProjectInfo(
-          name: "Unity Spiel",
-          framework: Tech(icon: UnityIcon(selected: false), route: "/Unity"),
-          language: Tech(icon: CSharpIcon(selected: false), route: "/CSharp"),
-          videoPath: "assets/project_images/unity/unity_gameplay.mp4",
-
-          filenames: CodeSnippetLibary.unity.filenames,
-          codeSnippetsContent: [
-            CodeSnippetLibary.unity.attack(screenHeight * 0.04),
-            CodeSnippetLibary.unity.getDamage(screenHeight * 0.04),
-            CodeSnippetLibary.unity.roomSpawning(screenHeight * 0.034),
-          ],
-          github: false,
-        ),
-        "/Portfolio": (context) => ProjectInfo(
-          name: "Portfolio",
-          framework: Tech(
-            icon: FlutterIcon(selected: false),
-            route: "/Flutter",
-          ),
-          language: Tech(icon: DartIcon(selected: false), route: "/Dart"),
-          videoPath: "assets/project_images/unity/unity_gameplay.mp4",
-
-          filenames: CodeSnippetLibary.portfolio.filenames,
-          codeSnippetsContent: [
-            CodeSnippetLibary.portfolio.animaiton(screenHeight * 0.04),
-            CodeSnippetLibary.portfolio.project(screenHeight * 0.04),
-            CodeSnippetLibary.portfolio.language(screenHeight * 0.04),
-          ],
-          github: false,
-        ),
+        "/CSharp": (context) => data.cSharp.techPage,
+        "/Swift": (context) => data.swift.techPage,
+        "/Dart": (context) => data.dart.techPage,
+        "/Unity": (context) => data.unity.techPage,
+        "/Flutter": (context) => data.flutter.techPage,
+        "/DotNet": (context) => data.dotNet.techPage,
+        "/Uno": (context) => data.uno.projectPage,
+        "/UnityProject": (context) => data.unityGame.projectPage,
+        "/Portfolio": (context) => data.portfolio.projectPage,
       },
     );
   }
 }
 
 class MainPage extends StatefulWidget {
-  const MainPage({super.key, required this.title});
+  AppDataInitializer data;
+  MainPage({super.key, required this.title, required this.data});
 
   final String title;
 
@@ -219,13 +110,36 @@ class _MainPage extends State<MainPage> {
                 ),
                 SizedBox(
                   height: screenheight * 1.3,
-                  child: LangsAndFrameworks(isLang: true),
+                  child: TechOverview(
+                    isLanguage: true,
+                    techWidgets: [
+                      widget.data.cSharp.techWidget,
+                      widget.data.swift.techWidget,
+                      widget.data.dart.techWidget,
+                    ],
+                  ),
                 ),
                 SizedBox(
                   height: screenheight * 1.3,
-                  child: LangsAndFrameworks(),
+                  child: TechOverview(
+                    isLanguage: true,
+                    techWidgets: [
+                      widget.data.dotNet.techWidget,
+                      widget.data.unity.techWidget,
+                      widget.data.flutter.techWidget,
+                    ],
+                  ),
                 ),
-                SizedBox(height: screenheight, child: Projects()),
+                SizedBox(
+                  height: screenheight,
+                  child: ProjectOverview(
+                    projects: [
+                      widget.data.uno.preview,
+                      widget.data.unityGame.preview,
+                      widget.data.portfolio.preview,
+                    ],
+                  ),
+                ),
                 SizedBox(height: screenheight, child: Contact()),
               ],
             ),
