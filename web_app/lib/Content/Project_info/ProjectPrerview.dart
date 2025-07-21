@@ -1,21 +1,30 @@
 import 'package:flutter/material.dart';
-import 'Project1.dart';
+import 'ProjectInfo.dart';
 
 class Projectprerviews {
   static StatelessWidget Unity({double? width = 300, double? height = 200}) =>
       Preview(
         width: width,
         height: height,
-        imageRoute: "assets/images.png",
+        imageRoute: "assets/project_images/unity/unity_charakter.png",
         projectRoute: "/UnityProject",
       );
   static StatelessWidget Uno({double? width = 300, double? height = 200}) =>
       Preview(
         width: width,
         height: height,
-        imageRoute: "assets/images2.png",
+        imageRoute: "assets/project_images/uno/uno_menu.png",
         projectRoute: "/Uno",
       );
+  static StatelessWidget Portfolio({
+    double? width = 300,
+    double? height = 200,
+  }) => Preview(
+    width: width,
+    height: height,
+    imageRoute: "assets/project_images/portfolio/portfolio_preview.png",
+    projectRoute: "/Portfolio",
+  );
 }
 
 class Preview extends StatelessWidget {

@@ -1,6 +1,7 @@
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:web_app/Content/LangsAndFrameworks/LangsAndFrameworks%20.dart';
+import 'package:web_app/Content/ui_elements.dart';
 import 'package:web_app/Icons/Language_Icons/Language_icon.dart';
 
 import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart'
@@ -8,7 +9,7 @@ import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart'
 
 import '../../Icons/Language_Icons/CSharp.dart';
 import '../Project_info/ProjectPrerview.dart';
-import '../Project_info/Project1.dart';
+import '../Project_info/ProjectInfo.dart';
 
 import '../Colors.dart';
 
@@ -45,22 +46,7 @@ class _Languageinfo extends State<Languageinfo> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Container(
-                child: IconButton(
-                  icon: Icon(
-                    Icons.arrow_back,
-                    size: 40,
-
-                    color: widget.languageColor,
-                  ),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                ),
-              ),
-            ),
+            Align(alignment: Alignment.centerLeft, child: uiNavigation()),
 
             Center(
               child: CustomPaint(

@@ -69,15 +69,15 @@ class _ProjectsState extends State<Projects> {
                       ),
                     ),
                     ProjectElement(
-                      name: "Unity",
+                      name: "Unity Spiel",
                       projectpreview: Projectprerviews.Unity(
                         width: screenWidth * 0.25,
                         height: screenWidth * 0.15,
                       ),
                     ),
                     ProjectElement(
-                      name: "Uno",
-                      projectpreview: Projectprerviews.Uno(
+                      name: "Portfolio",
+                      projectpreview: Projectprerviews.Portfolio(
                         width: screenWidth * 0.25,
                         height: screenWidth * 0.15,
                       ),

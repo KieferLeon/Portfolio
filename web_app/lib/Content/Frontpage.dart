@@ -25,9 +25,6 @@ class _FrontpageState extends State<Frontpage> with TickerProviderStateMixin {
   late Animation<Offset> point2Anim;
   late Animation<Offset> point3Anim;
 
-  // Create tweens for the points morphing when arrow animates
-  // For example, flipping arrow direction (adjust as you want)
-
   double screenHeight = 0;
   bool focus = true;
 

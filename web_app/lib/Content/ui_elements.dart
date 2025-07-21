@@ -132,3 +132,26 @@ class _ExpandableButton extends State<ExpandableButton> {
     );
   }
 }
+
+class uiNavigation extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Column(
+      children: [
+        IconButton(
+          icon: Icon(Icons.arrow_back, size: 40, color: ThemeColors.black),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        IconButton(
+          icon: Icon(Icons.home_rounded, size: 40, color: ThemeColors.black),
+          onPressed: () {
+            Navigator.of(context).popUntil(ModalRoute.withName('/'));
+          },
+        ),
+      ],
+    );
+  }
+}

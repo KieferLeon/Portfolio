@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:web/web.dart';
+import 'package:web_app/Content/code_snippets/code_snippets.dart';
 import 'package:web_app/Icons/Language_Icons/DotNet.dart';
 import 'package:web_app/Icons/Language_Icons/Flutter.dart';
 import 'package:web_app/Icons/Language_Icons/Unity.dart';
@@ -13,7 +14,7 @@ import 'Content/Welcomepage.dart';
 import 'Content/LangsAndFrameworks/LangsAndFrameworks .dart';
 import 'Content/Contact.dart';
 import 'Content/LangsAndFrameworks/LangsAndFrameworksInfo.dart';
-import 'Content/Project_info/Project1.dart';
+import 'Content/Project_info/ProjectInfo.dart';
 import 'Content/Projects.dart';
 
 import 'Content/Colors.dart';
@@ -41,6 +42,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         scaffoldBackgroundColor: const Color.fromARGB(255, 233, 233, 233),
       ),
+      debugShowCheckedModeBanner: false,
       //home: const MainPage(title: 'Flutter Demo Home Page'),
       routes: {
         "/": (context) => const MainPage(title: "Flutter Demo Home Page"),
@@ -110,11 +112,45 @@ class MyApp extends StatelessWidget {
           name: "Uno",
           framework: Tech(icon: DotNetIcon(selected: false), route: "/DotNet"),
           language: Tech(icon: CSharpIcon(selected: false), route: "/CSharp"),
+          videoPath: "assets/project_images/unity/unity_gameplay.mp4",
+          filenames: CodeSnippetLibary.cSharp.filenames,
+          codeSnippetsContent: [
+            CodeSnippetLibary.cSharp.sortHand(screenHeight * 0.04),
+            CodeSnippetLibary.cSharp.cardHover(screenHeight * 0.035),
+            CodeSnippetLibary.cSharp.nextTurn(screenHeight * 0.04),
+          ],
+          github: false,
         ),
         "/UnityProject": (context) => ProjectInfo(
-          name: "Unity",
+          name: "Unity Spiel",
           framework: Tech(icon: UnityIcon(selected: false), route: "/Unity"),
           language: Tech(icon: CSharpIcon(selected: false), route: "/CSharp"),
+          videoPath: "assets/project_images/unity/unity_gameplay.mp4",
+
+          filenames: CodeSnippetLibary.unity.filenames,
+          codeSnippetsContent: [
+            CodeSnippetLibary.unity.attack(screenHeight * 0.04),
+            CodeSnippetLibary.unity.getDamage(screenHeight * 0.04),
+            CodeSnippetLibary.unity.roomSpawning(screenHeight * 0.034),
+          ],
+          github: false,
+        ),
+        "/Portfolio": (context) => ProjectInfo(
+          name: "Portfolio",
+          framework: Tech(
+            icon: FlutterIcon(selected: false),
+            route: "/Flutter",
+          ),
+          language: Tech(icon: DartIcon(selected: false), route: "/Dart"),
+          videoPath: "assets/project_images/unity/unity_gameplay.mp4",
+
+          filenames: CodeSnippetLibary.unity.filenames,
+          codeSnippetsContent: [
+            CodeSnippetLibary.portfolio.animaiton(screenHeight * 0.04),
+            CodeSnippetLibary.portfolio.project(screenHeight * 0.04),
+            CodeSnippetLibary.portfolio.language(screenHeight * 0.04),
+          ],
+          github: false,
         ),
       },
     );

@@ -2,6 +2,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 
 class CSharpSnippets {
+  List<String> filenames = ["Player.cs", "Card.cs", "Game.cs"];
+
   RichText Function(double fontSize) sortHand = SortHand;
   RichText Function(double fontSize) cardHover = CardHover;
   RichText Function(double fontSize) nextTurn = NextTurn;

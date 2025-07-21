@@ -24,12 +24,20 @@ class ProjectInfo extends StatelessWidget {
   final String name;
   final Tech language;
   final Tech framework;
+  final List<RichText> codeSnippetsContent;
+  final List<String> filenames;
+  final bool github;
+  final String videoPath;
 
   const ProjectInfo({
     super.key,
     required this.name,
     required this.language,
     required this.framework,
+    required this.codeSnippetsContent,
+    required this.filenames,
+    required this.github,
+    required this.videoPath,
   });
 
   @override
@@ -44,37 +52,7 @@ class ProjectInfo extends StatelessWidget {
             width: screenWidth,
             child: Column(
               children: [
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Row(
-                    children: [
-                      IconButton(
-                        icon: Icon(
-                          Icons.arrow_back,
-                          size: 40,
-
-                          color: ThemeColors.black,
-                        ),
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                      ),
-                      IconButton(
-                        icon: Icon(
-                          Icons.home_rounded,
-                          size: 40,
-
-                          color: ThemeColors.black,
-                        ),
-                        onPressed: () {
-                          Navigator.of(
-                            context,
-                          ).pushNamedAndRemoveUntil('/', (route) => false);
-                        },
-                      ),
-                    ],
-                  ),
-                ),
+                Align(alignment: Alignment.centerLeft, child: uiNavigation()),
 
                 Center(
                   child: SizedBox(
@@ -135,13 +113,15 @@ class ProjectInfo extends StatelessWidget {
                         SizedBox(),
                         SizedBox(
                           width: screenWidth * 0.7,
-                          child: ClickableVideo(),
+                          child: ClickableVideo(videoPath: videoPath),
                         ),
                         SizedBox(height: 200),
-                        CodeSnippets(),
+                        CodeSnippets(
+                          filenames: filenames,
+                          codeSnippetsContent: codeSnippetsContent,
+                        ),
                         SizedBox(height: 200),
-                        GitHubButton(),
-                        SizedBox(height: 200),
+                        if (github) ...[GitHubButton(), SizedBox(height: 200)],
                       ],
                     ),
                   ),
@@ -156,7 +136,9 @@ class ProjectInfo extends StatelessWidget {
 }
 
 class ClickableVideo extends StatefulWidget {
-  const ClickableVideo({super.key});
+  final String videoPath;
+
+  const ClickableVideo({super.key, required this.videoPath});
 
   @override
   State<ClickableVideo> createState() => _ClickableVideoState();
@@ -169,9 +151,7 @@ class _ClickableVideoState extends State<ClickableVideo> {
   @override
   void initState() {
     super.initState();
-    _videoController = VideoPlayerController.asset(
-      "assets/project_images/uno/uno_clip_gameplay.mp4",
-    );
+    _videoController = VideoPlayerController.asset(widget.videoPath);
 
     _initializeVideo();
   }
@@ -234,6 +214,11 @@ class _ClickableVideoState extends State<ClickableVideo> {
 }
 
 class CodeSnippets extends StatelessWidget {
+  final List<RichText> codeSnippetsContent;
+  final List<String> filenames;
+
+  CodeSnippets({required this.codeSnippetsContent, required this.filenames});
+
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
@@ -272,7 +257,12 @@ class CodeSnippets extends StatelessWidget {
 
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [codeSnippetElement()],
+          children: [
+            codeSnippetElement(
+              filenames: filenames,
+              codeSnippetsContent: codeSnippetsContent,
+            ),
+          ],
         ),
       ),
     );
@@ -280,6 +270,14 @@ class CodeSnippets extends StatelessWidget {
 }
 
 class codeSnippetElement extends StatefulWidget {
+  final List<RichText> codeSnippetsContent;
+  final List<String> filenames;
+
+  codeSnippetElement({
+    required this.codeSnippetsContent,
+    required this.filenames,
+  });
+
   @override
   _codeSnippetElement createState() => _codeSnippetElement();
 }
@@ -297,7 +295,7 @@ class _codeSnippetElement extends State<codeSnippetElement> {
     });
   }
 
-  late final List<String> names = ["Player.cs", "Card.cs", "Game.cs"];
+  late final List<String> names = widget.filenames;
 
   late final List<SnippetTab> snippetTabs = List.generate(
     3,
@@ -339,22 +337,10 @@ class _codeSnippetElement extends State<codeSnippetElement> {
               child: Container(
                 width: double.infinity,
                 child: focusedIndex == 0
-                    ? Container(
-                        child: CodeSnippetLibary.cSharp.sortHand(
-                          screenHeight * 0.04,
-                        ),
-                      )
+                    ? Container(child: widget.codeSnippetsContent[0])
                     : focusedIndex == 1
-                    ? Container(
-                        child: CodeSnippetLibary.cSharp.cardHover(
-                          screenHeight * 0.035,
-                        ),
-                      )
-                    : Container(
-                        child: CodeSnippetLibary.cSharp.nextTurn(
-                          screenHeight * 0.04,
-                        ),
-                      ),
+                    ? Container(child: widget.codeSnippetsContent[1])
+                    : Container(child: widget.codeSnippetsContent[2]),
               ),
             ),
           ],
