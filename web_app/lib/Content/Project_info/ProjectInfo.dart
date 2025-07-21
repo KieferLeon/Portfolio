@@ -50,81 +50,87 @@ class ProjectInfo extends StatelessWidget {
         child: SingleChildScrollView(
           child: SizedBox(
             width: screenWidth,
-            child: Column(
+            child: Stack(
               children: [
                 Align(alignment: Alignment.centerLeft, child: uiNavigation()),
+                Column(
+                  children: [
+                    Center(
+                      child: SizedBox(
+                        width: screenWidth * 0.9,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(name, style: TextStyle(fontSize: 140)),
+                            SizedBox(height: 50),
+                            ExpandableButton(
+                              buttonColor: ThemeColors.black,
+                              buttonText: "Beschreibung",
+                            ),
+                            SizedBox(height: 50),
+                            Container(
+                              width: screenWidth * 0.8,
+                              child: Row(
+                                children: [
+                                  SizedBox(
+                                    width: screenWidth * 0.4,
+                                    child: Column(
+                                      spacing: 10,
+                                      children: [
+                                        Text(
+                                          "Sprachen",
+                                          style: TextStyle(fontSize: 50),
+                                        ),
+                                        SizedBox(
+                                          width: screenWidth * 0.15,
+                                          height: screenWidth * 0.15,
+                                          child: language,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
 
-                Center(
-                  child: SizedBox(
-                    width: screenWidth * 0.9,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(name, style: TextStyle(fontSize: 140)),
-                        SizedBox(height: 50),
-                        ExpandableButton(
-                          buttonColor: ThemeColors.black,
-                          buttonText: "Beschreibung",
-                        ),
-                        SizedBox(height: 50),
-                        Container(
-                          width: screenWidth * 0.8,
-                          child: Row(
-                            children: [
-                              SizedBox(
-                                width: screenWidth * 0.4,
-                                child: Column(
-                                  spacing: 10,
-                                  children: [
-                                    Text(
-                                      "Sprachen",
-                                      style: TextStyle(fontSize: 50),
+                                  SizedBox(
+                                    width: screenWidth * 0.4,
+                                    child: Column(
+                                      spacing: 10,
+                                      children: [
+                                        Text(
+                                          "Frameworks",
+                                          style: TextStyle(fontSize: 50),
+                                        ),
+                                        SizedBox(
+                                          width: screenWidth * 0.15,
+                                          height: screenWidth * 0.15,
+                                          child: framework,
+                                        ),
+                                      ],
                                     ),
-                                    SizedBox(
-                                      width: screenWidth * 0.15,
-                                      height: screenWidth * 0.15,
-                                      child: language,
-                                    ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
-
-                              SizedBox(
-                                width: screenWidth * 0.4,
-                                child: Column(
-                                  spacing: 10,
-                                  children: [
-                                    Text(
-                                      "Frameworks",
-                                      style: TextStyle(fontSize: 50),
-                                    ),
-                                    SizedBox(
-                                      width: screenWidth * 0.15,
-                                      height: screenWidth * 0.15,
-                                      child: framework,
-                                    ),
-                                  ],
-                                ),
-                              ),
+                            ),
+                            SizedBox(height: 200),
+                            SizedBox(),
+                            SizedBox(
+                              width: screenWidth * 0.7,
+                              child: ClickableVideo(videoPath: videoPath),
+                            ),
+                            SizedBox(height: 200),
+                            CodeSnippets(
+                              filenames: filenames,
+                              codeSnippetsContent: codeSnippetsContent,
+                            ),
+                            SizedBox(height: 200),
+                            if (github) ...[
+                              GitHubButton(),
+                              SizedBox(height: 200),
                             ],
-                          ),
+                          ],
                         ),
-                        SizedBox(height: 200),
-                        SizedBox(),
-                        SizedBox(
-                          width: screenWidth * 0.7,
-                          child: ClickableVideo(videoPath: videoPath),
-                        ),
-                        SizedBox(height: 200),
-                        CodeSnippets(
-                          filenames: filenames,
-                          codeSnippetsContent: codeSnippetsContent,
-                        ),
-                        SizedBox(height: 200),
-                        if (github) ...[GitHubButton(), SizedBox(height: 200)],
-                      ],
+                      ),
                     ),
-                  ),
+                  ],
                 ),
               ],
             ),

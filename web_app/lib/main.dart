@@ -58,7 +58,7 @@ class MyApp extends StatelessWidget {
               ),
             ),
             ProjectElement(
-              name: "Unity",
+              name: "Unity Spiel",
               projectpreview: Projectprerviews.Unity(
                 width: screenWidth * 0.25,
                 height: screenWidth * 0.15,
@@ -74,14 +74,22 @@ class MyApp extends StatelessWidget {
         ),
         "/Dart": (context) => Languageinfo(
           languageColor: ThemeColors.dart,
-          projects: [],
+          projects: [
+            ProjectElement(
+              projectpreview: Projectprerviews.Portfolio(
+                width: screenWidth * 0.25,
+                height: screenWidth * 0.15,
+              ),
+              name: "Portfolio",
+            ),
+          ],
           languageIcon: DartIcon(selected: true),
         ),
         "/Unity": (context) => Languageinfo(
           languageColor: ThemeColors.unity,
           projects: [
             ProjectElement(
-              name: "Unity",
+              name: "Unity Spiel",
               projectpreview: Projectprerviews.Unity(
                 width: screenWidth * 0.25,
                 height: screenWidth * 0.15,
@@ -92,7 +100,15 @@ class MyApp extends StatelessWidget {
         ),
         "/Flutter": (context) => Languageinfo(
           languageColor: ThemeColors.dart,
-          projects: [],
+          projects: [
+            ProjectElement(
+              projectpreview: Projectprerviews.Portfolio(
+                width: screenWidth * 0.25,
+                height: screenWidth * 0.15,
+              ),
+              name: "Portfolio",
+            ),
+          ],
           languageIcon: FlutterIcon(selected: true),
         ),
         "/DotNet": (context) => Languageinfo(
@@ -112,7 +128,7 @@ class MyApp extends StatelessWidget {
           name: "Uno",
           framework: Tech(icon: DotNetIcon(selected: false), route: "/DotNet"),
           language: Tech(icon: CSharpIcon(selected: false), route: "/CSharp"),
-          videoPath: "assets/project_images/unity/unity_gameplay.mp4",
+          videoPath: "assets/project_images/uno/uno_gameplay.mp4",
           filenames: CodeSnippetLibary.cSharp.filenames,
           codeSnippetsContent: [
             CodeSnippetLibary.cSharp.sortHand(screenHeight * 0.04),
@@ -144,7 +160,7 @@ class MyApp extends StatelessWidget {
           language: Tech(icon: DartIcon(selected: false), route: "/Dart"),
           videoPath: "assets/project_images/unity/unity_gameplay.mp4",
 
-          filenames: CodeSnippetLibary.unity.filenames,
+          filenames: CodeSnippetLibary.portfolio.filenames,
           codeSnippetsContent: [
             CodeSnippetLibary.portfolio.animaiton(screenHeight * 0.04),
             CodeSnippetLibary.portfolio.project(screenHeight * 0.04),

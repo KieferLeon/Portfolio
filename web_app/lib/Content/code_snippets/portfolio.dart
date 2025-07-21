@@ -2,11 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 
 class PortfolioSnippets {
-  List<String> filenames = [
-    "Welcomepage.dart",
-    "main.dart",
-    "LangsAndFrameworks.dart",
-  ];
+  List<String> filenames = ["Welcomepage.dart", "main.dart", "Languages.dart"];
 
   RichText Function(double fontSize) animaiton = Animaiton;
   RichText Function(double fontSize) project = Project;

@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart'
     as InnerShadow;
 import 'Colors.dart';
-
-import 'Sticker.dart';
+import 'package:flutter/services.dart';
 
 class Contact extends StatefulWidget {
   _Contact createState() => _Contact();
@@ -12,32 +11,50 @@ class Contact extends StatefulWidget {
 
 class _Contact extends State<Contact> {
   var emailHoverd = false;
+  OverlayEntry? _overlayEntry;
 
   final List<double> _parallaxFactors = [0.03, 0.06, 0.09];
-
-  final ScrollController _scrollController = ScrollController();
   double _scrollOffset = 0;
   final GlobalKey _stickerKey = GlobalKey();
+  final GlobalKey _emailKey = GlobalKey(); // Key for email container
 
-  @override
-  void initState() {
-    super.initState();
-    _scrollController.addListener(() {
-      setState(() {
-        final renderBox =
-            _stickerKey.currentContext?.findRenderObject() as RenderBox?;
-        if (renderBox != null) {
-          final position = renderBox.localToGlobal(Offset.zero);
-          _scrollOffset = position.dy; // how far from the top of the screen
-        }
-      });
+  void _showCopiedOverlay() {
+    _overlayEntry?.remove();
+
+    final renderBox =
+        _emailKey.currentContext?.findRenderObject() as RenderBox?;
+    if (renderBox == null) return;
+
+    final position = renderBox.localToGlobal(Offset.zero);
+    final size = renderBox.size;
+
+    _overlayEntry = OverlayEntry(
+      builder: (context) => Positioned(
+        left: position.dx + size.width / 2 - 40, // center-ish
+        top: position.dy - 30, // above container
+        child: Material(
+          color: Colors.transparent,
+          child: Container(
+            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+            decoration: BoxDecoration(
+              color: Colors.black87,
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Text(
+              "Kopiert!",
+              style: TextStyle(color: Colors.white, fontSize: 14),
+            ),
+          ),
+        ),
+      ),
+    );
+
+    Overlay.of(context)?.insert(_overlayEntry!);
+
+    Future.delayed(Duration(milliseconds: 2000), () {
+      _overlayEntry?.remove();
+      _overlayEntry = null;
     });
-  }
-
-  @override
-  void dispose() {
-    _scrollController.dispose();
-    super.dispose();
   }
 
   @override
@@ -60,12 +77,12 @@ class _Contact extends State<Contact> {
             ),
             SizedBox(height: 30),
             Container(
+              key: _emailKey, // Assign key here
               width: 600,
               height: 90,
               decoration: emailHoverd
                   ? BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-
                       color: ThemeColors.white,
                       boxShadow: [
                         BoxShadow(
@@ -88,7 +105,6 @@ class _Contact extends State<Contact> {
                         ),
                       ],
                     ),
-
               child: Container(
                 width: double.infinity,
                 height: double.infinity,
@@ -105,6 +121,12 @@ class _Contact extends State<Contact> {
                   ],
                 ),
                 child: GestureDetector(
+                  onTap: () async {
+                    await Clipboard.setData(
+                      ClipboardData(text: "Email@gmc.cpm"),
+                    );
+                    _showCopiedOverlay();
+                  },
                   child: MouseRegion(
                     onEnter: (event) {
                       setState(() {
@@ -128,7 +150,6 @@ class _Contact extends State<Contact> {
               ),
             ),
             SizedBox(height: 50),
-            Sticker(scrollOffset: _scrollOffset),
           ],
         ),
       ),
