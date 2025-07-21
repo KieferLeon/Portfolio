@@ -20,7 +20,18 @@ import '../ui_elements.dart';
 
 import '../code_snippets/code_snippets.dart';
 
-class Project1 extends StatelessWidget {
+class ProjectInfo extends StatelessWidget {
+  final String name;
+  final Tech language;
+  final Tech framework;
+
+  const ProjectInfo({
+    super.key,
+    required this.name,
+    required this.language,
+    required this.framework,
+  });
+
   @override
   Widget build(BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;
@@ -71,10 +82,10 @@ class Project1 extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Text("Unity", style: TextStyle(fontSize: 140)),
+                        Text(name, style: TextStyle(fontSize: 140)),
                         SizedBox(height: 50),
                         ExpandableButton(
-                          buttonColor: ThemeColors.unity,
+                          buttonColor: ThemeColors.black,
                           buttonText: "Beschreibung",
                         ),
                         SizedBox(height: 50),
@@ -94,10 +105,7 @@ class Project1 extends StatelessWidget {
                                     SizedBox(
                                       width: screenWidth * 0.15,
                                       height: screenWidth * 0.15,
-                                      child: Tech(
-                                        icon: CSharpIcon(),
-                                        route: "/CSharp",
-                                      ),
+                                      child: language,
                                     ),
                                   ],
                                 ),
@@ -115,10 +123,7 @@ class Project1 extends StatelessWidget {
                                     SizedBox(
                                       width: screenWidth * 0.15,
                                       height: screenWidth * 0.15,
-                                      child: Tech(
-                                        icon: FlutterIcon(),
-                                        route: "/CSharp",
-                                      ),
+                                      child: framework,
                                     ),
                                   ],
                                 ),
@@ -292,9 +297,16 @@ class _codeSnippetElement extends State<codeSnippetElement> {
     });
   }
 
+  late final List<String> names = ["Player.cs", "Card.cs", "Game.cs"];
+
   late final List<SnippetTab> snippetTabs = List.generate(
     3,
-    (i) => SnippetTab(index: i, focused: false, focusChange: tabSelection),
+    (i) => SnippetTab(
+      index: i,
+      focused: false,
+      name: names[i],
+      focusChange: tabSelection,
+    ),
   );
 
   @override
@@ -314,6 +326,7 @@ class _codeSnippetElement extends State<codeSnippetElement> {
               child: Row(
                 children: List.generate(3, (i) {
                   return SnippetTab(
+                    name: names[i],
                     index: i,
                     focused: i == focusedIndex,
                     focusChange: tabSelection,
@@ -326,10 +339,22 @@ class _codeSnippetElement extends State<codeSnippetElement> {
               child: Container(
                 width: double.infinity,
                 child: focusedIndex == 0
-                    ? Container(child: CodeSnippetLibary.sortHand)
+                    ? Container(
+                        child: CodeSnippetLibary.cSharp.sortHand(
+                          screenHeight * 0.04,
+                        ),
+                      )
                     : focusedIndex == 1
-                    ? Container(child: CodeSnippetLibary.sortHand)
-                    : Container(child: CodeSnippetLibary.sortHand),
+                    ? Container(
+                        child: CodeSnippetLibary.cSharp.cardHover(
+                          screenHeight * 0.035,
+                        ),
+                      )
+                    : Container(
+                        child: CodeSnippetLibary.cSharp.nextTurn(
+                          screenHeight * 0.04,
+                        ),
+                      ),
               ),
             ),
           ],
@@ -343,12 +368,14 @@ class SnippetTab extends StatefulWidget {
   final int index;
   final void Function(int) focusChange;
   bool focused = true;
+  String name;
 
   SnippetTab({
     super.key,
     required this.focusChange,
     required this.index,
     required this.focused,
+    required this.name,
   });
 
   @override
@@ -378,8 +405,8 @@ class _SnippetTab extends State<SnippetTab> {
               : ThemeColors.codeBackgroundDark,
           child: Center(
             child: Text(
-              "Pdassa",
-              style: TextStyle(fontSize: 30, color: ThemeColors.black),
+              widget.name,
+              style: TextStyle(fontSize: 30, color: ThemeColors.white),
             ),
           ),
         ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
 import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart'
     as InnerShadow;
+import 'package:web_app/Icons/nameLogo.dart';
 
 import '../Icons/Language_Icons/CSharp.dart';
 import 'Colors.dart';
@@ -60,9 +61,27 @@ class _ProjectsState extends State<Projects> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    ProjectElement(),
-                    ProjectElement(),
-                    ProjectElement(),
+                    ProjectElement(
+                      name: "Uno",
+                      projectpreview: Projectprerviews.Uno(
+                        width: screenWidth * 0.25,
+                        height: screenWidth * 0.15,
+                      ),
+                    ),
+                    ProjectElement(
+                      name: "Unity",
+                      projectpreview: Projectprerviews.Unity(
+                        width: screenWidth * 0.25,
+                        height: screenWidth * 0.15,
+                      ),
+                    ),
+                    ProjectElement(
+                      name: "Uno",
+                      projectpreview: Projectprerviews.Uno(
+                        width: screenWidth * 0.25,
+                        height: screenWidth * 0.15,
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -75,6 +94,15 @@ class _ProjectsState extends State<Projects> {
 }
 
 class ProjectElement extends StatelessWidget {
+  final StatelessWidget projectpreview;
+  final String name;
+
+  const ProjectElement({
+    super.key,
+    required this.projectpreview,
+    required this.name,
+  });
+
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
@@ -117,16 +145,13 @@ class ProjectElement extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "Unity",
+                name,
                 style: TextStyle(color: ThemeColors.black, fontSize: 60),
               ),
               SizedBox(
                 width: screenWidth * 0.25,
                 height: screenWidth * 0.15,
-                child: Projectprerviews.project1(
-                  width: screenWidth * 0.25,
-                  height: screenWidth * 0.15,
-                ),
+                child: projectpreview,
               ),
             ],
           ),

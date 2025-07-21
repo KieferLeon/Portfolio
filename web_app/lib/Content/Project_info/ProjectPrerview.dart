@@ -2,17 +2,34 @@ import 'package:flutter/material.dart';
 import 'Project1.dart';
 
 class Projectprerviews {
-  static StatelessWidget project1({
-    double? width = 300,
-    double? height = 200,
-  }) => _Project1(width: width, height: height);
+  static StatelessWidget Unity({double? width = 300, double? height = 200}) =>
+      Preview(
+        width: width,
+        height: height,
+        imageRoute: "assets/images.png",
+        projectRoute: "/UnityProject",
+      );
+  static StatelessWidget Uno({double? width = 300, double? height = 200}) =>
+      Preview(
+        width: width,
+        height: height,
+        imageRoute: "assets/images2.png",
+        projectRoute: "/Uno",
+      );
 }
 
-class _Project1 extends StatelessWidget {
+class Preview extends StatelessWidget {
   final double? height;
   final double? width;
+  final String projectRoute;
+  final String imageRoute;
 
-  _Project1({this.height = 200, this.width = 300});
+  Preview({
+    this.height = 200,
+    this.width = 300,
+    required this.imageRoute,
+    required this.projectRoute,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +37,7 @@ class _Project1 extends StatelessWidget {
       cursor: SystemMouseCursors.click,
       child: GestureDetector(
         onTap: () {
-          Navigator.pushNamed(context, "/Project1");
+          Navigator.pushNamed(context, projectRoute);
         },
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 200),
@@ -29,8 +46,8 @@ class _Project1 extends StatelessWidget {
 
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
-            image: const DecorationImage(
-              image: AssetImage('assets/images.png'),
+            image: DecorationImage(
+              image: AssetImage(imageRoute),
               fit: BoxFit.cover,
             ),
           ),

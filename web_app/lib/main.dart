@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:web/web.dart';
 import 'package:web_app/Icons/Language_Icons/DotNet.dart';
 import 'package:web_app/Icons/Language_Icons/Flutter.dart';
 import 'package:web_app/Icons/Language_Icons/Unity.dart';
@@ -31,6 +32,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
@@ -43,40 +47,75 @@ class MyApp extends StatelessWidget {
 
         "/CSharp": (context) => Languageinfo(
           languageColor: ThemeColors.cSharp,
-          projects: [ProjectElement()],
+          projects: [
+            ProjectElement(
+              name: "Uno",
+              projectpreview: Projectprerviews.Uno(
+                width: screenWidth * 0.25,
+                height: screenWidth * 0.15,
+              ),
+            ),
+            ProjectElement(
+              name: "Unity",
+              projectpreview: Projectprerviews.Unity(
+                width: screenWidth * 0.25,
+                height: screenWidth * 0.15,
+              ),
+            ),
+          ],
           languageIcon: CSharpIcon(selected: true),
         ),
         "/Swift": (context) => Languageinfo(
           languageColor: ThemeColors.swift,
-          projects: [Projectprerviews.project1(), Projectprerviews.project1()],
+          projects: [],
           languageIcon: SwiftIcon(selected: true),
         ),
         "/Dart": (context) => Languageinfo(
           languageColor: ThemeColors.dart,
-          projects: [
-            Projectprerviews.project1(),
-            Projectprerviews.project1(),
-            Projectprerviews.project1(),
-            Projectprerviews.project1(),
-          ],
+          projects: [],
           languageIcon: DartIcon(selected: true),
         ),
         "/Unity": (context) => Languageinfo(
           languageColor: ThemeColors.unity,
-          projects: [Projectprerviews.project1()],
+          projects: [
+            ProjectElement(
+              name: "Unity",
+              projectpreview: Projectprerviews.Unity(
+                width: screenWidth * 0.25,
+                height: screenWidth * 0.15,
+              ),
+            ),
+          ],
           languageIcon: UnityIcon(selected: true),
         ),
         "/Flutter": (context) => Languageinfo(
           languageColor: ThemeColors.dart,
-          projects: [Projectprerviews.project1()],
+          projects: [],
           languageIcon: FlutterIcon(selected: true),
         ),
         "/DotNet": (context) => Languageinfo(
           languageColor: ThemeColors.dotNet,
-          projects: [Projectprerviews.project1()],
+          projects: [
+            ProjectElement(
+              name: "Uno",
+              projectpreview: Projectprerviews.Uno(
+                width: screenWidth * 0.25,
+                height: screenWidth * 0.15,
+              ),
+            ),
+          ],
           languageIcon: DotNetIcon(selected: true),
         ),
-        "/Project1": (context) => Project1(),
+        "/Uno": (context) => ProjectInfo(
+          name: "Uno",
+          framework: Tech(icon: DotNetIcon(selected: false), route: "/DotNet"),
+          language: Tech(icon: CSharpIcon(selected: false), route: "/CSharp"),
+        ),
+        "/UnityProject": (context) => ProjectInfo(
+          name: "Unity",
+          framework: Tech(icon: UnityIcon(selected: false), route: "/Unity"),
+          language: Tech(icon: CSharpIcon(selected: false), route: "/CSharp"),
+        ),
       },
     );
   }
