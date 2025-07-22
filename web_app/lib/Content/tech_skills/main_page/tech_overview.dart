@@ -5,7 +5,7 @@ class TechOverview extends StatelessWidget {
   final bool isLanguage;
   final List<TechWidget> techWidgets;
 
-  TechOverview({
+  const TechOverview({
     super.key,
     required this.isLanguage,
     required this.techWidgets,
@@ -18,7 +18,7 @@ class TechOverview extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Colors.transparent,
-      body: Container(
+      body: SizedBox(
         width: screenwidth,
         height: screenheight,
         child: Center(

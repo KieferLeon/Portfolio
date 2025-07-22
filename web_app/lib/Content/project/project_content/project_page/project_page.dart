@@ -12,7 +12,7 @@ class ProjectPage extends StatelessWidget {
   final String name;
   final List<TechWidget> languages;
   final List<TechWidget> frameworks;
-  final List<RichText> codeSnippetsContent;
+  final List<LayoutBuilder> codeSnippetsContent;
   final List<String> filenames;
   final bool hasGithub;
   final String videoPath;
@@ -68,10 +68,9 @@ class ProjectPage extends StatelessWidget {
                           filenames: filenames,
                           codeSnippetsContent: codeSnippetsContent,
                         ),
-                        if (hasGithub) ...[
-                          SizedBox(height: 200),
-                          GitHubButton(),
-                        ],
+                        SizedBox(height: 200),
+
+                        if (hasGithub) GitHubButton(),
                       ],
                     ),
                   ),

@@ -1,13 +1,13 @@
-import 'Content/Colors.dart';
+import 'Content/colors.dart';
 import 'Content/code_snippets/code_snippets.dart';
 import 'Content/project/project_content/project.dart';
 import 'Content/tech_skills/tech_content/tech.dart';
-import 'Icons/Language_Icons/CSharp.dart';
-import 'Icons/Language_Icons/Dart.dart';
-import 'Icons/Language_Icons/DotNet.dart';
-import 'Icons/Language_Icons/Flutter.dart';
-import 'Icons/Language_Icons/Swift.dart';
-import 'Icons/Language_Icons/Unity.dart';
+import 'Icons/Language_Icons/c_sharp.dart';
+import 'Icons/Language_Icons/dart.dart';
+import 'Icons/Language_Icons/dot_net.dart';
+import 'Icons/Language_Icons/flutter.dart';
+import 'Icons/Language_Icons/swift.dart';
+import 'Icons/Language_Icons/unity.dart';
 
 class AppDataInitializer {
   late Tech cSharp;
@@ -73,13 +73,13 @@ class AppDataInitializer {
       name: "Uno",
       pageRoute: "/Uno",
       previewImagePath: "assets/project_images/uno/uno_menu.png",
-      videoPath: "assets/project_images/uno/uno_clip_gameplay.png",
+      videoPath: "assets/project_images/uno/uno_gameplay.mp4",
       languages: [],
       frameworks: [],
       codeSnippetsContent: [
-        CodeSnippetLibary.cSharp.cardHover(1),
-        CodeSnippetLibary.cSharp.sortHand(1),
-        CodeSnippetLibary.cSharp.nextTurn(1),
+        CodeSnippetLibary.cSharp.cardHover(),
+        CodeSnippetLibary.cSharp.sortHand(),
+        CodeSnippetLibary.cSharp.nextTurn(),
       ],
       codeSnippetsFiles: CodeSnippetLibary.cSharp.filenames,
       hasGithub: false,
@@ -88,13 +88,13 @@ class AppDataInitializer {
       name: "Unity Spiel",
       pageRoute: "/UnitySpiel",
       previewImagePath: "assets/project_images/unity/unity_charakter.png",
-      videoPath: "assets/project_images/uno/uno_clip_gameplay.png",
+      videoPath: "assets/project_images/unity/unity_gameplay.mp4",
       languages: [],
       frameworks: [],
       codeSnippetsContent: [
-        CodeSnippetLibary.unity.attack(1),
-        CodeSnippetLibary.unity.getDamage(1),
-        CodeSnippetLibary.unity.roomSpawning(1),
+        CodeSnippetLibary.unity.attack(),
+        CodeSnippetLibary.unity.getDamage(),
+        CodeSnippetLibary.unity.roomSpawning(),
       ],
       codeSnippetsFiles: CodeSnippetLibary.unity.filenames,
       hasGithub: false,
@@ -103,13 +103,13 @@ class AppDataInitializer {
       name: "Portfolio",
       pageRoute: "/Portfolio",
       previewImagePath: "assets/project_images/portfolio/portfolio_preview.png",
-      videoPath: "assets/project_images/uno/uno_clip_gameplay.png",
+      videoPath: "assets/project_images/uno/uno_gameplay.mp4",
       languages: [],
       frameworks: [],
       codeSnippetsContent: [
-        CodeSnippetLibary.portfolio.animaiton(1),
-        CodeSnippetLibary.portfolio.language(1),
-        CodeSnippetLibary.portfolio.project(1),
+        CodeSnippetLibary.portfolio.animation(),
+        CodeSnippetLibary.portfolio.language(),
+        CodeSnippetLibary.portfolio.project(),
       ],
       codeSnippetsFiles: CodeSnippetLibary.portfolio.filenames,
       hasGithub: false,

@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'tech_icon.dart';
 
 class DartIcon extends TechIcon {
-  bool selected;
-
-  DartIcon({this.selected = false});
+  DartIcon({super.selected = false});
 
   @override
   DartIcon clone() {
@@ -87,26 +85,25 @@ class DartIcon extends TechIcon {
     path_3.lineTo(size.width * 0.7291667, size.height * 0.8958333);
     path_3.close();
 
-    Paint paint_0_fill = Paint()..style = PaintingStyle.fill;
-    paint_0_fill.color = selected ? Color(0xff1565c0) : Color(0xff5b5b5b);
-    canvas.drawPath(path_0, paint_0_fill);
+    Paint paint0Fill = Paint()..style = PaintingStyle.fill;
+    paint0Fill.color = selected ? Color(0xff1565c0) : Color(0xff5b5b5b);
+    canvas.drawPath(path_0, paint0Fill);
 
-    Paint paint_1_fill = Paint()..style = PaintingStyle.fill;
-    paint_1_fill.color = selected ? Color(0xff42a5f5) : Color(0xff969696);
-    canvas.drawPath(path_1, paint_1_fill);
+    Paint paint1Fill = Paint()..style = PaintingStyle.fill;
+    paint1Fill.color = selected ? Color(0xff42a5f5) : Color(0xff969696);
+    canvas.drawPath(path_1, paint1Fill);
 
-    Paint paint_2_fill = Paint()..style = PaintingStyle.fill;
-    paint_2_fill.color = selected ? Color(0xff1565c0) : Color(0xff5b5b5b);
-    canvas.drawPath(path_2, paint_2_fill);
+    Paint paint2Fill = Paint()..style = PaintingStyle.fill;
+    paint2Fill.color = selected ? Color(0xff1565c0) : Color(0xff5b5b5b);
+    canvas.drawPath(path_2, paint2Fill);
 
-    Paint paint_3_fill = Paint()..style = PaintingStyle.fill;
-    paint_3_fill.color = selected ? Color(0xff85cbf8) : Color(0xffbfbfbf);
-    canvas.drawPath(path_3, paint_3_fill);
+    Paint paint3Fill = Paint()..style = PaintingStyle.fill;
+    paint3Fill.color = selected ? Color(0xff85cbf8) : Color(0xffbfbfbf);
+    canvas.drawPath(path_3, paint3Fill);
   }
 
   @override
   bool shouldRepaint(covariant DartIcon oldDelegate) {
-    // Repaint only if 'selected' changed
     return oldDelegate.selected != selected;
   }
 }

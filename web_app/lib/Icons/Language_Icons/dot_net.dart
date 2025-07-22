@@ -1,12 +1,8 @@
-import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'tech_icon.dart';
 
-//Copy this CustomPainter code to the Bottom of the File
 class DotNetIcon extends TechIcon {
-  bool selected;
-
-  DotNetIcon({this.selected = false});
+  DotNetIcon({super.selected = false});
 
   @override
   DotNetIcon clone() {
@@ -691,54 +687,53 @@ class DotNetIcon extends TechIcon {
     path_9.lineTo(size.width * 0.6396042, size.height * 0.6847708);
     path_9.close();
 
-    Paint paint_0_fill = Paint()..style = PaintingStyle.fill;
-    paint_0_fill.color = selected
-        ? Color(0xff6a1b9a).withOpacity(1.0) // Original purple
+    Paint paint0Fill = Paint()..style = PaintingStyle.fill;
+    paint0Fill.color = selected
+        ? Color(0xff6a1b9a)
         : Color(
             0xff7f7f7f,
           ); // Medium gray, darker than b0b0b0 but lighter than 414141
-    canvas.drawPath(path_0, paint_0_fill);
+    canvas.drawPath(path_0, paint0Fill);
 
-    Paint paint_1_fill = Paint()..style = PaintingStyle.fill;
-    paint_1_fill.color = selected
-        ? Color(0xff7b1fa2).withOpacity(1.0) // Original purple
+    Paint paint1Fill = Paint()..style = PaintingStyle.fill;
+    paint1Fill.color = selected
+        ? Color(0xff7b1fa2) // Original purple
         : Color(
             0xff8c8c8c,
           ); // Slightly lighter than 7f7f7f but darker than bdbdbd
-    canvas.drawPath(path_1, paint_1_fill);
+    canvas.drawPath(path_1, paint1Fill);
 
-    Paint paint_2_fill = Paint()..style = PaintingStyle.fill;
-    paint_2_fill.color = Color(0xffffffff).withOpacity(1.0);
-    canvas.drawPath(path_2, paint_2_fill);
+    Paint paint2Fill = Paint()..style = PaintingStyle.fill;
+    paint2Fill.color = Color(0xffffffff);
+    canvas.drawPath(path_2, paint2Fill);
 
-    Paint paint_3_fill = Paint()..style = PaintingStyle.fill;
-    paint_3_fill.color = Color(0xffffffff).withOpacity(1.0);
-    canvas.drawPath(path_3, paint_3_fill);
+    Paint paint3Fill = Paint()..style = PaintingStyle.fill;
+    paint3Fill.color = Color(0xffffffff);
+    canvas.drawPath(path_3, paint3Fill);
 
-    Paint paint_4_fill = Paint()..style = PaintingStyle.fill;
-    paint_4_fill.color = Color(0xffffffff).withOpacity(1.0);
-    canvas.drawPath(path_4, paint_4_fill);
+    Paint paint4Fill = Paint()..style = PaintingStyle.fill;
+    paint4Fill.color = Color(0xffffffff);
+    canvas.drawPath(path_4, paint4Fill);
 
-    Paint paint_5_fill = Paint()..style = PaintingStyle.fill;
-    paint_5_fill.color = Color(0xffffffff).withOpacity(1.0);
-    canvas.drawPath(path_5, paint_5_fill);
+    Paint paint5Fill = Paint()..style = PaintingStyle.fill;
+    paint5Fill.color = Color(0xffffffff);
+    canvas.drawPath(path_5, paint5Fill);
 
-    Paint paint_6_fill = Paint()..style = PaintingStyle.fill;
-    paint_6_fill.color = Color(0xfff2f2f2).withOpacity(1.0);
-    canvas.drawPath(path_6, paint_6_fill);
+    Paint paint6Fill = Paint()..style = PaintingStyle.fill;
+    paint6Fill.color = Color(0xfff2f2f2);
+    canvas.drawPath(path_6, paint6Fill);
 
-    Paint paint_7_fill = Paint()..style = PaintingStyle.fill;
-    paint_7_fill.color = Color(0xfff2f2f2).withOpacity(1.0);
-    canvas.drawPath(path_7, paint_7_fill);
+    Paint paint7Fill = Paint()..style = PaintingStyle.fill;
+    paint7Fill.color = Color(0xfff2f2f2);
+    canvas.drawPath(path_7, paint7Fill);
 
-    Paint paint_9_fill = Paint()..style = PaintingStyle.fill;
-    paint_9_fill.color = Color(0xfff2f2f2).withOpacity(1.0);
-    canvas.drawPath(path_9, paint_9_fill);
+    Paint paint9Fill = Paint()..style = PaintingStyle.fill;
+    paint9Fill.color = Color(0xfff2f2f2);
+    canvas.drawPath(path_9, paint9Fill);
   }
 
   @override
   bool shouldRepaint(covariant DotNetIcon oldDelegate) {
-    // Repaint only if 'selected' changed
     return oldDelegate.selected != selected;
   }
 }

@@ -4,9 +4,7 @@ import 'tech_icon.dart';
 import 'dart:ui' as ui;
 
 class CSharpIcon extends TechIcon {
-  bool selected;
-
-  CSharpIcon({this.selected = false});
+  CSharpIcon({super.selected = false});
 
   @override
   CSharpIcon clone() {
@@ -77,8 +75,8 @@ class CSharpIcon extends TechIcon {
     );
     path_0.close();
 
-    Paint paint_0_fill = Paint()..style = PaintingStyle.fill;
-    paint_0_fill.shader = ui.Gradient.linear(
+    Paint paint0Fill = Paint()..style = PaintingStyle.fill;
+    paint0Fill.shader = ui.Gradient.linear(
       Offset(0, 0),
       Offset(size.width, size.height),
       selected
@@ -86,7 +84,7 @@ class CSharpIcon extends TechIcon {
           : [Color(0xFFBBBBBB), Color(0xFF444444)],
       [0.0, 1.0],
     );
-    canvas.drawPath(path_0, paint_0_fill);
+    canvas.drawPath(path_0, paint0Fill);
 
     Path path_1 = Path();
     path_1.moveTo(size.width * 0.3000243, size.height * 0.4429440);
@@ -343,10 +341,10 @@ class CSharpIcon extends TechIcon {
     path_1.lineTo(size.width * 0.6427122, size.height * 0.5287394);
     path_1.close();
 
-    Paint paint_1_fill = Paint()..style = PaintingStyle.fill;
-    paint_1_fill.color = Color(0xffffffff).withOpacity(1);
+    Paint paint1Fill = Paint()..style = PaintingStyle.fill;
+    paint1Fill.color = Color(0xffffffff);
 
-    canvas.drawPath(path_1, paint_1_fill);
+    canvas.drawPath(path_1, paint1Fill);
   }
 
   @override

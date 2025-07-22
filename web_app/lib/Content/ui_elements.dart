@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
-import 'Colors.dart';
+import 'colors.dart';
 
 class ExpandableButton extends StatefulWidget {
   final Color buttonColor;
   final String buttonText;
 
-  const ExpandableButton({required this.buttonColor, required this.buttonText});
+  const ExpandableButton({
+    super.key,
+    required this.buttonColor,
+    required this.buttonText,
+  });
 
   @override
   ExpandableButtonState createState() => ExpandableButtonState();

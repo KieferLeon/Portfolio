@@ -4,10 +4,7 @@ import 'tech_icon.dart';
 import 'dart:ui' as ui;
 
 class SwiftIcon extends TechIcon {
-  bool selected;
-
-  SwiftIcon({this.selected = false});
-
+  SwiftIcon({super.selected = false});
   @override
   SwiftIcon clone() {
     return SwiftIcon(selected: selected);
@@ -15,7 +12,6 @@ class SwiftIcon extends TechIcon {
 
   @override
   void paint(Canvas canvas, Size size) {
-    Paint paint = Paint();
     Path path = Path();
 
     // Path number 1
@@ -152,19 +148,16 @@ class SwiftIcon extends TechIcon {
     );
     path.close();
 
-    Paint paint_fill = Paint()..style = PaintingStyle.fill;
-    paint_fill.shader = ui.Gradient.linear(
+    Paint paintFill = Paint()..style = PaintingStyle.fill;
+    paintFill.shader = ui.Gradient.linear(
       Offset(size.width * 0.4690719, size.height * 0.06250000),
       Offset(size.width * 0.4690719, size.height * 0.8437906),
       selected
-          ? [Color(0xffF88A36).withOpacity(1), Color(0xffFD2020).withOpacity(1)]
-          : [
-              Color(0xFFA1A1A1).withOpacity(1),
-              Color(0xFF636363).withOpacity(1),
-            ],
+          ? [Color(0xffF88A36), Color(0xffFD2020)]
+          : [Color(0xFFA1A1A1), Color(0xFF636363)],
       [0, 1],
     );
-    canvas.drawPath(path, paint_fill);
+    canvas.drawPath(path, paintFill);
   }
 
   @override

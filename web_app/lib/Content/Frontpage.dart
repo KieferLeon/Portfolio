@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import './../Icons/nameLogo.dart';
+import '../Icons/name_logo.dart';
 import './../Icons/arrow_down.dart';
 
 class Frontpage extends StatefulWidget {
   final VoidCallback focusout;
   final VoidCallback focusin;
 
-  const Frontpage({Key? key, required this.focusout, required this.focusin})
-    : super(key: key);
+  const Frontpage({super.key, required this.focusout, required this.focusin});
 
   @override
   State<Frontpage> createState() => _FrontpageState();
@@ -17,7 +16,6 @@ class _FrontpageState extends State<Frontpage> with TickerProviderStateMixin {
   late AnimationController _controllerUp;
   late Animation<Offset> _moveUP;
   late AnimationController _arrowChangeDirection;
-  late Animation<Offset> _changeDirection;
   late Offset point1 = Offset(0, 0);
   late Offset point2 = Offset(50, 60);
   late Offset point3 = Offset(100, 0);
@@ -80,7 +78,6 @@ class _FrontpageState extends State<Frontpage> with TickerProviderStateMixin {
 
     _arrowChangeDirection.addListener(() {
       setState(() {
-        // Update points from animation values
         point1 = point1Anim.value;
         point2 = point2Anim.value;
         point3 = point3Anim.value;
@@ -97,7 +94,6 @@ class _FrontpageState extends State<Frontpage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    final screenheight = MediaQuery.of(context).size.height;
     final logoWidth = screenWidth * 0.9;
     final logoHeight = logoWidth * (153.57507 / 613.81519);
 
@@ -183,15 +179,13 @@ class AnimatedName extends StatefulWidget {
   final double width;
   final double height;
 
-  const AnimatedName({Key? key, required this.width, required this.height})
-    : super(key: key);
+  const AnimatedName({super.key, required this.width, required this.height});
 
   @override
-  _NamelogoAnimationWidgetState createState() =>
-      _NamelogoAnimationWidgetState();
+  NamelogoAnimationWidgetState createState() => NamelogoAnimationWidgetState();
 }
 
-class _NamelogoAnimationWidgetState extends State<AnimatedName>
+class NamelogoAnimationWidgetState extends State<AnimatedName>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> drawanimation;

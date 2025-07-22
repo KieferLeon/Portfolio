@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart'
     as inner_shadow;
 
-import '../../../Colors.dart';
+import '../../../colors.dart';
 
 class CodeSnippets extends StatelessWidget {
-  final List<RichText> codeSnippetsContent;
+  final List<LayoutBuilder> codeSnippetsContent;
   final List<String> filenames;
 
   const CodeSnippets({
@@ -67,7 +67,7 @@ class CodeSnippets extends StatelessWidget {
 }
 
 class CodeSnippetElement extends StatefulWidget {
-  final List<RichText> codeSnippetsContent;
+  final List<LayoutBuilder> codeSnippetsContent;
   final List<String> filenames;
 
   const CodeSnippetElement({
@@ -137,7 +137,13 @@ class CodeSnippetElementState extends State<CodeSnippetElement> {
               ),
             ),
             const SizedBox(height: 30),
-            Expanded(child: widget.codeSnippetsContent[focusedIndex]),
+            Expanded(
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  return widget.codeSnippetsContent[focusedIndex];
+                },
+              ),
+            ),
           ],
         ),
       ),
@@ -186,9 +192,11 @@ class SnippetTabState extends State<SnippetTab> {
               child: child!,
             );
           },
-          child: Text(
-            widget.name,
-            style: TextStyle(fontSize: 30, color: ThemeColors.white),
+          child: Center(
+            child: Text(
+              widget.name,
+              style: TextStyle(fontSize: 30, color: ThemeColors.white),
+            ),
           ),
         ),
       ),

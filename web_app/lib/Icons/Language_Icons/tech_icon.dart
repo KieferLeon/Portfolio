@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 class TechIcon extends CustomPainter {
   bool selected;
 
-  TechIcon({this.selected = false});
+  TechIcon({required this.selected});
 
   TechIcon clone() {
     return TechIcon(selected: selected);
@@ -15,6 +15,6 @@ class TechIcon extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant TechIcon oldDelegate) {
-    return oldDelegate.selected != selected;
+    return true;
   }
 }

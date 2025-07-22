@@ -4,9 +4,7 @@ import 'tech_icon.dart';
 
 //Copy this CustomPainter code to the Bottom of the File
 class UnityIcon extends TechIcon {
-  bool selected;
-
-  UnityIcon({this.selected = false});
+  UnityIcon({super.selected = false});
 
   @override
   UnityIcon clone() {
@@ -192,26 +190,21 @@ class UnityIcon extends TechIcon {
     path_2.close();
     path_2.moveTo(size.width * 0.5389687, size.height * 0.03960938);
 
-    Paint paint_0_fill = Paint()..style = PaintingStyle.fill;
-    paint_0_fill.color = selected
-        ? Color(0xff000000).withOpacity(1.0)
-        : Color(0xFF999999);
-    canvas.drawPath(path_0, paint_0_fill);
+    Paint paint0Fill = Paint()..style = PaintingStyle.fill;
+    paint0Fill.color = selected ? Color(0xff000000) : Color(0xFF999999);
+    canvas.drawPath(path_0, paint0Fill);
 
-    Paint paint_1_fill = Paint()..style = PaintingStyle.fill;
-    paint_1_fill.color = selected
-        ? Color(0xff4d4d4d).withOpacity(1.0)
-        : Color(0xFFB3B3B3);
-    canvas.drawPath(path_1, paint_1_fill);
+    Paint paint1Fill = Paint()..style = PaintingStyle.fill;
+    paint1Fill.color = selected ? Color(0xff4d4d4d) : Color(0xFFB3B3B3);
+    canvas.drawPath(path_1, paint1Fill);
 
-    Paint paint_2_fill = Paint()..style = PaintingStyle.fill;
-    paint_2_fill.color = selected ? Color(0xFF808080) : Color(0xFFD9D9D9);
-    canvas.drawPath(path_2, paint_2_fill);
+    Paint paint2Fill = Paint()..style = PaintingStyle.fill;
+    paint2Fill.color = selected ? Color(0xFF808080) : Color(0xFFD9D9D9);
+    canvas.drawPath(path_2, paint2Fill);
   }
 
   @override
   bool shouldRepaint(covariant UnityIcon oldDelegate) {
-    // Repaint only if 'selected' changed
     return oldDelegate.selected != selected;
   }
 }

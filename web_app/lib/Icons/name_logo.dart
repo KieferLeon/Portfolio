@@ -12,7 +12,6 @@ class Namelogo extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     Path name = Path();
-    Path point = Path();
 
     name.moveTo(0, 18.607079);
     name.cubicTo(0, 18.607079, 1.39182, 23, 4.39182, 23);
@@ -50,14 +49,12 @@ class Namelogo extends CustomPainter {
     name.cubicTo(103.07853, 23, 101.31117, 13, 104.58965, 13);
     name.cubicTo(107.56988, 13, 109, 13, 110, 11);
 
-    // Prepare paint
-    Paint name_stroke = Paint()
+    Paint nameStroke = Paint()
       ..style = PaintingStyle.stroke
       ..strokeWidth = 1
       ..color = const ui.Color.fromARGB(255, 255, 255, 255)
       ..strokeCap = StrokeCap.round;
 
-    //Canvas Scaling
     final bounds = name.getBounds();
     final scaleX = size.width / bounds.width;
     final scaleY = size.height / bounds.height;
@@ -81,7 +78,7 @@ class Namelogo extends CustomPainter {
     }
 
     Paint a = Paint()..color = const ui.Color.fromARGB(255, 255, 255, 255);
-    canvas.drawPath(animatedPath, name_stroke);
+    canvas.drawPath(animatedPath, nameStroke);
     canvas.drawPath(dotPath, a);
   }
 

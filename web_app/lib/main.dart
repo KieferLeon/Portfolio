@@ -1,27 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:web/web.dart';
-import 'package:web_app/Content/code_snippets/code_snippets.dart';
-import 'package:web_app/Content/project/project_content/project.dart';
-import 'package:web_app/Content/tech_skills/main_page/tech_overview.dart';
-import 'package:web_app/Content/tech_skills/tech_content/tech.dart';
-import 'package:web_app/Icons/Language_Icons/DotNet.dart';
-import 'package:web_app/Icons/Language_Icons/Flutter.dart';
-import 'package:web_app/Icons/Language_Icons/Unity.dart';
-import 'dart:ui' as ui;
-import 'dart:math';
+
 import 'Content/project/main_page/project_overview.dart';
-import 'Icons/nameLogo.dart';
 
-import 'Content/Frontpage.dart';
-import 'Content/Welcomepage.dart';
-import 'Content/Contact.dart';
+import 'Content/frontpage.dart';
+import 'Content/tech_skills/main_page/tech_overview.dart';
+import 'Content/welcomepage.dart';
+import 'Content/contact.dart';
 
-import 'Content/Colors.dart';
-
-import 'Icons/Language_Icons/CSharp.dart';
-import 'Icons/Language_Icons/Swift.dart';
-import 'Icons/Language_Icons/Dart.dart';
 import 'initial_data.dart';
 
 void main() {
@@ -34,9 +19,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AppDataInitializer data = AppDataInitializer();
-
-    final screenHeight = MediaQuery.of(context).size.height;
-    final screenWidth = MediaQuery.of(context).size.width;
 
     return MaterialApp(
       title: 'Leon Kiefer',
@@ -64,17 +46,19 @@ class MyApp extends StatelessWidget {
 }
 
 class MainPage extends StatefulWidget {
-  AppDataInitializer data;
-  MainPage({super.key, required this.title, required this.data});
+  final AppDataInitializer data;
+  const MainPage({super.key, required this.title, required this.data});
 
   final String title;
 
-  _MainPage createState() => _MainPage();
+  @override
+  MainPageState createState() => MainPageState();
 }
 
-class _MainPage extends State<MainPage> {
+class MainPageState extends State<MainPage> {
   bool namefocus = true;
 
+  @override
   Widget build(BuildContext context) {
     final screenheight = MediaQuery.of(context).size.height;
 

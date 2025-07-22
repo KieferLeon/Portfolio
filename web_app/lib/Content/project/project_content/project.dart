@@ -13,7 +13,7 @@ class Project {
   final List<TechWidget> languages;
   final List<TechWidget> frameworks;
 
-  final List<RichText> codeSnippetsContent;
+  final List<LayoutBuilder> codeSnippetsContent;
   final List<String> codeSnippetsFiles;
   final bool hasGithub;
 

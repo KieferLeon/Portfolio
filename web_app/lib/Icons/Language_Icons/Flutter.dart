@@ -5,9 +5,7 @@ import 'tech_icon.dart';
 
 //Copy this CustomPainter code to the Bottom of the File
 class FlutterIcon extends TechIcon {
-  bool selected;
-
-  FlutterIcon({this.selected = false});
+  FlutterIcon({super.selected = false});
 
   @override
   FlutterIcon clone() {
@@ -50,47 +48,33 @@ class FlutterIcon extends TechIcon {
     path_3.lineTo(size.width * 0.6047619, size.height * 0.6779762);
     path_3.close();
 
-    Paint paint_0_fill = Paint()..style = PaintingStyle.fill;
-    paint_0_fill.color = selected
-        ? Color(0xff3fb6d3).withOpacity(1.0) // original color
-        : Color(0xff969696).withOpacity(1.0); // grayscale
-    canvas.drawPath(path_0, paint_0_fill);
+    Paint paint0Fill = Paint()..style = PaintingStyle.fill;
+    paint0Fill.color = selected ? Color(0xff3fb6d3) : Color(0xff969696);
+    canvas.drawPath(path_0, paint0Fill);
 
-    Paint paint_1_fill = Paint()..style = PaintingStyle.fill;
-    paint_1_fill.color = selected
-        ? Color(0xff27aacd).withOpacity(1.0) // original color
-        : Color(0xff878787).withOpacity(1.0); // grayscale
-    canvas.drawPath(path_1, paint_1_fill);
+    Paint paint1Fill = Paint()..style = PaintingStyle.fill;
+    paint1Fill.color = selected ? Color(0xff27aacd) : Color(0xff878787);
+    canvas.drawPath(path_1, paint1Fill);
 
-    Paint paint_2_fill = Paint()..style = PaintingStyle.fill;
-    paint_2_fill.color = selected
-        ? Color(0xff19599a).withOpacity(1.0) // original color
-        : Color(0xff4d4d4d).withOpacity(1.0); // grayscale
-    canvas.drawPath(path_2, paint_2_fill);
+    Paint paint2Fill = Paint()..style = PaintingStyle.fill;
+    paint2Fill.color = selected ? Color(0xff19599a) : Color(0xff4d4d4d);
+    canvas.drawPath(path_2, paint2Fill);
 
-    Paint paint_3_fill = Paint()..style = PaintingStyle.fill;
-    paint_3_fill.shader = selected
+    Paint paint3Fill = Paint()..style = PaintingStyle.fill;
+    paint3Fill.shader = selected
         ? ui.Gradient.linear(
             Offset(size.width * 0.3533631, size.height * 0.6926190),
             Offset(size.width * 0.5168155, size.height * 0.5916607),
-            [
-              Color(0xff1b4e94).withOpacity(1),
-              Color(0xff1a5497).withOpacity(1),
-              Color(0xff195a9b).withOpacity(1),
-            ],
+            [Color(0xff1b4e94), Color(0xff1a5497), Color(0xff195a9b)],
             [0, 0.63, 1],
           )
         : ui.Gradient.linear(
             Offset(size.width * 0.3533631, size.height * 0.6926190),
             Offset(size.width * 0.5168155, size.height * 0.5916607),
-            [
-              Color(0xff474747).withOpacity(1),
-              Color(0xff4a4a4a).withOpacity(1),
-              Color(0xff4e4e4e).withOpacity(1),
-            ],
+            [Color(0xff474747), Color(0xff4a4a4a), Color(0xff4e4e4e)],
             [0, 0.63, 1],
           );
-    canvas.drawPath(path_3, paint_3_fill);
+    canvas.drawPath(path_3, paint3Fill);
   }
 
   @override

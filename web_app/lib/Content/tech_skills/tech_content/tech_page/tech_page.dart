@@ -5,7 +5,7 @@ import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart'
 
 import 'package:web_app/Content/ui_elements.dart';
 import 'package:web_app/Icons/Language_Icons/tech_icon.dart';
-import '../../../Colors.dart';
+import '../../../colors.dart';
 
 class TechPage extends StatefulWidget {
   final Color techColor;

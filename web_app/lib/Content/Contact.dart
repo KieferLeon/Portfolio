@@ -1,21 +1,21 @@
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart'
-    as InnerShadow;
+    as inner_shadow;
 import 'Colors.dart';
 import 'package:flutter/services.dart';
 
 class Contact extends StatefulWidget {
-  _Contact createState() => _Contact();
+  const Contact({super.key});
+
+  @override
+  ContactState createState() => ContactState();
 }
 
-class _Contact extends State<Contact> {
+class ContactState extends State<Contact> {
   var emailHoverd = false;
   OverlayEntry? _overlayEntry;
 
-  final List<double> _parallaxFactors = [0.03, 0.06, 0.09];
-  double _scrollOffset = 0;
-  final GlobalKey _stickerKey = GlobalKey();
   final GlobalKey _emailKey = GlobalKey(); // Key for email container
 
   void _showCopiedOverlay() {
@@ -49,7 +49,7 @@ class _Contact extends State<Contact> {
       ),
     );
 
-    Overlay.of(context)?.insert(_overlayEntry!);
+    Overlay.of(context).insert(_overlayEntry!);
 
     Future.delayed(Duration(milliseconds: 2000), () {
       _overlayEntry?.remove();
@@ -93,10 +93,10 @@ class _Contact extends State<Contact> {
                         ),
                       ],
                     )
-                  : InnerShadow.BoxDecoration(
+                  : inner_shadow.BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       boxShadow: [
-                        InnerShadow.BoxShadow(
+                        inner_shadow.BoxShadow(
                           color: ui.Color.fromARGB(100, 0, 0, 0),
                           blurRadius: 3,
                           spreadRadius: 1,
@@ -108,10 +108,10 @@ class _Contact extends State<Contact> {
               child: Container(
                 width: double.infinity,
                 height: double.infinity,
-                decoration: InnerShadow.BoxDecoration(
+                decoration: inner_shadow.BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   boxShadow: [
-                    InnerShadow.BoxShadow(
+                    inner_shadow.BoxShadow(
                       color: ui.Color.fromARGB(140, 255, 255, 255),
                       blurRadius: 3,
                       spreadRadius: 1,
