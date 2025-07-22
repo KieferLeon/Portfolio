@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'Language_icon.dart';
+import 'tech_icon.dart';
 import 'dart:ui' as ui;
 
 class SwiftIcon extends TechIcon {
   bool selected;
 
   SwiftIcon({this.selected = false});
+
+  @override
+  SwiftIcon clone() {
+    return SwiftIcon(selected: selected);
+  }
 
   @override
   void paint(Canvas canvas, Size size) {

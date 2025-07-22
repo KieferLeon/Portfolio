@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
-import 'Language_icon.dart';
+import 'tech_icon.dart';
 
 class DartIcon extends TechIcon {
   bool selected;
 
   DartIcon({this.selected = false});
+
+  @override
+  DartIcon clone() {
+    return DartIcon(selected: selected);
+  }
 
   @override
   void paint(Canvas canvas, Size size) {

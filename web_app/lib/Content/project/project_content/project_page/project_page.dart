@@ -32,15 +32,18 @@ class ProjectPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      body: Stack(
-        children: [
-          Align(alignment: Alignment.centerLeft, child: uiNavigation()),
-          Center(
-            child: SingleChildScrollView(
+      body: SingleChildScrollView(
+        child: Stack(
+          children: [
+            Align(
+              alignment: Alignment.centerLeft,
+              child: UiNavigation(color: ThemeColors.black),
+            ),
+            Center(
               child: Column(
                 children: [
                   SizedBox(
-                    width: screenWidth * 0.9,
+                    width: screenWidth * 1,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
@@ -75,8 +78,8 @@ class ProjectPage extends StatelessWidget {
                 ],
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -105,10 +108,10 @@ class ProjectTechStack extends StatelessWidget {
               spacing: 10,
               children: [
                 Text("Sprachen", style: TextStyle(fontSize: 50)),
-                SizedBox(
-                  width: screenWidth * 0.15,
-                  height: screenWidth * 0.15,
-                  child: Row(children: languages),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  spacing: 30,
+                  children: languages,
                 ),
               ],
             ),
@@ -120,10 +123,9 @@ class ProjectTechStack extends StatelessWidget {
               spacing: 10,
               children: [
                 Text("Frameworks", style: TextStyle(fontSize: 50)),
-                SizedBox(
-                  width: screenWidth * 0.15,
-                  height: screenWidth * 0.15,
-                  child: Row(children: frameworks),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: frameworks,
                 ),
               ],
             ),

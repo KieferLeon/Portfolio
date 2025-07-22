@@ -1,6 +1,6 @@
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
-import 'Language_icon.dart';
+import 'tech_icon.dart';
 //Add this CustomPaint widget to the Widget Tree
 
 //Copy this CustomPainter code to the Bottom of the File
@@ -8,6 +8,12 @@ class FlutterIcon extends TechIcon {
   bool selected;
 
   FlutterIcon({this.selected = false});
+
+  @override
+  FlutterIcon clone() {
+    return FlutterIcon(selected: selected);
+  }
+
   @override
   void paint(Canvas canvas, Size size) {
     Path path_0 = Path();

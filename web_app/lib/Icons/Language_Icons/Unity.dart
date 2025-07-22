@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'Language_icon.dart';
-import 'dart:ui' as ui;
+import 'tech_icon.dart';
 
 //Copy this CustomPainter code to the Bottom of the File
 class UnityIcon extends TechIcon {
   bool selected;
 
   UnityIcon({this.selected = false});
+
+  @override
+  UnityIcon clone() {
+    return UnityIcon(selected: selected);
+  }
 
   @override
   void paint(Canvas canvas, Size size) {

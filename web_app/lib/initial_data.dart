@@ -24,7 +24,7 @@ class AppDataInitializer {
     cSharp = Tech(
       name: "CSharp",
       pageRoute: "/CSharp",
-      techIcon: CSharpIcon(),
+      techIcon: CSharpIcon(selected: true),
       techColor: ThemeColors.cSharp,
       projects: [],
     );
@@ -32,7 +32,7 @@ class AppDataInitializer {
     swift = Tech(
       name: "Swift",
       pageRoute: "/Swift",
-      techIcon: SwiftIcon(),
+      techIcon: SwiftIcon(selected: true),
       techColor: ThemeColors.swift,
       projects: [],
     );
@@ -40,7 +40,7 @@ class AppDataInitializer {
     dart = Tech(
       name: "Dart",
       pageRoute: "/Dart",
-      techIcon: DartIcon(),
+      techIcon: DartIcon(selected: true),
       techColor: ThemeColors.dart,
       projects: [],
     );
@@ -48,7 +48,7 @@ class AppDataInitializer {
     dotNet = Tech(
       name: ".Net",
       pageRoute: "/DotNet",
-      techIcon: DotNetIcon(),
+      techIcon: DotNetIcon(selected: true),
       techColor: ThemeColors.dotNet,
       projects: [],
     );
@@ -56,7 +56,7 @@ class AppDataInitializer {
     unity = Tech(
       name: "Unity",
       pageRoute: "/Unity",
-      techIcon: UnityIcon(),
+      techIcon: UnityIcon(selected: true),
       techColor: ThemeColors.unity,
       projects: [],
     );
@@ -64,7 +64,7 @@ class AppDataInitializer {
     flutter = Tech(
       name: "Flutter",
       pageRoute: "/Flutter",
-      techIcon: FlutterIcon(),
+      techIcon: FlutterIcon(selected: true),
       techColor: ThemeColors.dart,
       projects: [],
     );
@@ -129,13 +129,14 @@ class AppDataInitializer {
     flutter.projects.add(portfolio.preview);
 
     //Projects
-    uno.languages.add(cSharp.techWidget);
-    uno.frameworks.add(dotNet.techWidget);
+    uno.languages.add(cSharp.createTechWidget(size: 200));
+    uno.frameworks.add(dotNet.createTechWidget(size: 200));
 
-    unityGame.languages.add(cSharp.techWidget);
-    unityGame.frameworks.add(cSharp.techWidget);
+    unityGame.languages.add(cSharp.createTechWidget(size: 200));
+    unityGame.frameworks.add(cSharp.createTechWidget(size: 200));
 
-    portfolio.languages.add(dart.techWidget);
-    portfolio.frameworks.add(flutter.techWidget);
+    portfolio.languages.add(dart.createTechWidget(size: 200));
+    portfolio.languages.add(cSharp.createTechWidget(size: 200));
+    portfolio.frameworks.add(flutter.createTechWidget(size: 200));
   }
 }

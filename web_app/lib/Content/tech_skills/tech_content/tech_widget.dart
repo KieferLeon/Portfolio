@@ -3,20 +3,34 @@ import 'package:flutter/material.dart';
 import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart'
     as inner_shadow;
 
-import '../../../Icons/Language_Icons/Language_icon.dart';
+import '../../../Icons/Language_Icons/tech_icon.dart';
 
 class TechWidget extends StatefulWidget {
   final TechIcon techIcon;
   final String route;
+  final double size;
 
-  const TechWidget({super.key, required this.techIcon, required this.route});
+  const TechWidget({
+    super.key,
+    required this.techIcon,
+    required this.route,
+    required this.size,
+  });
 
   @override
   TechWidgetState createState() => TechWidgetState();
 }
 
 class TechWidgetState extends State<TechWidget> {
+  late final TechIcon techIcon;
   bool isHoverd = false;
+
+  @override
+  void initState() {
+    super.initState();
+    techIcon = widget.techIcon.clone();
+    techIcon.selected = false;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,16 +41,16 @@ class TechWidgetState extends State<TechWidget> {
       child: MouseRegion(
         onEnter: (event) => setState(() {
           isHoverd = true;
-          widget.techIcon.selected = true;
+          techIcon.selected = true;
         }),
         onExit: (event) => setState(() {
           isHoverd = false;
-          widget.techIcon.selected = false;
+          techIcon.selected = false;
         }),
         cursor: SystemMouseCursors.click,
         child: Container(
-          width: 300,
-          height: 300,
+          width: widget.size,
+          height: widget.size,
           decoration: isHoverd
               ? BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
@@ -75,7 +89,7 @@ class TechWidgetState extends State<TechWidget> {
                 ),
               ],
             ),
-            child: CustomPaint(size: Size(300, 300), painter: widget.techIcon),
+            child: CustomPaint(size: Size(300, 300), painter: techIcon),
           ),
         ),
       ),

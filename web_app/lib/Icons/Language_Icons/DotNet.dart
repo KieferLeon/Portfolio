@@ -1,12 +1,18 @@
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
-import 'Language_icon.dart';
+import 'tech_icon.dart';
 
 //Copy this CustomPainter code to the Bottom of the File
 class DotNetIcon extends TechIcon {
   bool selected;
 
   DotNetIcon({this.selected = false});
+
+  @override
+  DotNetIcon clone() {
+    return DotNetIcon(selected: selected);
+  }
+
   @override
   void paint(Canvas canvas, Size size) {
     Path path_0 = Path();

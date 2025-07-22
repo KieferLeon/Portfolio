@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'Language_icon.dart';
+import 'tech_icon.dart';
 import 'dart:ui' as ui;
 
 class CSharpIcon extends TechIcon {
   bool selected;
 
   CSharpIcon({this.selected = false});
+
+  @override
+  CSharpIcon clone() {
+    return CSharpIcon(selected: selected);
+  }
 
   @override
   void paint(Canvas canvas, Size size) {

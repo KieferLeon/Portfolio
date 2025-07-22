@@ -56,7 +56,7 @@ class MyApp extends StatelessWidget {
         "/Flutter": (context) => data.flutter.techPage,
         "/DotNet": (context) => data.dotNet.techPage,
         "/Uno": (context) => data.uno.projectPage,
-        "/UnityProject": (context) => data.unityGame.projectPage,
+        "/UnitySpiel": (context) => data.unityGame.projectPage,
         "/Portfolio": (context) => data.portfolio.projectPage,
       },
     );
@@ -113,9 +113,9 @@ class _MainPage extends State<MainPage> {
                   child: TechOverview(
                     isLanguage: true,
                     techWidgets: [
-                      widget.data.cSharp.techWidget,
-                      widget.data.swift.techWidget,
-                      widget.data.dart.techWidget,
+                      widget.data.cSharp.createTechWidget(size: 300),
+                      widget.data.swift.createTechWidget(size: 300),
+                      widget.data.dart.createTechWidget(size: 300),
                     ],
                   ),
                 ),
@@ -124,9 +124,9 @@ class _MainPage extends State<MainPage> {
                   child: TechOverview(
                     isLanguage: true,
                     techWidgets: [
-                      widget.data.dotNet.techWidget,
-                      widget.data.unity.techWidget,
-                      widget.data.flutter.techWidget,
+                      widget.data.dotNet.createTechWidget(size: 300),
+                      widget.data.unity.createTechWidget(size: 300),
+                      widget.data.flutter.createTechWidget(size: 300),
                     ],
                   ),
                 ),
