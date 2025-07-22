@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 
 import 'Content/project/main_page/project_overview.dart';
 
-import 'Content/frontpage.dart';
+import 'Content/front_page.dart';
 import 'Content/tech_skills/main_page/tech_overview.dart';
-import 'Content/welcomepage.dart';
 import 'Content/contact.dart';
 
 import 'initial_data.dart';
+
+bool isMobile(BuildContext context) => MediaQuery.of(context).size.width < 900;
 
 void main() {
   runApp(const MyApp());
@@ -27,7 +28,6 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: const Color.fromARGB(255, 233, 233, 233),
       ),
       debugShowCheckedModeBanner: false,
-      //home: const MainPage(title: 'Flutter Demo Home Page'),
       routes: {
         "/": (context) => MainPage(title: "Flutter Demo Home Page", data: data),
 
@@ -60,7 +60,7 @@ class MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    final screenheight = MediaQuery.of(context).size.height;
+    final screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 234, 233, 233),
@@ -70,13 +70,54 @@ class MainPageState extends State<MainPage> {
             physics: namefocus
                 ? NeverScrollableScrollPhysics()
                 : AlwaysScrollableScrollPhysics(),
-            child: Column(
+            child: Stack(
               children: [
+                Column(
+                  children: [
+                    SizedBox(
+                      height: isMobile(context)
+                          ? screenHeight * 1.8
+                          : screenHeight * 1.3,
+                      child: TechOverview(
+                        isLanguage: true,
+                        techWidgets: [
+                          widget.data.cSharp.createTechWidget(size: 300),
+                          widget.data.swift.createTechWidget(size: 300),
+                          widget.data.dart.createTechWidget(size: 300),
+                        ],
+                      ),
+                    ),
+
+                    SizedBox(
+                      height: isMobile(context)
+                          ? screenHeight * 1.8
+                          : screenHeight * 1.3,
+                      child: TechOverview(
+                        isLanguage: false,
+                        techWidgets: [
+                          widget.data.dotNet.createTechWidget(size: 300),
+                          widget.data.unity.createTechWidget(size: 300),
+                          widget.data.flutter.createTechWidget(size: 300),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: screenHeight,
+                      child: ProjectOverview(
+                        projects: [
+                          widget.data.uno.preview,
+                          widget.data.unityGame.preview,
+                          widget.data.portfolio.preview,
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: screenHeight, child: Contact()),
+                  ],
+                ),
                 SizedBox(
-                  height: screenheight,
+                  height: screenHeight,
                   child: Stack(
                     children: [
-                      Welcomepage(),
                       Frontpage(
                         focusout: () {
                           setState(() {
@@ -92,39 +133,6 @@ class MainPageState extends State<MainPage> {
                     ],
                   ),
                 ),
-                SizedBox(
-                  height: screenheight * 1.3,
-                  child: TechOverview(
-                    isLanguage: true,
-                    techWidgets: [
-                      widget.data.cSharp.createTechWidget(size: 300),
-                      widget.data.swift.createTechWidget(size: 300),
-                      widget.data.dart.createTechWidget(size: 300),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: screenheight * 1.3,
-                  child: TechOverview(
-                    isLanguage: false,
-                    techWidgets: [
-                      widget.data.dotNet.createTechWidget(size: 300),
-                      widget.data.unity.createTechWidget(size: 300),
-                      widget.data.flutter.createTechWidget(size: 300),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: screenheight,
-                  child: ProjectOverview(
-                    projects: [
-                      widget.data.uno.preview,
-                      widget.data.unityGame.preview,
-                      widget.data.portfolio.preview,
-                    ],
-                  ),
-                ),
-                SizedBox(height: screenheight, child: Contact()),
               ],
             ),
           );

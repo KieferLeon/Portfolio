@@ -16,6 +16,7 @@ class ProjectPage extends StatelessWidget {
   final List<String> filenames;
   final bool hasGithub;
   final String videoPath;
+  final Color projectColor;
 
   const ProjectPage({
     super.key,
@@ -26,6 +27,7 @@ class ProjectPage extends StatelessWidget {
     required this.filenames,
     required this.hasGithub,
     required this.videoPath,
+    required this.projectColor,
   });
 
   @override
@@ -37,7 +39,7 @@ class ProjectPage extends StatelessWidget {
           children: [
             Align(
               alignment: Alignment.centerLeft,
-              child: UiNavigation(color: ThemeColors.black),
+              child: UiNavigation(color: projectColor),
             ),
             Center(
               child: Column(
@@ -47,16 +49,20 @@ class ProjectPage extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Text(name, style: TextStyle(fontSize: 140)),
+                        Text(
+                          name,
+                          style: TextStyle(fontSize: 140, color: projectColor),
+                        ),
                         SizedBox(height: 50),
                         ExpandableButton(
-                          buttonColor: ThemeColors.black,
+                          buttonColor: projectColor,
                           buttonText: "Beschreibung",
                         ),
                         SizedBox(height: 50),
                         ProjectTechStack(
                           languages: languages,
                           frameworks: frameworks,
+                          projectColor: projectColor,
                         ),
                         SizedBox(height: 200),
                         SizedBox(
@@ -87,11 +93,13 @@ class ProjectPage extends StatelessWidget {
 class ProjectTechStack extends StatelessWidget {
   final List<TechWidget> languages;
   final List<TechWidget> frameworks;
+  final Color projectColor;
 
   const ProjectTechStack({
     super.key,
     required this.languages,
     required this.frameworks,
+    required this.projectColor,
   });
 
   @override
@@ -106,7 +114,10 @@ class ProjectTechStack extends StatelessWidget {
             child: Column(
               spacing: 10,
               children: [
-                Text("Sprachen", style: TextStyle(fontSize: 50)),
+                Text(
+                  "Sprachen",
+                  style: TextStyle(fontSize: 50, color: projectColor),
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   spacing: 30,
@@ -121,7 +132,10 @@ class ProjectTechStack extends StatelessWidget {
             child: Column(
               spacing: 10,
               children: [
-                Text("Frameworks", style: TextStyle(fontSize: 50)),
+                Text(
+                  "Frameworks",
+                  style: TextStyle(fontSize: 50, color: projectColor),
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: frameworks,

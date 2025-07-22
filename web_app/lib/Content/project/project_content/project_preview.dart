@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
-import '../../Colors.dart';
+import '../../colors.dart';
 import 'dart:ui' as ui;
 
 class ProjectElement extends StatelessWidget {
   final String name;
   final String imageRoute;
   final String projectRoute;
+  final Color projectColor;
 
   const ProjectElement({
     super.key,
     required this.name,
     required this.imageRoute,
     required this.projectRoute,
+    required this.projectColor,
   });
 
   @override
@@ -54,10 +56,7 @@ class ProjectElement extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                name,
-                style: TextStyle(color: ThemeColors.black, fontSize: 60),
-              ),
+              Text(name, style: TextStyle(color: projectColor, fontSize: 60)),
               SizedBox(
                 width: screenWidth * 0.25,
                 height: screenWidth * 0.15,

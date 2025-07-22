@@ -82,6 +82,7 @@ class AppDataInitializer {
         CodeSnippetLibary.cSharp.nextTurn(),
       ],
       codeSnippetsFiles: CodeSnippetLibary.cSharp.filenames,
+      projectColor: ThemeColors.cSharp,
       hasGithub: false,
     );
     unityGame = Project(
@@ -97,6 +98,7 @@ class AppDataInitializer {
         CodeSnippetLibary.unity.roomSpawning(),
       ],
       codeSnippetsFiles: CodeSnippetLibary.unity.filenames,
+      projectColor: ThemeColors.unity,
       hasGithub: false,
     );
     portfolio = Project(
@@ -112,7 +114,7 @@ class AppDataInitializer {
         CodeSnippetLibary.portfolio.project(),
       ],
       codeSnippetsFiles: CodeSnippetLibary.portfolio.filenames,
-
+      projectColor: ThemeColors.dart,
       hasGithub: false,
     );
 

@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 
 class PortfolioSnippets {
-  List<String> filenames = ["WelcomePage.dart", "Main.dart", "Languages.dart"];
+  List<String> filenames = ["welcome_page.dart", "main.dart", "languages.dart"];
 
   LayoutBuilder Function() animation = animationContent;
   LayoutBuilder Function() project = projectContent;

@@ -16,6 +16,7 @@ class Project {
   final List<LayoutBuilder> codeSnippetsContent;
   final List<String> codeSnippetsFiles;
   final bool hasGithub;
+  final Color projectColor;
 
   Project({
     required this.name,
@@ -26,7 +27,7 @@ class Project {
     required this.frameworks,
     required this.codeSnippetsContent,
     required this.codeSnippetsFiles,
-
+    required this.projectColor,
     required this.hasGithub,
   });
 
@@ -34,6 +35,7 @@ class Project {
     name: name,
     imageRoute: previewImagePath,
     projectRoute: pageRoute,
+    projectColor: projectColor,
   );
 
   late final ProjectPage projectPage = ProjectPage(
@@ -43,6 +45,7 @@ class Project {
     videoPath: videoPath,
     codeSnippetsContent: codeSnippetsContent,
     filenames: codeSnippetsFiles,
+    projectColor: projectColor,
     hasGithub: hasGithub,
   );
 }

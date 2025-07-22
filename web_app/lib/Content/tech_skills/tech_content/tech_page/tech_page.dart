@@ -49,21 +49,23 @@ class TechPageState extends State<TechPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  CustomPaint(size: Size(200, 200), painter: widget.techIcon),
+                  SizedBox(height: 40),
 
-                  SizedBox(height: 0),
                   Text(
                     widget.name,
                     style: TextStyle(color: widget.techColor, fontSize: 60),
                   ),
-                  SizedBox(height: 80),
+
+                  CustomPaint(size: Size(200, 200), painter: widget.techIcon),
+
+                  SizedBox(height: 100),
 
                   ExpandableButton(
                     buttonColor: widget.techColor,
                     buttonText: "Persöhnliche Meinung",
                   ),
 
-                  SizedBox(height: 100),
+                  SizedBox(height: 250),
                   Text(
                     "Projekte",
                     style: TextStyle(color: widget.techColor, fontSize: 60),

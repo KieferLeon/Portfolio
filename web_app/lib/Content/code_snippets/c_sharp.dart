@@ -12,7 +12,7 @@ class CSharpSnippets {
 LayoutBuilder sortHandContent() {
   return LayoutBuilder(
     builder: (context, constraints) {
-      final fontSize = (constraints.maxWidth * 0.05).clamp(10.0, 24.0);
+      final fontSize = (constraints.maxWidth * 0.03).clamp(10.0, 24.0);
 
       return RichText(
         text: TextSpan(

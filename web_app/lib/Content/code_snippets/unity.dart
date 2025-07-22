@@ -12,7 +12,7 @@ class UnitySnippets {
 LayoutBuilder attackContent() {
   return LayoutBuilder(
     builder: (context, constraints) {
-      double fontSize = constraints.maxWidth * 0.035; // Adjust as needed
+      final fontSize = (constraints.maxWidth * 0.05).clamp(10.0, 24.0);
       return RichText(
         text: TextSpan(
           style: TextStyle(
@@ -138,7 +138,7 @@ LayoutBuilder attackContent() {
 LayoutBuilder getDamageContent() {
   return LayoutBuilder(
     builder: (context, constraints) {
-      double fontSize = constraints.maxWidth * 0.035;
+      final fontSize = (constraints.maxWidth * 0.05).clamp(10.0, 24.0);
       return RichText(
         text: TextSpan(
           style: TextStyle(
@@ -219,7 +219,7 @@ LayoutBuilder getDamageContent() {
 LayoutBuilder roomSpawningContent() {
   return LayoutBuilder(
     builder: (context, constraints) {
-      double fontSize = constraints.maxWidth * 0.035;
+      final fontSize = (constraints.maxWidth * 0.05).clamp(10.0, 24.0);
       return RichText(
         text: TextSpan(
           style: TextStyle(
