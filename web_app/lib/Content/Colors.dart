@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class ThemeColors {
   static const white = Color.fromARGB(255, 234, 233, 233);
   static const black = Color.fromARGB(255, 18, 18, 18);
+  static const grey = Color.fromARGB(255, 140, 140, 140);
 
   static const cSharp = Color.fromARGB(255, 81, 43, 212);
   static const cSharpGradient = LinearGradient(
@@ -12,6 +13,15 @@ class ThemeColors {
   );
 
   static const swift = Color.fromARGB(255, 228, 77, 38);
+  static const swiftGradient = LinearGradient(
+    begin: Alignment(0.0, -0.875),
+    end: Alignment(0.0, 0.6876),
+    colors: [
+      Color(0xFFF88A36), // Orange
+      Color(0xFFFD2020), // Red
+    ],
+    stops: [0.0, 1.0],
+  );
 
   static const dart = Color.fromARGB(255, 1, 117, 194);
   static const dartGradient = LinearGradient(

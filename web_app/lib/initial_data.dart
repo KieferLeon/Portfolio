@@ -112,6 +112,7 @@ class AppDataInitializer {
         CodeSnippetLibary.portfolio.project(),
       ],
       codeSnippetsFiles: CodeSnippetLibary.portfolio.filenames,
+
       hasGithub: false,
     );
 

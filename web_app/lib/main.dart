@@ -106,7 +106,7 @@ class MainPageState extends State<MainPage> {
                 SizedBox(
                   height: screenheight * 1.3,
                   child: TechOverview(
-                    isLanguage: true,
+                    isLanguage: false,
                     techWidgets: [
                       widget.data.dotNet.createTechWidget(size: 300),
                       widget.data.unity.createTechWidget(size: 300),

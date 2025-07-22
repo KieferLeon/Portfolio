@@ -48,19 +48,20 @@ class TechWidgetState extends State<TechWidget> {
           techIcon.selected = false;
         }),
         cursor: SystemMouseCursors.click,
-        child: Container(
+        child: AnimatedContainer(
+          duration: Duration(milliseconds: 500),
           width: widget.size,
           height: widget.size,
           decoration: isHoverd
-              ? BoxDecoration(
+              ? inner_shadow.BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   color: Color.fromARGB(255, 234, 233, 233),
                   boxShadow: [
-                    BoxShadow(
+                    inner_shadow.BoxShadow(
                       color: ui.Color.fromARGB(100, 0, 0, 0),
-                      blurRadius: 3,
-                      spreadRadius: 1,
-                      offset: Offset(3, 3),
+                      blurRadius: 0,
+                      spreadRadius: 0,
+                      offset: Offset(0, 0),
                     ),
                   ],
                 )
@@ -81,7 +82,7 @@ class TechWidgetState extends State<TechWidget> {
               borderRadius: BorderRadius.circular(20),
               boxShadow: [
                 inner_shadow.BoxShadow(
-                  color: ui.Color.fromARGB(140, 255, 255, 255),
+                  color: ui.Color.fromARGB(0, 255, 255, 255),
                   blurRadius: 3,
                   spreadRadius: 1,
                   offset: isHoverd ? Offset(1, 1) : Offset(-4, -4),

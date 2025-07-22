@@ -192,9 +192,14 @@ class _ClickableVideoState extends State<ClickableVideo> {
             borderRadius: BorderRadius.circular(20),
             child: _videoInitalized
                 ? VideoPlayer(_videoController)
-                : Container(
-                    color: Colors.black,
-                    child: CircularProgressIndicator(),
+                : SizedBox(
+                    width: double.infinity,
+                    height: double.infinity,
+                    child: Center(
+                      child: CircularProgressIndicator(
+                        color: ThemeColors.black,
+                      ),
+                    ),
                   ),
           ),
 

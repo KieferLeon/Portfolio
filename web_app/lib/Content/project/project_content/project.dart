@@ -26,6 +26,7 @@ class Project {
     required this.frameworks,
     required this.codeSnippetsContent,
     required this.codeSnippetsFiles,
+
     required this.hasGithub,
   });
 

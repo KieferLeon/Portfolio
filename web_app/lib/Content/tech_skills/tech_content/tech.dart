@@ -28,5 +28,6 @@ class Tech {
     techColor: techColor,
     projects: projects,
     techIcon: techIcon,
+    name: name,
   );
 }

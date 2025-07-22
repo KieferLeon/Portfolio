@@ -727,6 +727,10 @@ class DotNetIcon extends TechIcon {
     paint7Fill.color = Color(0xfff2f2f2);
     canvas.drawPath(path_7, paint7Fill);
 
+    Paint paint8Fill = Paint()..style = PaintingStyle.fill;
+    paint8Fill.color = Color(0xfff2f2f2);
+    canvas.drawPath(path_8, paint8Fill);
+
     Paint paint9Fill = Paint()..style = PaintingStyle.fill;
     paint9Fill.color = Color(0xfff2f2f2);
     canvas.drawPath(path_9, paint9Fill);

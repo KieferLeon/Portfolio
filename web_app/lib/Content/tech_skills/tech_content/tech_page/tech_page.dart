@@ -2,6 +2,7 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart'
     as inner_shadow;
+import 'package:web_app/Content/project/project_content/project_preview.dart';
 
 import 'package:web_app/Content/ui_elements.dart';
 import 'package:web_app/Icons/Language_Icons/tech_icon.dart';
@@ -10,13 +11,15 @@ import '../../../colors.dart';
 class TechPage extends StatefulWidget {
   final Color techColor;
   final TechIcon techIcon;
-  final List<StatelessWidget> projects;
+  final List<ProjectElement> projects;
+  final String name;
 
   const TechPage({
     super.key,
     required this.techColor,
     required this.projects,
     required this.techIcon,
+    required this.name,
   });
 
   @override
@@ -48,14 +51,19 @@ class TechPageState extends State<TechPage> {
                 children: [
                   CustomPaint(size: Size(200, 200), painter: widget.techIcon),
 
-                  SizedBox(height: 40),
+                  SizedBox(height: 0),
+                  Text(
+                    widget.name,
+                    style: TextStyle(color: widget.techColor, fontSize: 60),
+                  ),
+                  SizedBox(height: 80),
 
                   ExpandableButton(
                     buttonColor: widget.techColor,
                     buttonText: "Persöhnliche Meinung",
                   ),
 
-                  SizedBox(height: 40),
+                  SizedBox(height: 100),
                   Text(
                     "Projekte",
                     style: TextStyle(color: widget.techColor, fontSize: 60),
@@ -63,7 +71,7 @@ class TechPageState extends State<TechPage> {
                   SizedBox(height: 20),
 
                   Container(
-                    width: screenWidth * 0.8,
+                    width: screenWidth * 0.9,
                     height: screenHeight * 0.7,
                     decoration: inner_shadow.BoxDecoration(
                       color: ThemeColors.white,
@@ -94,11 +102,6 @@ class TechPageState extends State<TechPage> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: widget.projects,
                         ),
-                        if (widget.projects.length > 3)
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: widget.projects,
-                          ),
                       ],
                     ),
                   ),
