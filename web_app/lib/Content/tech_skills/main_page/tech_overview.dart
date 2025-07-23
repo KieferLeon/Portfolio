@@ -25,6 +25,7 @@ class TechOverview extends StatelessWidget {
         height: isMobile(context) ? screenheight * 3 : screenheight,
         child: Center(
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(

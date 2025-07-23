@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
 import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart'
     as inner_shadow;
+import 'package:web_app/Content/colors.dart';
+import 'package:web_app/main.dart';
 
 import '../project_content/project_preview.dart';
 
@@ -23,13 +25,14 @@ class ProjectOverviewState extends State<ProjectOverview> {
     return Center(
       child: SizedBox(
         width: screenWidth * 0.9,
-        height: screenHeight,
+        height: isMobile(context) ? screenHeight * 3 : screenHeight,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
               decoration: inner_shadow.BoxDecoration(
+                color: ThemeColors.white,
                 borderRadius: BorderRadius.circular(20),
                 boxShadow: [
                   inner_shadow.BoxShadow(
@@ -48,11 +51,19 @@ class ProjectOverviewState extends State<ProjectOverview> {
                   ),
                 ],
               ),
-              height: screenHeight * 0.8,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: widget.projects,
-              ),
+              height: isMobile(context)
+                  ? screenHeight * 1.6
+                  : screenHeight * 0.8,
+              width: screenWidth * 0.9,
+              child: isMobile(context)
+                  ? Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: widget.projects,
+                    )
+                  : Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: widget.projects,
+                    ),
             ),
           ],
         ),

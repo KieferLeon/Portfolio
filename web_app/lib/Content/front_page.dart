@@ -48,11 +48,11 @@ class _FrontpageState extends State<Frontpage> with TickerProviderStateMixin {
     _moveUP =
         Tween<Offset>(
           begin: Offset(0, 0),
-          end: Offset(0, -screenHeight * 0.9),
+          end: Offset(0, -screenHeight * 0.8),
         ).animate(
           CurvedAnimation(parent: _controllerUp, curve: Curves.easeOutCubic),
         );
-    point1Anim = Tween<Offset>(begin: Offset(0, 0), end: Offset(100, 100))
+    point1Anim = Tween<Offset>(begin: Offset(0, 0), end: Offset(100, 60))
         .animate(
           CurvedAnimation(
             parent: _arrowChangeDirection,
@@ -60,7 +60,7 @@ class _FrontpageState extends State<Frontpage> with TickerProviderStateMixin {
           ),
         );
 
-    point2Anim = Tween<Offset>(begin: Offset(50, 60), end: Offset(50, 40))
+    point2Anim = Tween<Offset>(begin: Offset(50, 60), end: Offset(50, 0))
         .animate(
           CurvedAnimation(
             parent: _arrowChangeDirection,
@@ -68,7 +68,7 @@ class _FrontpageState extends State<Frontpage> with TickerProviderStateMixin {
           ),
         );
 
-    point3Anim = Tween<Offset>(begin: Offset(100, 0), end: Offset(0, 100))
+    point3Anim = Tween<Offset>(begin: Offset(100, 0), end: Offset(0, 60))
         .animate(
           CurvedAnimation(
             parent: _arrowChangeDirection,
@@ -97,7 +97,7 @@ class _FrontpageState extends State<Frontpage> with TickerProviderStateMixin {
     final logoWidth = screenWidth * 0.9;
     final logoHeight = logoWidth * (153.57507 / 613.81519);
 
-    final double arrowWidth = screenWidth * 0.04;
+    final double arrowWidth = 50;
     final double arrowHeight = arrowWidth * (24 / 40);
 
     return AnimatedBuilder(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:web_app/main.dart';
 
 import '../../../colors.dart';
 import '../../../tech_skills/tech_content/tech_widget.dart';
@@ -33,6 +34,8 @@ class ProjectPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;
+    final fontSize = (screenWidth * 0.05).clamp(60.0, 140.0);
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Stack(
@@ -51,7 +54,11 @@ class ProjectPage extends StatelessWidget {
                       children: [
                         Text(
                           name,
-                          style: TextStyle(fontSize: 140, color: projectColor),
+                          style: TextStyle(
+                            fontSize: fontSize,
+                            color: projectColor,
+                          ),
+                          textAlign: TextAlign.center,
                         ),
                         SizedBox(height: 50),
                         ExpandableButton(
@@ -105,46 +112,55 @@ class ProjectTechStack extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;
+
+    List<Widget> content = [
+      SizedBox(
+        width: isMobile(context) ? screenWidth * 0.8 : screenWidth * 0.4,
+        child: Column(
+          spacing: 10,
+          children: [
+            Text(
+              "Sprachen",
+              style: TextStyle(fontSize: 50, color: projectColor),
+            ),
+            isMobile(context)
+                ? Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    spacing: 30,
+                    children: languages,
+                  )
+                : Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    spacing: 30,
+                    children: languages,
+                  ),
+          ],
+        ),
+      ),
+
+      SizedBox(
+        width: isMobile(context) ? screenWidth * 0.8 : screenWidth * 0.4,
+        child: Column(
+          spacing: 10,
+          children: [
+            Text(
+              "Frameworks",
+              style: TextStyle(fontSize: 50, color: projectColor),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: frameworks,
+            ),
+          ],
+        ),
+      ),
+    ];
+
     return SizedBox(
       width: screenWidth * 0.8,
-      child: Row(
-        children: [
-          SizedBox(
-            width: screenWidth * 0.4,
-            child: Column(
-              spacing: 10,
-              children: [
-                Text(
-                  "Sprachen",
-                  style: TextStyle(fontSize: 50, color: projectColor),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  spacing: 30,
-                  children: languages,
-                ),
-              ],
-            ),
-          ),
-
-          SizedBox(
-            width: screenWidth * 0.4,
-            child: Column(
-              spacing: 10,
-              children: [
-                Text(
-                  "Frameworks",
-                  style: TextStyle(fontSize: 50, color: projectColor),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: frameworks,
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
+      child: isMobile(context)
+          ? Column(spacing: 20, children: content)
+          : Row(children: content),
     );
   }
 }

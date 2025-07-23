@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:web_app/main.dart';
 import 'dart:ui' as ui;
 import 'colors.dart';
 
@@ -23,7 +24,7 @@ class ExpandableButtonState extends State<ExpandableButton> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 800,
+      width: isMobile(context) ? 380 : 800,
       child: Stack(
         children: [
           Transform.translate(

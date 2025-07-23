@@ -2,6 +2,7 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart'
     as inner_shadow;
+import 'package:web_app/main.dart';
 import 'Colors.dart';
 import 'package:flutter/services.dart';
 
@@ -16,7 +17,7 @@ class ContactState extends State<Contact> {
   var emailHoverd = false;
   OverlayEntry? _overlayEntry;
 
-  final GlobalKey _emailKey = GlobalKey(); // Key for email container
+  final GlobalKey _emailKey = GlobalKey();
 
   void _showCopiedOverlay() {
     _overlayEntry?.remove();
@@ -61,6 +62,7 @@ class ContactState extends State<Contact> {
   Widget build(BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;
     final double screenHeight = MediaQuery.of(context).size.width;
+    final fontSize = (screenWidth * 0.05).clamp(30.0, 80.0);
 
     return Scaffold(
       backgroundColor: Colors.transparent,
@@ -73,12 +75,13 @@ class ContactState extends State<Contact> {
           children: [
             Text(
               "Senden Sie mir gerne eine E-Mail",
-              style: TextStyle(fontSize: 42),
+              style: TextStyle(fontSize: fontSize),
+              textAlign: TextAlign.center,
             ),
             SizedBox(height: 30),
             Container(
               key: _emailKey, // Assign key here
-              width: 600,
+              width: isMobile(context) ? screenWidth * 0.9 : 750,
               height: 90,
               decoration: emailHoverd
                   ? BoxDecoration(
@@ -123,7 +126,7 @@ class ContactState extends State<Contact> {
                 child: GestureDetector(
                   onTap: () async {
                     await Clipboard.setData(
-                      ClipboardData(text: "Email@gmc.cpm"),
+                      ClipboardData(text: "KieferLeon07@gmx.de"),
                     );
                     _showCopiedOverlay();
                   },
@@ -141,8 +144,11 @@ class ContactState extends State<Contact> {
                     cursor: SystemMouseCursors.click,
                     child: Center(
                       child: Text(
-                        "Email@gmc.cpm",
-                        style: TextStyle(fontSize: 42, color: Colors.black),
+                        "KieferLeon07@gmx.de",
+                        style: TextStyle(
+                          fontSize: fontSize,
+                          color: Colors.black,
+                        ),
                       ),
                     ),
                   ),

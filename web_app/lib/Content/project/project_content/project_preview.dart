@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:web_app/main.dart';
 import '../../colors.dart';
 import 'dart:ui' as ui;
 
@@ -19,12 +20,18 @@ class ProjectElement extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
+    final fontSize = (screenWidth * 0.05).clamp(40.0, 60.0);
+
     return Stack(
       alignment: Alignment.center,
       children: [
         Container(
-          width: screenWidth * 0.25 + 30,
-          height: screenWidth * 0.15 + 90 + 30,
+          width: isMobile(context)
+              ? screenWidth * 0.6 + 30
+              : screenWidth * 0.25 + 30,
+          height: isMobile(context)
+              ? screenWidth * 0.35 + 90 + 30
+              : screenWidth * 0.15 + 90 + 30,
           padding: EdgeInsets.all(8.0),
           decoration: BoxDecoration(
             color: ThemeColors.white,
@@ -47,8 +54,10 @@ class ProjectElement extends StatelessWidget {
         ),
 
         Container(
-          width: screenWidth * 0.25,
-          height: screenWidth * 0.15 + 90,
+          width: isMobile(context) ? screenWidth * 0.6 : screenWidth * 0.25,
+          height: isMobile(context)
+              ? screenWidth * 0.35 + 90
+              : screenWidth * 0.15 + 90,
           decoration: BoxDecoration(
             color: ThemeColors.white,
             borderRadius: BorderRadius.all(Radius.circular(20)),
@@ -56,10 +65,17 @@ class ProjectElement extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(name, style: TextStyle(color: projectColor, fontSize: 60)),
+              Text(
+                name,
+                style: TextStyle(color: projectColor, fontSize: fontSize),
+              ),
               SizedBox(
-                width: screenWidth * 0.25,
-                height: screenWidth * 0.15,
+                width: isMobile(context)
+                    ? screenWidth * 0.6
+                    : screenWidth * 0.25,
+                height: isMobile(context)
+                    ? screenWidth * 0.35
+                    : screenWidth * 0.15,
                 child: ProjektPreview(
                   imageRoute: imageRoute,
                   projectRoute: projectRoute,

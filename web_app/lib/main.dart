@@ -8,7 +8,7 @@ import 'Content/contact.dart';
 
 import 'initial_data.dart';
 
-bool isMobile(BuildContext context) => MediaQuery.of(context).size.width < 900;
+bool isMobile(BuildContext context) => MediaQuery.of(context).size.width < 950;
 
 void main() {
   runApp(const MyApp());
@@ -74,6 +74,7 @@ class MainPageState extends State<MainPage> {
               children: [
                 Column(
                   children: [
+                    SizedBox(height: screenHeight * 0.4),
                     SizedBox(
                       height: isMobile(context)
                           ? screenHeight * 1.8
@@ -102,7 +103,9 @@ class MainPageState extends State<MainPage> {
                       ),
                     ),
                     SizedBox(
-                      height: screenHeight,
+                      height: isMobile(context)
+                          ? screenHeight * 3
+                          : screenHeight,
                       child: ProjectOverview(
                         projects: [
                           widget.data.uno.preview,

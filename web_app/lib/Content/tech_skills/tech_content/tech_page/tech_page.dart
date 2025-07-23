@@ -6,6 +6,7 @@ import 'package:web_app/Content/project/project_content/project_preview.dart';
 
 import 'package:web_app/Content/ui_elements.dart';
 import 'package:web_app/Icons/Language_Icons/tech_icon.dart';
+import 'package:web_app/main.dart';
 import '../../../colors.dart';
 
 class TechPage extends StatefulWidget {
@@ -74,7 +75,9 @@ class TechPageState extends State<TechPage> {
 
                   Container(
                     width: screenWidth * 0.9,
-                    height: screenHeight * 0.7,
+                    height: isMobile(context)
+                        ? screenHeight * 0.4 * widget.projects.length
+                        : screenHeight * 0.7,
                     decoration: inner_shadow.BoxDecoration(
                       color: ThemeColors.white,
                       borderRadius: BorderRadius.all(Radius.circular(20)),
@@ -96,16 +99,15 @@ class TechPageState extends State<TechPage> {
                       ],
                     ),
 
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      spacing: 30,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: widget.projects,
-                        ),
-                      ],
-                    ),
+                    child: isMobile(context)
+                        ? Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: widget.projects,
+                          )
+                        : Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: widget.projects,
+                          ),
                   ),
                   SizedBox(height: 40),
                 ],
