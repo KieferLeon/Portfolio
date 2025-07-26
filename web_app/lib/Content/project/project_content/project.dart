@@ -17,6 +17,7 @@ class Project {
   final List<String> codeSnippetsFiles;
   final bool hasGithub;
   final Color projectColor;
+  final RichText description;
 
   Project({
     required this.name,
@@ -29,6 +30,7 @@ class Project {
     required this.codeSnippetsFiles,
     required this.projectColor,
     required this.hasGithub,
+    required this.description,
   });
 
   late final ProjectElement preview = ProjectElement(
@@ -47,5 +49,6 @@ class Project {
     filenames: codeSnippetsFiles,
     projectColor: projectColor,
     hasGithub: hasGithub,
+    description: description,
   );
 }

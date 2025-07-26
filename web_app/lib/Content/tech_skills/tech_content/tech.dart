@@ -11,6 +11,7 @@ class Tech {
   final TechIcon techIcon;
   final Color techColor;
   final List<ProjectElement> projects;
+  final RichText description;
 
   Tech({
     required this.name,
@@ -18,6 +19,7 @@ class Tech {
     required this.techIcon,
     required this.techColor,
     required this.projects,
+    required this.description,
   });
 
   TechWidget createTechWidget({required double size}) {
@@ -29,5 +31,6 @@ class Tech {
     projects: projects,
     techIcon: techIcon,
     name: name,
+    description: description,
   );
 }

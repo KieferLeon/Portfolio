@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 
 class UnitySnippets {
-  List<String> filenames = ["Player.cs", "Slime.cs", "Map_Spawner.cs"];
+  List<String> filenames = ["Player.cs", "Slime.cs", "Map.cs"];
 
   LayoutBuilder Function() attack = attackContent;
   LayoutBuilder Function() getDamage = getDamageContent;

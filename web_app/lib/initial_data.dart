@@ -8,6 +8,7 @@ import 'Icons/Language_Icons/dot_net.dart';
 import 'Icons/Language_Icons/flutter.dart';
 import 'Icons/Language_Icons/swift.dart';
 import 'Icons/Language_Icons/unity.dart';
+import 'Content/texts/descriptions.dart';
 
 class AppDataInitializer {
   late Tech cSharp;
@@ -27,6 +28,7 @@ class AppDataInitializer {
       techIcon: CSharpIcon(selected: true),
       techColor: ThemeColors.cSharp,
       projects: [],
+      description: Descriptions.cSharp,
     );
 
     swift = Tech(
@@ -35,6 +37,7 @@ class AppDataInitializer {
       techIcon: SwiftIcon(selected: true),
       techColor: ThemeColors.swift,
       projects: [],
+      description: Descriptions.swift,
     );
 
     dart = Tech(
@@ -43,6 +46,7 @@ class AppDataInitializer {
       techIcon: DartIcon(selected: true),
       techColor: ThemeColors.dart,
       projects: [],
+      description: Descriptions.dart,
     );
 
     dotNet = Tech(
@@ -51,6 +55,7 @@ class AppDataInitializer {
       techIcon: DotNetIcon(selected: true),
       techColor: ThemeColors.dotNet,
       projects: [],
+      description: Descriptions.dotNet,
     );
 
     unity = Tech(
@@ -59,6 +64,7 @@ class AppDataInitializer {
       techIcon: UnityIcon(selected: true),
       techColor: ThemeColors.unity,
       projects: [],
+      description: Descriptions.unity,
     );
 
     flutter = Tech(
@@ -67,6 +73,7 @@ class AppDataInitializer {
       techIcon: FlutterIcon(selected: true),
       techColor: ThemeColors.dart,
       projects: [],
+      description: Descriptions.flutter,
     );
 
     uno = Project(
@@ -84,6 +91,7 @@ class AppDataInitializer {
       codeSnippetsFiles: CodeSnippetLibary.cSharp.filenames,
       projectColor: ThemeColors.cSharp,
       hasGithub: false,
+      description: Descriptions.uno,
     );
     unityGame = Project(
       name: "Unity Spiel",
@@ -100,12 +108,13 @@ class AppDataInitializer {
       codeSnippetsFiles: CodeSnippetLibary.unity.filenames,
       projectColor: ThemeColors.unity,
       hasGithub: false,
+      description: Descriptions.unityProject,
     );
     portfolio = Project(
       name: "Portfolio",
       pageRoute: "/Portfolio",
       previewImagePath: "assets/project_images/portfolio/portfolio_preview.png",
-      videoPath: "assets/project_images/uno/uno_gameplay.mp4",
+      videoPath: "assets/project_images/portfolio/portfolio_clip.mp4",
       languages: [],
       frameworks: [],
       codeSnippetsContent: [
@@ -116,6 +125,7 @@ class AppDataInitializer {
       codeSnippetsFiles: CodeSnippetLibary.portfolio.filenames,
       projectColor: ThemeColors.dart,
       hasGithub: false,
+      description: Descriptions.portfolio,
     );
 
     //Languags

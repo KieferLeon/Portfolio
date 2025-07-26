@@ -18,6 +18,7 @@ class ProjectPage extends StatelessWidget {
   final bool hasGithub;
   final String videoPath;
   final Color projectColor;
+  final RichText description;
 
   const ProjectPage({
     super.key,
@@ -29,6 +30,7 @@ class ProjectPage extends StatelessWidget {
     required this.hasGithub,
     required this.videoPath,
     required this.projectColor,
+    required this.description,
   });
 
   @override
@@ -64,6 +66,7 @@ class ProjectPage extends StatelessWidget {
                         ExpandableButton(
                           buttonColor: projectColor,
                           buttonText: "Beschreibung",
+                          content: description,
                         ),
                         SizedBox(height: 50),
                         ProjectTechStack(
@@ -73,7 +76,9 @@ class ProjectPage extends StatelessWidget {
                         ),
                         SizedBox(height: 200),
                         SizedBox(
-                          width: screenWidth * 0.7,
+                          width: isMobile(context)
+                              ? screenWidth * .9
+                              : screenWidth * 0.7,
                           child: ClickableVideo(videoPath: videoPath),
                         ),
                         SizedBox(height: 200),

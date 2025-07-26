@@ -173,6 +173,7 @@ class SnippetTabState extends State<SnippetTab> {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
+    final fontSize = (screenWidth * 0.05).clamp(20.0, 30.0);
 
     return GestureDetector(
       onTap: () {
@@ -195,7 +196,7 @@ class SnippetTabState extends State<SnippetTab> {
           child: Center(
             child: Text(
               widget.name,
-              style: TextStyle(fontSize: 30, color: ThemeColors.white),
+              style: TextStyle(fontSize: fontSize, color: ThemeColors.white),
             ),
           ),
         ),

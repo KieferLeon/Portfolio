@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:web_app/Content/texts/descriptions.dart';
 import 'package:web_app/main.dart';
 import 'dart:ui' as ui;
 import 'colors.dart';
@@ -6,11 +7,13 @@ import 'colors.dart';
 class ExpandableButton extends StatefulWidget {
   final Color buttonColor;
   final String buttonText;
+  final RichText content;
 
   const ExpandableButton({
     super.key,
     required this.buttonColor,
     required this.buttonText,
+    required this.content,
   });
 
   @override
@@ -23,6 +26,9 @@ class ExpandableButtonState extends State<ExpandableButton> {
   double textHeight = 300;
   @override
   Widget build(BuildContext context) {
+    //final screenwidth = MediaQuery.of(context).size.width;
+    //final fontSize = (screenwidth * 0.05).clamp(20.0, 30.0);
+
     return SizedBox(
       width: isMobile(context) ? 380 : 800,
       child: Stack(
@@ -49,45 +55,7 @@ class ExpandableButtonState extends State<ExpandableButton> {
                       : null,
 
                   width: 800,
-                  child: textVisible
-                      ? RichText(
-                          key: _key,
-                          text: TextSpan(
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: ThemeColors.white,
-                            ),
-                            children: [
-                              TextSpan(
-                                text: "Meine persönliche Meinung zu C#\n\n",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20,
-                                ),
-                              ),
-                              TextSpan(text: "Ich finde, dass C# eine sehr "),
-                              TextSpan(
-                                text: "leistungsfähige und vielseitige ",
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                              TextSpan(
-                                text:
-                                    "Programmiersprache ist. Besonders gefällt mir die gute Integration in das .NET-Ökosystem und die klare Syntax. Für viele Projekte, von kleinen Anwendungen bis zu großen Enterprise-Lösungen, ist C# eine ausgezeichnete Wahl.\n\n",
-                              ),
-                              TextSpan(text: "Allerdings "),
-                              TextSpan(
-                                text:
-                                    "kann die Lernkurve für Einsteiger manchmal etwas steil sein",
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                              TextSpan(
-                                text:
-                                    ", besonders wenn man mit anderen Programmiersprachen noch nicht viel Erfahrung hat.",
-                              ),
-                            ],
-                          ),
-                        )
-                      : SizedBox.shrink(),
+                  child: textVisible ? widget.content : SizedBox.shrink(),
                 ),
               ),
             ),

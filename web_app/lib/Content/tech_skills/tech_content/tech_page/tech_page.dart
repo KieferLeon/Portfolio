@@ -14,6 +14,7 @@ class TechPage extends StatefulWidget {
   final TechIcon techIcon;
   final List<ProjectElement> projects;
   final String name;
+  final RichText description;
 
   const TechPage({
     super.key,
@@ -21,6 +22,7 @@ class TechPage extends StatefulWidget {
     required this.projects,
     required this.techIcon,
     required this.name,
+    required this.description,
   });
 
   @override
@@ -63,7 +65,8 @@ class TechPageState extends State<TechPage> {
 
                   ExpandableButton(
                     buttonColor: widget.techColor,
-                    buttonText: "Persöhnliche Meinung",
+                    buttonText: "Beschreibung",
+                    content: widget.description,
                   ),
 
                   SizedBox(height: 250),

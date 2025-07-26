@@ -32,7 +32,7 @@ class ThemeColors {
   static const Color unity = Color(0xFF000000);
   static const Color dotNet = Color(0xff6a1b9a);
 
-  static const primary1 = Color.fromARGB(255, 192, 74, 169);
+  static const primary1 = Color(0xFFC04AA9);
   static const primary2 = Color.fromARGB(255, 152, 74, 194);
   static const codeBackground = Color.fromARGB(255, 71, 68, 68);
   static const codeBackgroundDark = Color.fromARGB(255, 60, 58, 58);
