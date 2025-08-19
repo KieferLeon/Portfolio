@@ -80,9 +80,9 @@ class ContactState extends State<Contact> {
             ),
             SizedBox(height: 30),
             Container(
-              key: _emailKey, // Assign key here
-              width: isMobile(context) ? screenWidth * 0.9 : 750,
-              height: 90,
+              key: _emailKey,
+              width: isMobile(context) ? screenWidth * 0.9 : screenWidth * 0.6,
+              height: fontSize * 1.5,
               decoration: emailHoverd
                   ? BoxDecoration(
                       borderRadius: BorderRadius.circular(20),

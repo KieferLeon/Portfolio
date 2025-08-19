@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:web_app/Content/texts/descriptions.dart';
 import 'package:web_app/main.dart';
 import 'dart:ui' as ui;
 import 'colors.dart';
