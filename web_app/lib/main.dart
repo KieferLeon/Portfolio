@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'Content/project/main_page/project_overview.dart';
 
+import 'Content/welcome_page.dart';
 import 'Content/front_page.dart';
 import 'Content/tech_skills/main_page/tech_overview.dart';
 import 'Content/contact.dart';
@@ -61,6 +62,7 @@ class MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 234, 233, 233),
@@ -74,7 +76,11 @@ class MainPageState extends State<MainPage> {
               children: [
                 Column(
                   children: [
-                    SizedBox(height: screenHeight * 0.4),
+                    SizedBox(
+                      height: screenHeight * 1.4,
+                      width: screenWidth,
+                      child: WelcomePage(),
+                    ),
                     SizedBox(
                       height: isMobile(context)
                           ? screenHeight * 1.8
