@@ -146,10 +146,9 @@ class AppDataInitializer {
     uno.frameworks.add(dotNet.createTechWidget(size: 200));
 
     unityGame.languages.add(cSharp.createTechWidget(size: 200));
-    unityGame.frameworks.add(cSharp.createTechWidget(size: 200));
+    unityGame.frameworks.add(unity.createTechWidget(size: 200));
 
     portfolio.languages.add(dart.createTechWidget(size: 200));
-    portfolio.languages.add(cSharp.createTechWidget(size: 200));
     portfolio.frameworks.add(flutter.createTechWidget(size: 200));
   }
 }
