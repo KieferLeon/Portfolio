@@ -1,20 +1,12 @@
+import 'dart:html' as html;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:web_app/main.dart';
 
 import 'Colors.dart';
 
-void _launchURL() async {
-  final Uri url = Uri.parse('https://github.com/KieferLeon');
-  if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
-    throw 'Could not launch $url';
-  }
-}
-
 class WelcomePage extends StatelessWidget {
-  const WelcomePage({super.key});
-
   @override
   Widget build(BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;
@@ -78,7 +70,9 @@ class WelcomePage extends StatelessWidget {
 }
 
 class GitHubButton extends StatelessWidget {
-  const GitHubButton({super.key});
+  void _openNewTab() {
+    html.window.open("https://github.com/KieferLeon", "_blank");
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +88,7 @@ class GitHubButton extends StatelessWidget {
       ),
       child: TextButton(
         onPressed: () {
-          _launchURL();
+          _openNewTab();
         },
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -135,7 +129,7 @@ class GradientProgressBar extends StatelessWidget {
               height: height,
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
-                  colors: [Colors.blue, Colors.purple],
+                  colors: [ThemeColors.primary1, ThemeColors.primary2],
                   begin: Alignment.centerLeft,
                   end: Alignment.centerRight,
                 ),
