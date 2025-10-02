@@ -44,16 +44,9 @@ class WelcomePage extends StatelessWidget {
               Column(
                 children: [
                   Text(
-                    "In $dayCountdown Tagen: Studium der Angewandten Informatik an der FH Worms.",
+                    "1 Semester Angewandte Informatik",
                     style: TextStyle(fontSize: 20, color: ThemeColors.black),
                     textAlign: TextAlign.center,
-                  ),
-
-                  SizedBox(height: 20),
-
-                  SizedBox(
-                    width: screenWidth * 0.4,
-                    child: GradientProgressBar(value: progress),
                   ),
                 ],
               ),
